@@ -3,109 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CASH FLOW TJ | VIP SYSTEM</title>
+    <title>CASH FLOW TJ</title>
     <style>
-        :root {
-            --gold: #ffcc00;
-            --premium: #d4af37;
-            --dark-bg: #050a14;
-            --card-bg: rgba(22, 30, 46, 0.95);
-            --success: #00ff88;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background: var(--dark-bg); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; }
-        .container { width: 100%; max-width: 400px; padding: 20px; text-align: center; }
-        
-        /* Login Screen */
-        #login-screen { display: block; }
-        .logo-circle { width: 100px; height: 100px; border: 4px solid var(--gold); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: bold; color: var(--gold); box-shadow: 0 0 20px rgba(255, 204, 0, 0.3); }
-        h1 { font-size: 28px; margin-bottom: 10px; color: var(--gold); letter-spacing: 2px; }
-        .subtitle { color: #888; margin-bottom: 30px; font-size: 14px; }
-        input { width: 100%; padding: 15px; background: #1a2233; border: 1px solid #334466; border-radius: 12px; color: white; margin-bottom: 20px; outline: none; transition: 0.3s; }
-        input:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(255, 204, 0, 0.2); }
-        .start-btn { width: 100%; padding: 15px; background: linear-gradient(45deg, var(--gold), #ffaa00); border: none; border-radius: 12px; color: #000; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; }
-        
-        /* Main Screen */
+        :root { --gold: #ffcc00; --dark-bg: #050a14; --card-bg: #161e2e; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background: var(--dark-bg); color: white; text-align: center; padding: 20px; }
+        .logo { width: 80px; height: 80px; border: 3px solid var(--gold); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--gold); }
+        .card { background: var(--card-bg); border-radius: 15px; padding: 20px; margin-bottom: 15px; border: 1px solid #334; text-align: left; }
+        .btn { width: 100%; padding: 15px; background: var(--gold); border: none; border-radius: 10px; color: black; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; }
         #main-screen { display: none; }
-        .vip-card { background: var(--card-bg); border: 1px solid #334466; border-radius: 20px; padding: 20px; margin-bottom: 20px; position: relative; overflow: hidden; text-align: left; transition: 0.3s; }
-        .vip-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .vip-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .vip-title { font-size: 22px; font-weight: bold; color: var(--gold); }
-        .income-badge { background: var(--success); color: #000; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; }
-        .details { margin-bottom: 20px; }
-        .row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; color: #a0aec0; }
-        .label { color: #63b3ed; }
-        .buy-btn { width: 100%; padding: 12px; background: transparent; border: 1px solid var(--gold); border-radius: 10px; color: var(--gold); font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .buy-btn:hover { background: var(--gold); color: #000; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div id="login-screen">
-            <div class="logo-circle">TJS</div>
-            <h1>CASH FLOW</h1>
-            <p class="subtitle">Системаи автоматии даромад</p>
-            <input type="text" id="nameInput" placeholder="Номи Шумо">
-            <button class="start-btn" onclick="startApp()">ОҒОЗ КАРДАН</button>
-        </div>
+    <div id="login-screen">
+        <div class="logo">TJS</div>
+        <h1>CASH FLOW</h1>
+        <input type="text" id="uName" placeholder="Номи Шумо">
+        <button class="btn" onclick="showPlans()">ОҒОЗ КАРДАН</button>
+    </div>
 
-        <div id="main-screen">
-            <h2 style="margin-bottom: 20px; color: var(--gold);">Нақшаҳои VIP</h2>
-            <div id="vip-list"></div>
+    <div id="main-screen">
+        <h2>Нақшаҳои VIP</h2>
+        <div class="card">
+            <h3>VIP 1 - 100 TJS</h3>
+            <p>Фоида: 15 TJS/рӯз</p>
+            <button class="btn" onclick="copyTG()">ХАРИД (Copy ID)</button>
         </div>
+        <div class="card">
+            <h3>VIP 2 - 300 TJS</h3>
+            <p>Фоида: 50 TJS/рӯз</p>
+            <button class="btn" onclick="copyTG()">ХАРИД (Copy ID)</button>
+        </div>
+        <p style="font-size: 12px; color: #888;">Пас аз пахш кардан, ID-и мо нусха мешавад. Ба Telegram рафта онро "Paste" кунед.</p>
     </div>
 
     <script>
-        const plans = [
-            { lv: 'VIP 1', deposit: '100 TJS', daily: '15 TJS', monthly: '450 TJS', desc: 'Нақшаи ибтидоӣ' },
-            { lv: 'VIP 2', deposit: '300 TJS', daily: '50 TJS', monthly: '1,500 TJS', desc: 'Нақшаи маъмул' },
-            { lv: 'VIP 3', deposit: '500 TJS', daily: '90 TJS', monthly: '2,700 TJS', desc: 'Даромади миёна' },
-            { lv: 'VIP 4', deposit: '1,000 TJS', daily: '200 TJS', monthly: '6,000 TJS', desc: 'Нақшаи тиллоӣ' }
-        ];
-
-        function startApp() {
-            const name = document.getElementById('nameInput').value;
-            if (!name) { alert("Лутфан номи худро нависед"); return; }
-            
-            document.getElementById('login-screen').style.display = 'none';
-            document.getElementById('main-screen').style.display = 'block';
-            
-            const list = document.getElementById('vip-list');
-            plans.forEach(p => {
-                list.innerHTML += `
-                    <div class="vip-card">
-                        <div class="vip-header">
-                            <span class="vip-title">${p.lv}</span>
-                            <span class="income-badge">АКТИВ</span>
-                        </div>
-                        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 10px;">${p.desc}</p>
-                        <div class="details">
-                            <div class="row"><span>Амонат:</span><b>${p.deposit}</b></div>
-                            <div class="row"><span>Фоидаи рӯзона:</span><b>${p.daily}</b></div>
-                            <div class="row"><span>Фоидаи моҳона:</span><b>${p.monthly}</b></div>
-                        </div>
-                        <button class="buy-btn" onclick="order('${p.lv}')">ХАРИД</button>
-                    </div>
-                `;
-            });
+        function showPlans() {
+            if(!document.getElementById('uName').value) return alert("Номро нависед");
+            document.getElementById('login-screen').style.display='none';
+            document.getElementById('main-screen').style.display='block';
         }
 
-        function order(level) {
-            const name = document.getElementById('nameInput').value;
-            const text = `Салом! Ман ${name}. Мехоҳам ${level}-ро фаъол кунам. Лутфан реквизитҳоро фиристед.`;
-            const url = `https://t.me/ad_min_boy?text=${encodeURIComponent(text)}`;
-            
-            // Ислоҳи асосӣ барои AppsGeyser:
-            // Кӯшиши кушодан дар браузери системавӣ ё мустақиман дар Телеграм
-            window.open(url, '_blank');
-            window.open(url, '_system');
-            
-            // Запасной вариант
-            setTimeout(() => {
-                window.location.href = url;
-            }, 500);
+        function copyTG() {
+            const user = "@ad_min_boy";
+            navigator.clipboard.writeText(user).then(() => {
+                alert("Username-и мо '" + user + "' нусхабардорӣ шуд! \n\nЛутфан ба Telegram равед, дар ҷустуҷӯ (Search) ин номро гузоред ва ба мо паём фиристед.");
+            });
         }
     </script>
 </body>
