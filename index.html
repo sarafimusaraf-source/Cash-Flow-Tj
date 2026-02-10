@@ -11,7 +11,7 @@
         .logo { width: 80px; height: 80px; border: 3px solid var(--gold); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--gold); }
         .card { background: var(--card-bg); border-radius: 15px; padding: 20px; margin-bottom: 15px; border: 1px solid #334; text-align: left; }
         .btn { width: 100%; padding: 15px; background: var(--gold); border: none; border-radius: 10px; color: black; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; color: black; }
         #main-screen { display: none; }
     </style>
 </head>
@@ -20,37 +20,51 @@
     <div id="login-screen">
         <div class="logo">TJS</div>
         <h1>CASH FLOW</h1>
+        <p style="margin-bottom: 15px; color: #888;">Системаи автоматии даромад</p>
         <input type="text" id="uName" placeholder="Номи Шумо">
         <button class="btn" onclick="showPlans()">ОҒОЗ КАРДАН</button>
     </div>
 
     <div id="main-screen">
-        <h2>Нақшаҳои VIP</h2>
+        <h2 style="color: var(--gold); margin-bottom: 20px;">Нақшаҳои VIP</h2>
         <div class="card">
             <h3>VIP 1 - 100 TJS</h3>
-            <p>Фоида: 15 TJS/рӯз</p>
-            <button class="btn" onclick="copyTG()">ХАРИД (Copy ID)</button>
+            <p style="color: #00ff88;">Фоида: 15 TJS/рӯз</p>
+            <button class="btn" onclick="copyTG()">ХАРИД (Нусхаи ID)</button>
         </div>
         <div class="card">
             <h3>VIP 2 - 300 TJS</h3>
-            <p>Фоида: 50 TJS/рӯз</p>
-            <button class="btn" onclick="copyTG()">ХАРИД (Copy ID)</button>
+            <p style="color: #00ff88;">Фоида: 50 TJS/рӯз</p>
+            <button class="btn" onclick="copyTG()">ХАРИД (Нусхаи ID)</button>
         </div>
-        <p style="font-size: 12px; color: #888;">Пас аз пахш кардан, ID-и мо нусха мешавад. Ба Telegram рафта онро "Paste" кунед.</p>
+        <p style="font-size: 13px; color: #aaa; margin-top: 20px;">
+            Пас аз пахш, ID-и мо нусха мешавад. Ба Telegram рафта онро "Paste" кунед.
+        </p>
     </div>
 
     <script>
         function showPlans() {
-            if(!document.getElementById('uName').value) return alert("Номро нависед");
+            if(!document.getElementById('uName').value) return alert("Лутфан номи худро нависед");
             document.getElementById('login-screen').style.display='none';
             document.getElementById('main-screen').style.display='block';
         }
 
         function copyTG() {
             const user = "@ad_min_boy";
-            navigator.clipboard.writeText(user).then(() => {
-                alert("Username-и мо '" + user + "' нусхабардорӣ шуд! \n\nЛутфан ба Telegram равед, дар ҷустуҷӯ (Search) ин номро гузоред ва ба мо паём фиристед.");
-            });
+            
+            // Усули боэътимоди нусхабардорӣ
+            const textArea = document.createElement("textarea");
+            textArea.value = user;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                alert("ID-и мо '" + user + "' нусхабардорӣ шуд!\n\nБа Telegram равед ва ба мо нависед.");
+            } catch (err) {
+                // Агар нусха нашуд, танҳо ID-ро нишон медиҳем
+                prompt("Лутфан ин ID-ро нусха кунед ва дар Telegram ҷустуҷӯ кунед:", user);
+            }
+            document.body.removeChild(textArea);
         }
     </script>
 </body>
