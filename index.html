@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASH FLOW TJ | VIP SYSTEM</title>
+    <style>
+        :root {
+            --gold: #ffcc00;
+            --premium: #d4af37;
+            --dark-bg: #050a14;
+            --card-bg: rgba(22, 30, 45, 0.7);
+            --success: #00ff88;
+        }
+
+        body { 
+            background: var(--dark-bg);
+            background-image: linear-gradient(135deg, #050a14 0%, #1e293b 100%);
+            color: white; font-family: 'Segoe UI', Roboto, sans-serif; 
+            margin: 0; padding: 15px; min-height: 100vh;
+        }
+
+        .container { width: 100%; max-width: 480px; margin: 0 auto; }
+
+        /* Шапка ва Лого */
+        .header { text-align: center; padding: 20px 0; }
+        .logo-ring { 
+            width: 80px; height: 80px; background: transparent; 
+            border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; 
+            font-size: 40px; border: 3px solid var(--gold);
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 204, 0, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 204, 0, 0.5); }
+            100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 204, 0, 0.3); }
+        }
+
+        .promo-banner {
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            padding: 12px; border-radius: 15px; margin-bottom: 20px;
+            font-weight: bold; font-size: 14px; text-align: center;
+            box-shadow: 0 5px 15px rgba(255, 65, 108, 0.4);
+        }
+
+        /* Кортҳои VIP */
+        .vip-card { 
+            background: var(--card-bg); backdrop-filter: blur(10px);
+            border-radius: 20px; padding: 20px; margin-bottom: 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative; transition: 0.3s;
+        }
+
+        .vip-card:active { transform: scale(0.98); }
+
+        .vip-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .vip-title { color: var(--gold); font-size: 22px; font-weight: 800; letter-spacing: 1px; }
+        
+        .income-badge {
+            background: rgba(0, 255, 136, 0.15); color: var(--success);
+            padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold;
+        }
+
+        .details { background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; margin: 15px 0; }
+        .row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+        .label { color: #94a3b8; }
+        .value { color: white; font-weight: bold; }
+
+        .buy-btn { 
+            width: 100%; padding: 14px; background: linear-gradient(45deg, var(--gold), #ff9900); 
+            border: none; border-radius: 12px; color: black; font-weight: 900; 
+            cursor: pointer; text-transform: uppercase; font-size: 15px;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+        }
+
+        /* Саҳифаи Вуруд */
+        #login-screen { text-align: center; padding-top: 50px; }
+        .input-group { margin: 25px 0; }
+        .user-input {
+            width: 80%; padding: 15px; border-radius: 12px; border: 2px solid #334155;
+            background: #0f172a; color: white; text-align: center; font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="login-screen">
+        <div class="logo-ring">TJS</div>
+        <h1 style="color: var(--gold); font-size: 32px;">CASH FLOW</h1>
+        <p style="color: #94a3b8;">Системаи автоматии даромад</p>
+        
+        <div class="input-group">
+            <input type="text" id="nameInput" class="user-input" placeholder="Номи Шумо">
+            <button class="buy-btn" style="margin-top: 20px; width: 85%;" onclick="startApp()">ОҒОЗ КАРДАН</button>
+        </div>
+    </div>
+
+    <div id="main-screen" style="display: none;">
+        <div class="header">
+            <div class="promo-banner">🎁 БОНУСИ +10% БАРОИ ПАРДОХТИ АВАЛ!</div>
+            <h2 style="margin: 0;">Нақшаҳои Сармоягузорӣ</h2>
+        </div>
+        
+        <div id="vip-list"></div>
+    </div>
+</div>
+
+<script>
+    const plans = [
+        { lv: "VIP 1", dep: "150", day: "6", mon: "180", desc: "🌱 Қадами аввал ба сӯи боигарӣ!" },
+        { lv: "VIP 2", dep: "500", day: "22", mon: "660", desc: "⚡ Суръати даромадро зиёд кунед!" },
+        { lv: "VIP 3", dep: "1,200", day: "55", mon: "1,650", desc: "💰 Даромади устувори ҳаррӯза." },
+        { lv: "VIP 4", dep: "3,000", day: "140", mon: "4,200", desc: "📈 Интихоби сармоягузорони ботаҷриба." },
+        { lv: "VIP 5", dep: "7,500", day: "360", mon: "10,800", desc: "💎 Мақоми тиллоӣ ва даромади олӣ!" },
+        { lv: "VIP 6", dep: "15,000", day: "750", mon: "22,500", desc: "🚀 Лимити худро бишканед!" },
+        { lv: "VIP 7", dep: "30,000", day: "1,600", mon: "48,000", desc: "👑 Сармоягузории касбӣ." },
+        { lv: "VIP 8", dep: "60,000", day: "3,500", mon: "105,000", desc: "🔥 Магнати ҳақиқӣ бошед!" },
+        { lv: "VIP 9", dep: "100,000", day: "6,200", mon: "186,000", desc: "🌍 Озодии молиявии мутлақ!" }
+    ];
+
+    function startApp() {
+        const name = document.getElementById('nameInput').value;
+        if(name.length < 2) { alert("Лутфан номи худро нависед"); return; }
+        
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('main-screen').style.display = 'block';
+        
+        const list = document.getElementById('vip-list');
+        plans.forEach(p => {
+            list.innerHTML += `
+                <div class="vip-card">
+                    <div class="vip-header">
+                        <span class="vip-title">${p.lv}</span>
+                        <span class="income-badge">АКТИВ</span>
+                    </div>
+                    <p style="font-size: 13px; color: #94a3b8;">${p.desc}</p>
+                    <div class="details">
+                        <div class="row"><span class="label">Амонат:</span> <span class="value">${p.dep} TJS</span></div>
+                        <div class="row"><span class="label">Фоидаи рӯзона:</span> <span class="value" style="color:var(--success)">+${p.day} TJS</span></div>
+                        <div class="row"><span class="label">Фоидаи моҳона:</span> <span class="value">${p.mon} TJS</span></div>
+                    </div>
+                    <button class="buy-btn" onclick="order('${p.lv}')">ХАРИД ВА ФАЪОЛКУНИ</button>
+                </div>
+            `;
+        });
+    }
+
+    function order(level) {
+        const name = document.getElementById('nameInput').value;
+        const text = `Салом! Ман ${name}. Мехоҳам ${level}-ро фаъол кунам. Лутфан реквизитҳоро фиристед.`;
+        window.location.href = `https://t.me/ad_min_boy?text=${encodeURIComponent(text)}`;
+    }
+</script>
+
+</body>
+</html>
