@@ -9,143 +9,145 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background: var(--dark); color: white; text-align: center; }
         
-        /* Header & Logo */
-        .header { padding: 30px 20px; background: linear-gradient(to bottom, #0a1322, var(--dark)); }
-        .logo-circle { width: 90px; height: 90px; border: 4px solid var(--gold); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; color: var(--gold); box-shadow: 0 0 20px rgba(255, 204, 0, 0.3); }
-        
-        /* Promo Timer */
-        .promo-box { background: rgba(255, 204, 0, 0.1); border: 1px dashed var(--gold); margin: 15px; padding: 10px; border-radius: 10px; }
+        /* Header & Promo */
+        .header { padding: 25px 20px; background: linear-gradient(to bottom, #0a1322, var(--dark)); }
+        .logo-circle { width: 70px; height: 70px; border: 3px solid var(--gold); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; color: var(--gold); box-shadow: 0 0 15px rgba(255, 204, 0, 0.3); }
+        .promo-box { background: rgba(255, 204, 0, 0.1); border: 1px dashed var(--gold); margin: 10px; padding: 10px; border-radius: 10px; }
         .timer { font-weight: bold; color: #ff4444; font-size: 18px; }
 
         /* VIP Cards */
         .container { padding: 15px; }
         .vip-card { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid #2d3748; text-align: left; position: relative; overflow: hidden; }
-        .vip-card::before { content: "АКСИЯ 50%"; position: absolute; top: 10px; right: -30px; background: red; color: white; padding: 5px 40px; transform: rotate(45deg); font-size: 10px; font-weight: bold; }
+        .vip-card::after { content: "АКСИЯ 50%"; position: absolute; top: 10px; right: -30px; background: red; color: white; padding: 5px 40px; transform: rotate(45deg); font-size: 10px; font-weight: bold; }
         
-        .vip-title { font-size: 22px; color: var(--gold); font-weight: bold; margin-bottom: 10px; display: flex; justify-content: space-between; }
-        .badge { background: var(--green); color: black; font-size: 10px; padding: 2px 8px; border-radius: 5px; vertical-align: middle; }
+        .vip-title { font-size: 22px; color: var(--gold); font-weight: bold; margin-bottom: 5px; }
+        .slogan { font-size: 12px; color: #888; margin-bottom: 15px; font-style: italic; }
         
         .info-row { display: flex; justify-content: space-between; margin: 8px 0; font-size: 14px; border-bottom: 1px solid #252f3f; padding-bottom: 5px; }
-        .info-label { color: #94a3b8; }
-        .info-val { color: white; font-weight: bold; }
-        .profit { color: var(--green); }
+        .profit { color: var(--green); font-weight: bold; }
 
-        .slogan { font-style: italic; font-size: 12px; color: var(--gold); margin: 10px 0; }
+        /* Buttons */
+        .btn { width: 100%; padding: 15px; background: linear-gradient(45deg, #ffcc00, #ffaa00); border: none; border-radius: 12px; color: black; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .btn-tg { background: #0088cc; color: white; }
+
+        /* Modal / Payment Window */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 100; }
+        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a2233; border: 2px solid var(--gold); padding: 25px; border-radius: 25px; z-index: 101; width: 90%; max-height: 90vh; overflow-y: auto; }
         
-        .btn { width: 100%; padding: 15px; background: linear-gradient(45deg, #ffcc00, #ffaa00); border: none; border-radius: 12px; color: black; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; }
-        .btn:active { transform: scale(0.98); }
+        .card-number { background: #000; padding: 15px; border-radius: 12px; font-family: monospace; font-size: 18px; color: var(--gold); margin: 15px 0; border: 1px dashed var(--gold); letter-spacing: 1px; position: relative; }
+        .card-label { font-size: 10px; color: #888; display: block; margin-bottom: 5px; }
+        
+        .step { text-align: left; font-size: 14px; margin-bottom: 12px; display: flex; align-items: flex-start; }
+        .step-num { background: var(--gold); color: black; min-width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 10px; font-size: 12px; }
 
         /* Login Screen */
-        #login-screen { padding: 50px 20px; }
-        .input-group { margin-top: 30px; }
+        #login-screen { padding: 60px 20px; }
         input { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #334; background: #0f172a; color: white; margin-bottom: 15px; outline: none; }
-
-        /* Modal */
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 100; }
-        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a2233; border: 2px solid var(--gold); padding: 25px; border-radius: 25px; z-index: 101; width: 85%; }
     </style>
 </head>
 <body>
 
     <div id="login-screen">
         <div class="logo-circle">TJS</div>
-        <h1 style="letter-spacing: 2px;">CASH FLOW</h1>
-        <p style="color: #888;">Системаи автоматии даромад дар Тоҷикистон</p>
-        
-        <div class="input-group">
-            <input type="text" id="uName" placeholder="Номи худро нависед...">
-            <button class="btn" onclick="startApp()">ОҒОЗ КАРДАН</button>
-        </div>
-        <p style="margin-top: 20px; font-size: 12px; color: var(--gold);">● Бехатар ва кафолатдодашуда</p>
+        <h1>CASH FLOW</h1>
+        <p style="color: #888; margin-bottom: 30px;">Системаи автоматии даромад</p>
+        <input type="text" id="uName" placeholder="Номи худро нависед...">
+        <button class="btn" onclick="startApp()">ОҒОЗ КАРДАН</button>
     </div>
 
     <div id="main-screen" style="display: none;">
         <div class="header">
-            <div class="logo-circle" style="width: 60px; height: 60px; font-size: 18px;">TJS</div>
-            <h3>ХУШ ОМАДЕД!</h3>
+            <div class="logo-circle">TJS</div>
             <div class="promo-box">
-                <p style="font-size: 12px;">ТО ОХИРИ АКСИЯ МОНД:</p>
+                <p style="font-size: 11px;">ТО ОХИРИ АКСИЯИ VIP МОНД:</p>
                 <div class="timer" id="timer">02:54:12</div>
             </div>
         </div>
-
-        <div class="container" id="vip-list">
-            </div>
+        <div class="container" id="vip-list"></div>
     </div>
 
     <div class="overlay" id="overlay"></div>
-    <div class="modal" id="modal">
-        <h3 id="m-title" style="color: var(--gold); margin-bottom: 15px;"></h3>
-        <p id="m-text" style="font-size: 15px; line-height: 1.6;"></p>
-        <button class="btn" onclick="closeM()" style="margin-top: 20px;">ФАҲМО</button>
+    <div class="modal" id="pay-modal">
+        <h3 style="color: var(--gold);">ТАРЗИ ПАРДОХТ</h3>
+        <p style="font-size: 13px; margin: 10px 0; color: #ccc;">Нақшаи интихобшуда: <span id="sel-vip" style="color:white; font-weight:bold;"></span></p>
+        
+        <div class="step"><div class="step-num">1</div><div>Маблағро ба ин корти Миллӣ гузаронед:</div></div>
+        
+        <div class="card-number">
+            <span class="card-label">КОРТИ МИЛЛӢ (АЛИФ / ДУШАНБЕ СИТИ)</span>
+            <span id="card-val">5058 2703 7901 2981</span>
+        </div>
+
+        <div class="step"><div class="step-num">2</div><div>Аз чеки пардохт скриншот гиред.</div></div>
+        <div class="step"><div class="step-num">3</div><div>Чеки пардохтро ба админ фиристед.</div></div>
+
+        <button class="btn btn-tg" onclick="sendCheck()">📤 ФИРИСТОДАНИ ЧЕК (TELEGRAM)</button>
+        <button onclick="closePay()" style="background:none; border:none; color:#777; margin-top:15px; font-size:14px;">Ба қафо</button>
     </div>
 
     <script>
         const vips = [
-            { lv: 1, deposit: 195, daily: 7, yearly: 2520, slogan: "Оғози осон барои шурӯъкунандагон!" },
-            { lv: 2, deposit: 625, daily: 23, yearly: 8280, slogan: "Даромади устувор ва боэътимод!" },
-            { lv: 3, deposit: 2420, daily: 82, yearly: 29520, slogan: "Беҳтарин интихоб барои рушд! 🔥" },
-            { lv: 4, deposit: 6990, daily: 275, yearly: 99000, slogan: "Сатҳи касбӣ ва фоидаи калон!" },
-            { lv: 5, deposit: 19990, daily: 910, yearly: 327600, slogan: "Шумо аллакай дар қуллаи муваффақият!" },
-            { lv: 6, deposit: 65990, daily: 2490, yearly: 896400, slogan: "Инвеститсия барои ояндаи дурахшон!" },
-            { lv: 7, deposit: 165990, daily: 6390, yearly: "2,300,400", slogan: "Суръати максимум, фоидаи максимум!" },
-            { lv: 8, deposit: 365990, daily: 14290, yearly: "5,144,400", slogan: "Мақоми VIP-и ҳақиқӣ барои инвесторҳо!" },
-            { lv: 9, deposit: 707990, daily: 29990, yearly: "10,764,000", slogan: "Империяи молиявии худро созед! 👑" }
+            { lv: 1, dep: 195, daily: 7, yearly: 2520, s: "Оғози бобарор!" },
+            { lv: 2, dep: 625, daily: 23, yearly: 8280, s: "Даромади устувор!" },
+            { lv: 3, dep: 2420, daily: 82, yearly: 29520, s: "Беҳтарин интихоб! 🔥" },
+            { lv: 4, dep: 6990, daily: 275, yearly: 99000, s: "Нақшаи касбӣ!" },
+            { lv: 5, dep: 19990, daily: 910, yearly: 327600, s: "Даромади калон!" },
+            { lv: 6, dep: 65990, daily: 2490, yearly: 896400, s: "Суръати баланд!" },
+            { lv: 7, dep: 165990, daily: 6390, yearly: "2,300,400", s: "VIP Премиум!" },
+            { lv: 8, dep: 365990, daily: 14290, yearly: "5,144,400", s: "Сатҳи элита!" },
+            { lv: 9, dep: 707990, daily: 29990, yearly: "10,764,000", s: "Империяи молиявӣ! 👑" }
         ];
 
-        function renderVips() {
+        let selectedVipName = "";
+
+        function startApp() {
+            if(!document.getElementById('uName').value) return alert("Лутфан номи худро нависед!");
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('main-screen').style.display = 'block';
+            
             const list = document.getElementById('vip-list');
             vips.forEach(v => {
                 list.innerHTML += `
                     <div class="vip-card">
-                        <div class="vip-title">VIP-${v.lv} <span class="badge">АКТИВ</span></div>
-                        <div class="slogan">${v.slogan}</div>
-                        <div class="info-row"><span class="info-label">Амонати корӣ:</span> <span class="info-val">${v.deposit} TJS</span></div>
-                        <div class="info-row"><span class="info-label">Даромади рӯзона:</span> <span class="info-val profit">+${v.daily} TJS</span></div>
-                        <div class="info-row"><span class="info-label">Даромади солона:</span> <span class="info-val profit">${v.yearly} TJS</span></div>
-                        <button class="btn" onclick="buyVip(${v.lv})">ХАРИД ВА ФАЪОЛ КАРДАН</button>
+                        <div class="vip-title">VIP-${v.lv}</div>
+                        <div class="slogan">${v.s}</div>
+                        <div class="info-row"><span>Амонат:</span><b>${v.dep} TJS</b></div>
+                        <div class="info-row"><span>Даромади рӯзона:</span><span class="profit">+${v.daily} TJS</span></div>
+                        <div class="info-row"><span>Даромади солона:</span><span class="profit">${v.yearly} TJS</span></div>
+                        <button class="btn" onclick="openPay(${v.lv}, ${v.dep})">ХАРИД ВА ФАЪОЛ КАРДАН</button>
                     </div>
                 `;
             });
-        }
-
-        function startApp() {
-            if(!document.getElementById('uName').value) return showM("ДИҚҚАТ", "Лутфан номи худро нависед!");
-            document.getElementById('login-screen').style.display = 'none';
-            document.getElementById('main-screen').style.display = 'block';
-            renderVips();
             startTimer();
         }
 
-        function buyVip(lv) {
-            const user = "@ad_min_boy";
-            const textArea = document.createElement("textarea");
-            textArea.value = user;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            showM("МУВАФФАҚИЯТ!", "ID-и мо '" + user + "' нусхабардорӣ шуд. Ба Telegram равед ва барои хариди VIP-" + lv + " ба мо нависед. Мо фавран ҷавоб медиҳем!");
-        }
-
-        function showM(t, txt) {
-            document.getElementById('m-title').innerText = t;
-            document.getElementById('m-text').innerText = txt;
+        function openPay(lv, price) {
+            selectedVipName = "VIP-" + lv;
+            document.getElementById('sel-vip').innerText = selectedVipName + " (" + price + " TJS)";
             document.getElementById('overlay').style.display = 'block';
-            document.getElementById('modal').style.display = 'block';
+            document.getElementById('pay-modal').style.display = 'block';
+            
+            // Нусхабардории рақами корт
+            const cardNum = "5058270379012981";
+            navigator.clipboard.writeText(cardNum);
         }
 
-        function closeM() {
+        function closePay() {
             document.getElementById('overlay').style.display = 'none';
-            document.getElementById('modal').style.display = 'none';
+            document.getElementById('pay-modal').style.display = 'none';
+        }
+
+        function sendCheck() {
+            const name = document.getElementById('uName').value;
+            const msg = `Салом Админ! Ман ${name}. Ман барои ${selectedVipName} пардохт кардам. Ин ҳам чеки ман:`;
+            window.location.href = "https://t.me/ad_min_boy?text=" + encodeURIComponent(msg);
         }
 
         function startTimer() {
             let h = 2, m = 54, s = 12;
             setInterval(() => {
                 s--; if(s<0){s=59; m--;} if(m<0){m=59; h--;}
-                document.getElementById('timer').innerText = 
-                    (h<10?'0'+h:h)+":"+(m<10?'0'+m:m)+":"+(s<10?'0'+s:s);
+                document.getElementById('timer').innerText = (h<10?'0'+h:h)+":"+(m<10?'0'+m:m)+":"+(s<10?'0'+s:s);
             }, 1000);
         }
     </script>
