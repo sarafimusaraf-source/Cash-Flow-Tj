@@ -3,96 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CASH FLOW TJ</title>
+    <title>CASH FLOW TJ | VIP SYSTEM</title>
     <style>
-        :root { --gold: #ffcc00; --dark-bg: #050a14; --card-bg: #161e2e; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
-        body { background: var(--dark-bg); color: white; text-align: center; padding: 20px; }
-        .logo { width: 80px; height: 80px; border: 3px solid var(--gold); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--gold); }
-        .card { background: var(--card-bg); border-radius: 15px; padding: 20px; margin-bottom: 15px; border: 1px solid #334; text-align: left; }
-        .btn { width: 100%; padding: 15px; background: var(--gold); border: none; border-radius: 10px; color: black; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; color: black; outline: none; }
-        #main-screen { display: none; }
+        :root { --gold: #ffcc00; --green: #00ff88; --dark: #050a14; --card: #161e2e; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--dark); color: white; text-align: center; }
+        
+        /* Header & Logo */
+        .header { padding: 30px 20px; background: linear-gradient(to bottom, #0a1322, var(--dark)); }
+        .logo-circle { width: 90px; height: 90px; border: 4px solid var(--gold); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; color: var(--gold); box-shadow: 0 0 20px rgba(255, 204, 0, 0.3); }
+        
+        /* Promo Timer */
+        .promo-box { background: rgba(255, 204, 0, 0.1); border: 1px dashed var(--gold); margin: 15px; padding: 10px; border-radius: 10px; }
+        .timer { font-weight: bold; color: #ff4444; font-size: 18px; }
 
-        /* Танзимоти тирезаи махсус (Modal) */
-        #custom-modal {
-            display: none;
-            position: fixed;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            background: #1a2233;
-            border: 2px solid var(--gold);
-            padding: 25px;
-            border-radius: 20px;
-            z-index: 1000;
-            width: 85%;
-            box-shadow: 0 0 30px rgba(0,0,0,0.9);
-        }
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            z-index: 999;
-        }
+        /* VIP Cards */
+        .container { padding: 15px; }
+        .vip-card { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid #2d3748; text-align: left; position: relative; overflow: hidden; }
+        .vip-card::before { content: "АКСИЯ 50%"; position: absolute; top: 10px; right: -30px; background: red; color: white; padding: 5px 40px; transform: rotate(45deg); font-size: 10px; font-weight: bold; }
+        
+        .vip-title { font-size: 22px; color: var(--gold); font-weight: bold; margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .badge { background: var(--green); color: black; font-size: 10px; padding: 2px 8px; border-radius: 5px; vertical-align: middle; }
+        
+        .info-row { display: flex; justify-content: space-between; margin: 8px 0; font-size: 14px; border-bottom: 1px solid #252f3f; padding-bottom: 5px; }
+        .info-label { color: #94a3b8; }
+        .info-val { color: white; font-weight: bold; }
+        .profit { color: var(--green); }
+
+        .slogan { font-style: italic; font-size: 12px; color: var(--gold); margin: 10px 0; }
+        
+        .btn { width: 100%; padding: 15px; background: linear-gradient(45deg, #ffcc00, #ffaa00); border: none; border-radius: 12px; color: black; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; }
+        .btn:active { transform: scale(0.98); }
+
+        /* Login Screen */
+        #login-screen { padding: 50px 20px; }
+        .input-group { margin-top: 30px; }
+        input { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #334; background: #0f172a; color: white; margin-bottom: 15px; outline: none; }
+
+        /* Modal */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 100; }
+        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a2233; border: 2px solid var(--gold); padding: 25px; border-radius: 25px; z-index: 101; width: 85%; }
     </style>
 </head>
 <body>
 
     <div id="login-screen">
-        <div class="logo">TJS</div>
-        <h1>CASH FLOW</h1>
-        <p style="margin-bottom: 15px; color: #888;">Системаи автоматии даромад</p>
-        <input type="text" id="uName" placeholder="Номи Шумо">
-        <button class="btn" onclick="showPlans()">ОҒОЗ КАРДАН</button>
+        <div class="logo-circle">TJS</div>
+        <h1 style="letter-spacing: 2px;">CASH FLOW</h1>
+        <p style="color: #888;">Системаи автоматии даромад дар Тоҷикистон</p>
+        
+        <div class="input-group">
+            <input type="text" id="uName" placeholder="Номи худро нависед...">
+            <button class="btn" onclick="startApp()">ОҒОЗ КАРДАН</button>
+        </div>
+        <p style="margin-top: 20px; font-size: 12px; color: var(--gold);">● Бехатар ва кафолатдодашуда</p>
     </div>
 
-    <div id="main-screen">
-        <h2 style="color: var(--gold); margin-bottom: 20px;">Нақшаҳои VIP</h2>
-        <div class="card">
-            <h3>VIP 1 - 100 TJS</h3>
-            <p style="color: #00ff88;">Фоида: 15 TJS/рӯз</p>
-            <button class="btn" onclick="copyTG()">ХАРИД (Нусхаи ID)</button>
+    <div id="main-screen" style="display: none;">
+        <div class="header">
+            <div class="logo-circle" style="width: 60px; height: 60px; font-size: 18px;">TJS</div>
+            <h3>ХУШ ОМАДЕД!</h3>
+            <div class="promo-box">
+                <p style="font-size: 12px;">ТО ОХИРИ АКСИЯ МОНД:</p>
+                <div class="timer" id="timer">02:54:12</div>
+            </div>
         </div>
-        <div class="card">
-            <h3>VIP 2 - 300 TJS</h3>
-            <p style="color: #00ff88;">Фоида: 50 TJS/рӯз</p>
-            <button class="btn" onclick="copyTG()">ХАРИД (Нусхаи ID)</button>
-        </div>
-        <p style="font-size: 13px; color: #aaa; margin-top: 20px;">Админ: @ad_min_boy</p>
+
+        <div class="container" id="vip-list">
+            </div>
     </div>
 
     <div class="overlay" id="overlay"></div>
-    <div id="custom-modal">
-        <h3 id="modal-title" style="color: var(--gold); margin-bottom: 15px;"></h3>
-        <p id="modal-text" style="font-size: 15px; line-height: 1.6; color: #e2e8f0;"></p>
-        <button class="btn" onclick="closeModal()" style="margin-top: 20px;">ФАҲМО</button>
+    <div class="modal" id="modal">
+        <h3 id="m-title" style="color: var(--gold); margin-bottom: 15px;"></h3>
+        <p id="m-text" style="font-size: 15px; line-height: 1.6;"></p>
+        <button class="btn" onclick="closeM()" style="margin-top: 20px;">ФАҲМО</button>
     </div>
 
     <script>
-        function openModal(title, text) {
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-text').innerText = text;
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('custom-modal').style.display = 'block';
+        const vips = [
+            { lv: 1, deposit: 195, daily: 7, yearly: 2520, slogan: "Оғози осон барои шурӯъкунандагон!" },
+            { lv: 2, deposit: 625, daily: 23, yearly: 8280, slogan: "Даромади устувор ва боэътимод!" },
+            { lv: 3, deposit: 2420, daily: 82, yearly: 29520, slogan: "Беҳтарин интихоб барои рушд! 🔥" },
+            { lv: 4, deposit: 6990, daily: 275, yearly: 99000, slogan: "Сатҳи касбӣ ва фоидаи калон!" },
+            { lv: 5, deposit: 19990, daily: 910, yearly: 327600, slogan: "Шумо аллакай дар қуллаи муваффақият!" },
+            { lv: 6, deposit: 65990, daily: 2490, yearly: 896400, slogan: "Инвеститсия барои ояндаи дурахшон!" },
+            { lv: 7, deposit: 165990, daily: 6390, yearly: "2,300,400", slogan: "Суръати максимум, фоидаи максимум!" },
+            { lv: 8, deposit: 365990, daily: 14290, yearly: "5,144,400", slogan: "Мақоми VIP-и ҳақиқӣ барои инвесторҳо!" },
+            { lv: 9, deposit: 707990, daily: 29990, yearly: "10,764,000", slogan: "Империяи молиявии худро созед! 👑" }
+        ];
+
+        function renderVips() {
+            const list = document.getElementById('vip-list');
+            vips.forEach(v => {
+                list.innerHTML += `
+                    <div class="vip-card">
+                        <div class="vip-title">VIP-${v.lv} <span class="badge">АКТИВ</span></div>
+                        <div class="slogan">${v.slogan}</div>
+                        <div class="info-row"><span class="info-label">Амонати корӣ:</span> <span class="info-val">${v.deposit} TJS</span></div>
+                        <div class="info-row"><span class="info-label">Даромади рӯзона:</span> <span class="info-val profit">+${v.daily} TJS</span></div>
+                        <div class="info-row"><span class="info-label">Даромади солона:</span> <span class="info-val profit">${v.yearly} TJS</span></div>
+                        <button class="btn" onclick="buyVip(${v.lv})">ХАРИД ВА ФАЪОЛ КАРДАН</button>
+                    </div>
+                `;
+            });
         }
 
-        function closeModal() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('custom-modal').style.display = 'none';
+        function startApp() {
+            if(!document.getElementById('uName').value) return showM("ДИҚҚАТ", "Лутфан номи худро нависед!");
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('main-screen').style.display = 'block';
+            renderVips();
+            startTimer();
         }
 
-        function showPlans() {
-            const name = document.getElementById('uName').value;
-            if(!name) {
-                openModal("ДИҚҚАТ", "Лутфан номи худро нависед!");
-                return;
-            }
-            document.getElementById('login-screen').style.display='none';
-            document.getElementById('main-screen').style.display='block';
-        }
-
-        function copyTG() {
+        function buyVip(lv) {
             const user = "@ad_min_boy";
             const textArea = document.createElement("textarea");
             textArea.value = user;
@@ -100,8 +125,28 @@
             textArea.select();
             document.execCommand('copy');
             document.body.removeChild(textArea);
+            showM("МУВАФФАҚИЯТ!", "ID-и мо '" + user + "' нусхабардорӣ шуд. Ба Telegram равед ва барои хариди VIP-" + lv + " ба мо нависед. Мо фавран ҷавоб медиҳем!");
+        }
 
-            openModal("МУВАФФАҚИЯТ", "ID-и мо '" + user + "' нусхабардорӣ шуд. Ба Telegram равед ва ба мо нависед.");
+        function showM(t, txt) {
+            document.getElementById('m-title').innerText = t;
+            document.getElementById('m-text').innerText = txt;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeM() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function startTimer() {
+            let h = 2, m = 54, s = 12;
+            setInterval(() => {
+                s--; if(s<0){s=59; m--;} if(m<0){m=59; h--;}
+                document.getElementById('timer').innerText = 
+                    (h<10?'0'+h:h)+":"+(m<10?'0'+m:m)+":"+(s<10?'0'+s:s);
+            }, 1000);
         }
     </script>
 </body>
