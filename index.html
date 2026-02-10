@@ -11,8 +11,31 @@
         .logo { width: 80px; height: 80px; border: 3px solid var(--gold); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--gold); }
         .card { background: var(--card-bg); border-radius: 15px; padding: 20px; margin-bottom: 15px; border: 1px solid #334; text-align: left; }
         .btn { width: 100%; padding: 15px; background: var(--gold); border: none; border-radius: 10px; color: black; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; color: black; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; color: black; outline: none; }
         #main-screen { display: none; }
+
+        /* Танзимоти тирезаи паёми нав (Modal) */
+        #custom-alert {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1a2233;
+            border: 2px solid var(--gold);
+            padding: 25px;
+            border-radius: 20px;
+            z-index: 1000;
+            width: 85%;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
@@ -37,9 +60,14 @@
             <p style="color: #00ff88;">Фоида: 50 TJS/рӯз</p>
             <button class="btn" onclick="copyTG()">ХАРИД (Нусхаи ID)</button>
         </div>
-        <p style="font-size: 13px; color: #aaa; margin-top: 20px;">
-            Пас аз пахш, ID-и мо нусха мешавад. Ба Telegram рафта онро "Paste" кунед.
-        </p>
+        <p style="font-size: 13px; color: #aaa; margin-top: 20px;">ID-и мо: @ad_min_boy</p>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div id="custom-alert">
+        <h3 style="color: var(--gold); margin-bottom: 15px;">МУВАФФАҚИЯТ!</h3>
+        <p id="alert-text" style="font-size: 15px; line-height: 1.5;"></p>
+        <button class="btn" onclick="closeAlert()" style="margin-top: 20px;">ФАҲМО</button>
     </div>
 
     <script>
@@ -51,20 +79,22 @@
 
         function copyTG() {
             const user = "@ad_min_boy";
-            
-            // Усули боэътимоди нусхабардорӣ
             const textArea = document.createElement("textarea");
             textArea.value = user;
             document.body.appendChild(textArea);
             textArea.select();
-            try {
-                document.execCommand('copy');
-                alert("ID-и мо '" + user + "' нусхабардорӣ шуд!\n\nБа Telegram равед ва ба мо нависед.");
-            } catch (err) {
-                // Агар нусха нашуд, танҳо ID-ро нишон медиҳем
-                prompt("Лутфан ин ID-ро нусха кунед ва дар Telegram ҷустуҷӯ кунед:", user);
-            }
+            document.execCommand('copy');
             document.body.removeChild(textArea);
+
+            // Нишон додани тирезаи шахсӣ
+            document.getElementById('alert-text').innerText = "ID-и мо '" + user + "' нусхабардорӣ шуд. Акнун ба Telegram равед, дар ҷустуҷӯ ин номро гузоред ва ба мо нависед.";
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('custom-alert').style.display = 'block';
+        }
+
+        function closeAlert() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('custom-alert').style.display = 'none';
         }
     </script>
 </body>
