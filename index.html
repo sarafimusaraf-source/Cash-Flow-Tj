@@ -14,12 +14,11 @@
         input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; color: black; outline: none; }
         #main-screen { display: none; }
 
-        /* Танзимоти тирезаи паёми нав (Modal) */
-        #custom-alert {
+        /* Танзимоти тирезаи махсус (Modal) */
+        #custom-modal {
             display: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             background: #1a2233;
             border: 2px solid var(--gold);
@@ -27,7 +26,7 @@
             border-radius: 20px;
             z-index: 1000;
             width: 85%;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            box-shadow: 0 0 30px rgba(0,0,0,0.9);
         }
         .overlay {
             display: none;
@@ -60,19 +59,35 @@
             <p style="color: #00ff88;">Фоида: 50 TJS/рӯз</p>
             <button class="btn" onclick="copyTG()">ХАРИД (Нусхаи ID)</button>
         </div>
-        <p style="font-size: 13px; color: #aaa; margin-top: 20px;">ID-и мо: @ad_min_boy</p>
+        <p style="font-size: 13px; color: #aaa; margin-top: 20px;">Админ: @ad_min_boy</p>
     </div>
 
     <div class="overlay" id="overlay"></div>
-    <div id="custom-alert">
-        <h3 style="color: var(--gold); margin-bottom: 15px;">МУВАФФАҚИЯТ!</h3>
-        <p id="alert-text" style="font-size: 15px; line-height: 1.5;"></p>
-        <button class="btn" onclick="closeAlert()" style="margin-top: 20px;">ФАҲМО</button>
+    <div id="custom-modal">
+        <h3 id="modal-title" style="color: var(--gold); margin-bottom: 15px;"></h3>
+        <p id="modal-text" style="font-size: 15px; line-height: 1.6; color: #e2e8f0;"></p>
+        <button class="btn" onclick="closeModal()" style="margin-top: 20px;">ФАҲМО</button>
     </div>
 
     <script>
+        function openModal(title, text) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-text').innerText = text;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('custom-modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('custom-modal').style.display = 'none';
+        }
+
         function showPlans() {
-            if(!document.getElementById('uName').value) return alert("Лутфан номи худро нависед");
+            const name = document.getElementById('uName').value;
+            if(!name) {
+                openModal("ДИҚҚАТ", "Лутфан номи худро нависед!");
+                return;
+            }
             document.getElementById('login-screen').style.display='none';
             document.getElementById('main-screen').style.display='block';
         }
@@ -86,15 +101,7 @@
             document.execCommand('copy');
             document.body.removeChild(textArea);
 
-            // Нишон додани тирезаи шахсӣ
-            document.getElementById('alert-text').innerText = "ID-и мо '" + user + "' нусхабардорӣ шуд. Акнун ба Telegram равед, дар ҷустуҷӯ ин номро гузоред ва ба мо нависед.";
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('custom-alert').style.display = 'block';
-        }
-
-        function closeAlert() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('custom-alert').style.display = 'none';
+            openModal("МУВАФФАҚИЯТ", "ID-и мо '" + user + "' нусхабардорӣ шуд. Ба Telegram равед ва ба мо нависед.");
         }
     </script>
 </body>
