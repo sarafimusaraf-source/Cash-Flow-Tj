@@ -3,63 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CASH FLOW TJ | РЕГИСТРАТСИЯ</title>
+    <title>CASH FLOW TJ | ПЛАТФОРМАИ САЪМИЯҲО</title>
     <style>
-        :root { --gold: #ffcc00; --green: #00ff88; --dark: #050a14; --card: #161e2e; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background: var(--dark); color: white; text-align: center; }
+        :root { --gold: #ffcc00; --green: #00ff88; --dark: #0b1120; --card: #1e293b; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { background: var(--dark); color: white; line-height: 1.6; }
         
-        /* Registration Screen */
-        .reg-container { padding: 40px 25px; max-width: 400px; margin: auto; }
-        .logo-circle { width: 80px; height: 80px; border: 3px solid var(--gold); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: var(--gold); box-shadow: 0 0 20px rgba(255, 204, 0, 0.2); }
-        
-        h2 { margin-bottom: 10px; color: #fff; }
-        p.subtitle { color: #888; font-size: 14px; margin-bottom: 30px; }
+        /* Registration */
+        .reg-container { padding: 40px 20px; max-width: 450px; margin: auto; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        .logo-circle { width: 90px; height: 90px; border: 3px solid var(--gold); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; color: var(--gold); box-shadow: 0 0 30px rgba(255, 204, 0, 0.15); }
         
         .input-group { text-align: left; margin-bottom: 15px; }
-        label { display: block; font-size: 12px; color: var(--gold); margin-bottom: 5px; margin-left: 5px; }
-        input { width: 100%; padding: 16px; border-radius: 12px; border: 1px solid #2d3748; background: #0f172a; color: white; font-size: 16px; outline: none; transition: 0.3s; }
-        input:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(255, 204, 0, 0.1); }
+        label { display: block; font-size: 11px; color: var(--gold); margin: 0 0 5px 5px; text-transform: uppercase; letter-spacing: 1px; }
+        input { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #334155; background: #0f172a; color: white; font-size: 16px; transition: 0.3s; }
+        input:focus { border-color: var(--gold); outline: none; box-shadow: 0 0 15px rgba(255, 204, 0, 0.1); }
 
         /* Main Interface */
-        .header { padding: 20px; background: #0a1322; border-bottom: 1px solid #1e293b; }
-        .container { padding: 15px; }
-        .vip-card { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid #2d3748; text-align: left; position: relative; overflow: hidden; }
-        .vip-card::after { content: "АКСИЯ"; position: absolute; top: 10px; right: -30px; background: red; color: white; padding: 5px 40px; transform: rotate(45deg); font-size: 10px; font-weight: bold; }
+        .header { padding: 25px 20px; background: #111827; border-bottom: 1px solid #1e293b; position: sticky; top: 0; z-index: 10; }
+        .user-info { font-size: 12px; color: #94a3b8; margin-top: 5px; }
+        .container { padding: 20px; max-width: 600px; margin: auto; }
         
-        .info-row { display: flex; justify-content: space-between; margin: 10px 0; font-size: 14px; border-bottom: 1px solid #252f3f; padding-bottom: 5px; }
-        .profit { color: var(--green); font-weight: bold; }
-
-        .btn { width: 100%; padding: 16px; background: linear-gradient(45deg, #ffcc00, #ffaa00); border: none; border-radius: 12px; color: black; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 10px; }
-        .btn-tg { background: #0088cc; color: white; margin-top: 20px; }
-
-        /* Modals */
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 100; }
-        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a2233; border: 2px solid var(--gold); padding: 25px; border-radius: 25px; z-index: 101; width: 90%; }
+        .vip-card { background: var(--card); border-radius: 24px; padding: 25px; margin-bottom: 25px; border: 1px solid #334155; position: relative; overflow: hidden; transition: 0.3s; }
+        .vip-card:active { transform: scale(0.98); }
+        .vip-badge { position: absolute; top: 15px; right: -35px; background: #ef4444; color: white; padding: 5px 40px; transform: rotate(45deg); font-size: 11px; font-weight: bold; }
         
-        .card-number { background: #000; padding: 15px; border-radius: 12px; font-family: monospace; font-size: 18px; color: var(--gold); margin: 15px 0; border: 1px dashed var(--gold); text-align: center; }
+        .vip-title { font-size: 24px; font-weight: 800; color: var(--gold); margin-bottom: 15px; }
+        .info-row { display: flex; justify-content: space-between; margin: 8px 0; font-size: 15px; border-bottom: 1px solid #334155; padding-bottom: 8px; }
+        .profit { color: var(--green); font-weight: 600; }
+
+        .btn { width: 100%; padding: 18px; background: linear-gradient(135deg, #ffcc00, #f59e0b); border: none; border-radius: 14px; color: #000; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 15px; transition: 0.2s; }
+        .btn:hover { opacity: 0.9; }
+        
+        /* Modal */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 100; backdrop-filter: blur(5px); }
+        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1e293b; border: 1px solid var(--gold); padding: 30px; border-radius: 30px; z-index: 101; width: 90%; max-width: 400px; text-align: center; }
+        .card-box { background: #0f172a; padding: 20px; border-radius: 15px; font-family: 'Courier New', monospace; font-size: 20px; color: var(--gold); margin: 20px 0; border: 2px dashed #334155; }
+        .btn-tg { background: #229ED9; color: white; text-decoration: none; display: block; }
     </style>
 </head>
 <body>
 
     <div id="reg-screen" class="reg-container">
         <div class="logo-circle">TJS</div>
-        <h2>Бақайдгирӣ</h2>
-        <p class="subtitle">Барои дохил шудан маълумоти худро ворид кунед</p>
+        <h2 style="margin-bottom: 5px;">Хуш омадед!</h2>
+        <p style="color: #64748b; margin-bottom: 30px;">Маълумотро барои сабт ворид кунед</p>
         
         <div class="input-group">
-            <label>РАҚАМИ ТЕЛЕФОН</label>
+            <label>Почтаи электронӣ (Email)</label>
+            <input type="email" id="reg-email" placeholder="tjs-user@mail.com">
+        </div>
+
+        <div class="input-group">
+            <label>Рақами телефон</label>
             <input type="tel" id="reg-phone" placeholder="+992 000 00 00 00">
         </div>
         
         <div class="input-group">
-            <label>РАМЗ (PASSWORD)</label>
+            <label>Рамз (Password)</label>
             <input type="password" id="reg-pass" placeholder="********">
-        </div>
-
-        <div class="input-group" style="margin-top: 20px;">
-            <label>РАМЗИ ТАКЛИФӢ (ИХТИЁРӢ)</label>
-            <input type="text" placeholder="dd91c7ca">
         </div>
 
         <button class="btn" onclick="completeRegistration()">БАҚАЙДГИРӢ</button>
@@ -67,27 +68,30 @@
 
     <div id="main-app" style="display: none;">
         <div class="header">
-            <h3>CASH FLOW TJ</h3>
-            <p style="font-size: 11px; color: var(--gold);">Хуш омадед, <span id="user-display"></span>!</p>
+            <h2 style="color: var(--gold); letter-spacing: 1px;">CASH FLOW TJ</h2>
+            <div class="user-info">
+                ID: <span id="user-display-email" style="color: white;"></span><br>
+                Тел: <span id="user-display-phone" style="color: white;"></span>
+            </div>
         </div>
         
-        <div class="container" id="vip-items"></div>
+        <div class="container" id="vip-items">
+            </div>
     </div>
 
     <div class="overlay" id="overlay"></div>
     <div class="modal" id="pay-modal">
-        <h3 style="color: var(--gold);">ТАРЗИ ПАРДОХТ</h3>
-        <p id="selected-vip-text" style="font-size: 14px; margin: 10px 0;"></p>
+        <h3 style="color: var(--gold);">ПАРДОХТИ МАБЛАҒ</h3>
+        <p id="selected-vip-text" style="margin: 15px 0; font-weight: bold;"></p>
         
-        <div style="text-align: left; font-size: 13px; color: #ccc;">
+        <div style="text-align: left; font-size: 14px; color: #cbd5e1;">
             <p>1. Маблағро ба ин корт гузаронед:</p>
-            <div class="card-number" id="card-val">5058 2703 7901 2981</div>
-            <p>2. Скриншоти чекро гиред.</p>
-            <p>3. Чекро ба админ фиристед.</p>
+            <div class="card-box" id="card-val">5058 2703 7901 2981</div>
+            <p>2. Чекро скриншот кунед ва ба админ фиристед.</p>
         </div>
 
-        <button class="btn btn-tg" onclick="sendToTelegram()">📥 ФИРИСТОДАНИ ЧЕК (TELEGRAM)</button>
-        <button onclick="closeModal()" style="background:none; border:none; color:#777; margin-top:15px;">Ба қафо</button>
+        <button class="btn btn-tg" onclick="sendToTelegram()">📤 ТАСДИҚИ ПАРДОХТ (ТЕЛЕГРАМ)</button>
+        <button onclick="closeModal()" style="background:none; border:none; color:#94a3b8; margin-top:20px; cursor:pointer;">Ба қафо</button>
     </div>
 
     <script>
@@ -96,36 +100,45 @@
             { lv: 2, dep: 625, daily: 23, yearly: 8280 },
             { lv: 3, dep: 2420, daily: 82, yearly: 29520 },
             { lv: 4, dep: 6990, daily: 275, yearly: 99000 },
-            { lv: 5, dep: 19990, daily: 910, yearly: 327600 }
+            { lv: 5, dep: 19990, daily: 910, yearly: 327600 },
+            { lv: 6, dep: 45000, daily: 2100, yearly: 756000 },
+            { lv: 7, dep: 85000, daily: 4200, yearly: 1512000 },
+            { lv: 8, dep: 150000, daily: 7800, yearly: 2808000 },
+            { lv: 9, dep: 300000, daily: 16500, yearly: 5940000 }
         ];
 
         let selectedVip = null;
-        let userPhone = "";
+        let userData = { email: "", phone: "" };
 
         function completeRegistration() {
-            userPhone = document.getElementById('reg-phone').value;
+            userData.email = document.getElementById('reg-email').value;
+            userData.phone = document.getElementById('reg-phone').value;
             const pass = document.getElementById('reg-pass').value;
 
-            if(userPhone.length < 5 || pass.length < 4) {
-                alert("Лутфан маълумотро дуруст ворид кунед!");
+            if(!userData.email.includes('@') || userData.phone.length < 5 || pass.length < 4) {
+                alert("Лутфан ҳамаи маълумотро дуруст ворид кунед!");
                 return;
             }
 
             document.getElementById('reg-screen').style.display = 'none';
             document.getElementById('main-app').style.display = 'block';
-            document.getElementById('user-display').innerText = userPhone;
+            document.getElementById('user-display-email').innerText = userData.email;
+            document.getElementById('user-display-phone').innerText = userData.phone;
             renderVips();
         }
 
         function renderVips() {
             const list = document.getElementById('vip-items');
+            list.innerHTML = "";
             vips.forEach(v => {
                 list.innerHTML += `
                     <div class="vip-card">
-                        <div style="font-size: 20px; font-weight: bold; color: var(--gold);">VIP-${v.lv}</div>
-                        <div class="info-row"><span>Амонат:</span><b>${v.dep} TJS</b></div>
-                        <div class="info-row"><span>Даромад:</span><span class="profit">+${v.daily} TJS/рӯз</span></div>
-                        <button class="btn" onclick="openPayment(${v.lv}, ${v.dep})">ХАРИД ВА ФАЪОЛ КАРДАН</button>
+                        <div class="vip-badge">МАШҲУР</div>
+                        <div class="vip-title">VIP-${v.lv}</div>
+                        <div class="info-row"><span>Нархи фаъолсозӣ:</span><b>${v.dep} TJS</b></div>
+                        <div class="info-row"><span>Даромади рӯзона:</span><span class="profit">+${v.daily} TJS</span></div>
+                        <div class="info-row"><span>Даромади солона:</span><b>${v.yearly} TJS</b></div>
+                        <button class="btn" onclick="openPayment(${v.lv}, ${v.dep})">ҲОЛО ХАРИДАН</button>
                     </div>
                 `;
             });
@@ -133,12 +146,17 @@
 
         function openPayment(lv, price) {
             selectedVip = { lv, price };
-            document.getElementById('selected-vip-text').innerText = "Нақша: VIP-" + lv + " (" + price + " TJS)";
+            document.getElementById('selected-vip-text').innerText = "Нақша: VIP-" + lv + " | Нарх: " + price + " TJS";
             document.getElementById('overlay').style.display = 'block';
             document.getElementById('pay-modal').style.display = 'block';
             
-            // Нусхабардории корт
-            navigator.clipboard.writeText("5058270379012981");
+            // Нусхабардории автоматии рақами корт
+            const el = document.createElement('textarea');
+            el.value = "5058270379012981";
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
         }
 
         function closeModal() {
@@ -147,10 +165,13 @@
         }
 
         function sendToTelegram() {
-            // Ислоҳи пайванд барои пешгирӣ аз хатогии ERR_UNKNOWN_URL_SCHEME
-            const message = `Салом Админ! Ман ${userPhone}. Мехоҳам VIP-${selectedVip.lv}-ро фаъол кунам. Ин ҳам чеки ман:`;
-            const telegramUrl = "https://t.me/ad_min_boy?text=" + encodeURIComponent(message);
-            window.open(telegramUrl, '_blank');
+            const adminUsername = "ad_min_boy"; // Номи корбарии шумо дар Телеграм
+            const text = `Салом Админ! Ман мехоҳам VIP-${selectedVip.lv}-ро фаъол кунам.\n\nПочта: ${userData.email}\nТелефон: ${userData.phone}\nМаблағ: ${selectedVip.price} TJS\n\nЧек дар замима:`;
+            
+            // Истиноди стандартӣ барои пешгирӣ аз хатогии ERR_UNKNOWN_URL_SCHEME
+            const telegramUrl = `https://t.me/${adminUsername}?text=${encodeURIComponent(text)}`;
+            
+            window.location.href = telegramUrl;
         }
     </script>
 </body>
