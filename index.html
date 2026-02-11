@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ferrari Platform</title>
+    <title>Ferrari VIP Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -16,17 +16,16 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background-color: var(--ferrari-pink); padding-bottom: 80px; }
 
-        /* --- Screens --- */
         .screen { display: none; background: #f5f5f5; min-height: 100vh; animation: fadeIn 0.3s; }
         .active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* --- Auth --- */
+        /* Auth */
         #auth-screen { background: white; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
         .auth-input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px; border: 1px solid #ddd; }
         .auth-btn { width: 100%; padding: 15px; background: var(--ferrari-pink); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; }
 
-        /* --- Header & Stats --- */
+        /* Home Header */
         .home-header { background: var(--ferrari-pink); padding: 20px; text-align: center; }
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--ferrari-pink); padding: 15px; color: white; text-align: center; }
         .main-actions { background: var(--light-pink); margin: 15px; padding: 20px; border-radius: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
@@ -34,18 +33,21 @@
         .action-btn { text-align: center; color: var(--ferrari-pink); cursor: pointer; font-size: 11px; border: none; background: none; }
         .action-btn i { display: block; font-size: 22px; background: var(--ferrari-pink); color: white; width: 45px; height: 45px; line-height: 45px; border-radius: 12px; margin: 0 auto 5px; }
 
-        /* --- VIP Cards --- */
-        .vip-card { background: var(--light-pink); margin: 15px; padding: 15px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .vip-img { width: 100px; height: 70px; border-radius: 10px; object-fit: cover; }
-        .buy-btn { background: var(--ferrari-pink); color: white; border: none; padding: 8px 15px; border-radius: 20px; margin-top: 10px; font-weight: bold; }
+        /* VIP Cards Updated */
+        .vip-card { background: var(--white); margin: 15px; padding: 15px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .vip-info h3 { color: var(--ferrari-pink); margin-bottom: 8px; font-size: 20px; }
+        .vip-info p { font-size: 13px; color: #444; margin: 3px 0; }
+        .vip-info b { color: #000; }
+        .vip-img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--light-pink); }
+        .buy-btn { background: var(--ferrari-pink); color: white; border: none; padding: 10px 20px; border-radius: 20px; margin-top: 10px; font-weight: bold; width: 100%; cursor: pointer; }
 
-        /* --- Nav --- */
+        /* Nav */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #eee; }
         .nav-link { text-align: center; color: var(--text-gray); text-decoration: none; font-size: 12px; cursor: pointer; flex: 1; }
         .nav-link.active { color: var(--ferrari-pink); }
         .nav-link i { font-size: 22px; display: block; }
 
-        /* --- Modals --- */
+        /* Modals */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; align-items: center; justify-content: center; }
         .modal-content { background: white; width: 90%; max-width: 400px; padding: 25px; border-radius: 20px; position: relative; }
         .close-modal { position: absolute; top: 15px; right: 15px; font-size: 20px; color: #999; cursor: pointer; }
@@ -54,8 +56,7 @@
 <body>
 
     <div id="auth-screen">
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/36/Ferrari_Scuderia_gradient.svg/1200px-Ferrari_Scuderia_gradient.svg.png" style="width: 60px; margin-bottom: 20px;">
-        <h2 style="color: var(--ferrari-pink);">Ferrari Registration</h2>
+        <h2 style="color: var(--ferrari-pink); margin-bottom: 20px;">VIP PLATFORM</h2>
         <input type="text" id="user-login" class="auth-input" placeholder="Логин ё Телефон">
         <input type="password" id="user-pass" class="auth-input" placeholder="Рамз">
         <button class="auth-btn" onclick="saveAuth()">ВАРУД ШУДАН</button>
@@ -65,7 +66,7 @@
         
         <div id="home" class="screen active">
             <div class="home-header">
-                <img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=500" style="width:100%; border-radius:15px; height: 150px; object-fit: cover;">
+                <div style="background: white; padding: 20px; border-radius: 20px; font-weight: bold; color: var(--ferrari-pink); font-size: 24px;">FERRARI VIP</div>
             </div>
             <div class="stats-grid">
                 <div class="stats-item"><p>Пуркунӣ</p><h3>TJS 0.00</h3></div>
@@ -79,15 +80,10 @@
                 <button class="action-btn" onclick="openModal('modal-team')"><i class="fa fa-users"></i>Даста</button>
                 <button class="action-btn" onclick="openModal('modal-telegram')"><i class="fab fa-telegram"></i>телеграф</button>
             </div>
-            
-            <div style="padding: 15px; background: white; margin: 15px; border-radius: 15px;">
-                <h4 style="color: var(--ferrari-pink);">Хабарҳои тоза:</h4>
-                <p style="font-size: 13px; color: #666;">Барои ҳар як даъват ба дастаи Ferrari мукофотпулӣ гиред!</p>
-            </div>
         </div>
 
         <div id="products" class="screen">
-            <div style="padding: 20px; text-align: center; color: var(--ferrari-pink); font-weight: bold; font-size: 20px;">VIP МАҲСУЛОТҲО</div>
+            <div style="padding: 20px; text-align: center; color: var(--ferrari-pink); font-weight: bold; font-size: 22px;">РӮЙХАТИ VIP МАҲСУЛОТҲО</div>
             <div id="vip-list"></div>
         </div>
 
@@ -107,60 +103,25 @@
 
         <div class="bottom-nav">
             <div class="nav-link active" onclick="showPage('home', this)"><i class="fa fa-home"></i>Хона</div>
-            <div class="nav-link" onclick="showPage('products', this)"><i class="fa fa-car"></i>Маҳсулот</div>
+            <div class="nav-link" onclick="showPage('products', this)"><i class="fa fa-gem"></i>VIP Маҳсулот</div>
             <div class="nav-link" onclick="showPage('profile', this)"><i class="fa fa-user"></i>Ман</div>
         </div>
     </div>
 
-    <div id="modal-recharge" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-recharge')">&times;</span>
-            <h3 style="color: var(--ferrari-pink);">Пур кардани ҳисоб</h3>
-            <p style="margin: 15px 0; font-size: 14px;">Маблағро ба ин корт гузаронед ва чекро ба админ фиристед:</p>
-            <div style="background: #eee; padding: 15px; border-radius: 10px; font-weight: bold; text-align: center;">
-                5058 2703 7901 2981
-            </div>
-            <button class="auth-btn" style="margin-top: 15px;" onclick="copyCard()">Нусхабардории корт</button>
-        </div>
-    </div>
-
-    <div id="modal-withdraw" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-withdraw')">&times;</span>
-            <h3 style="color: var(--ferrari-pink);">Баровардани маблағ</h3>
-            <input type="number" class="auth-input" placeholder="Маблағ (TJS)">
-            <input type="text" class="auth-input" placeholder="ID-и Телеграм ё Рақами корт">
-            <button class="auth-btn" onclick="alert('Дархост фиристода шуд! Дар давоми 24 соат иҷро мешавад.')">ТАДИҚИ БАРОВАРДАН</button>
-        </div>
-    </div>
-
-    <div id="modal-team" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-team')">&times;</span>
-            <h3 style="color: var(--ferrari-pink);">Дастаи Ferrari</h3>
-            <p style="margin: 15px 0; line-height: 1.6;">Ferrari - ин на танҳо сармоягузорӣ, балки оила аст. Дӯстони худро даъват кунед ва 10% аз ҳар як хариди онҳо мукофот гиред!</p>
-            <div style="background: var(--light-pink); padding: 10px; border-radius: 10px; font-size: 12px;">
-                https://ferrari.onl/reg?ref=ad_min_boy
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-telegram" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-telegram')">&times;</span>
-            <h3 style="color: var(--ferrari-pink);">Маркази Алоқа</h3>
-            <div style="margin-top: 20px;">
-                <a href="https://t.me/ad_min_boy" target="_blank" class="auth-btn" style="display:block; text-align:center; text-decoration:none; margin-bottom:10px; background:#229ED9;">Админи Асосӣ</a>
-                <a href="https://t.me/ferrari_group" target="_blank" class="auth-btn" style="display:block; text-align:center; text-decoration:none; background:#229ED9;">Гурӯҳи Ferrari</a>
-            </div>
-        </div>
-    </div>
+    <div id="modal-recharge" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal('modal-recharge')">&times;</span><h3>Пуркунии ҳисоб</h3><p>Корти мо: <b>5058 2703 7901 2981</b></p><button class="auth-btn" onclick="copyCard()">Нусхабардорӣ</button></div></div>
+    <div id="modal-withdraw" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal('modal-withdraw')">&times;</span><h3>Баровардан</h3><input type="number" class="auth-input" placeholder="Маблағ"><button class="auth-btn">Дархост</button></div></div>
+    <div id="modal-team" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal('modal-team')">&times;</span><h3>Дастаи Шумо</h3><p>Даъват кунед ва 28% мукофот гиред!</p></div></div>
+    <div id="modal-telegram" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal('modal-telegram')">&times;</span><h3>Алоқа</h3><a href="https://t.me/ad_min_boy" class="auth-btn" style="display:block;text-align:center;text-decoration:none;">Телеграм Админ</a></div></div>
 
     <script>
+        // Маълумот маҳз аз рӯи расми "Cash Flow Tj"
         const vips = [
-            { id: 1, name: "Ferrari-1", price: 180, daily: 22, yearly: 7920, img: "https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=300" },
-            { id: 2, name: "Ferrari-2", price: 450, daily: 59, yearly: 21240, img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=300" },
-            { id: 3, name: "Ferrari-3", price: 1000, daily: 140, yearly: 50400, img: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=300" }
+            { name: "VIP-1", price: 195, daily: 7, yearly: 2520, icon: "💎" },
+            { name: "VIP-2", price: 625, daily: 23, yearly: 8280, icon: "🏆" },
+            { name: "VIP-3", price: 2420, daily: 82, yearly: 29520, icon: "🚀" },
+            { name: "VIP-4", price: 6990, daily: 275, yearly: 99000, icon: "⚡" },
+            { name: "VIP-5", price: 19990, daily: 910, yearly: 327600, icon: "🔥" },
+            { name: "VIP-6", price: 65990, daily: 2490, yearly: 896400, icon: "🌟" }
         ];
 
         let currentUser = JSON.parse(localStorage.getItem('ferrari_session'));
@@ -177,48 +138,48 @@
 
         function saveAuth() {
             const login = document.getElementById('user-login').value;
-            if (login.length < 3) return alert("Логинро ворид кунед");
-            const session = { login: login, balance: 0, activeVips: [] };
-            localStorage.setItem('ferrari_session', JSON.stringify(session));
-            currentUser = session;
+            if (login.length < 2) return alert("Логинро нависед");
+            currentUser = { login: login, balance: 0, activeVips: [] };
+            localStorage.setItem('ferrari_session', JSON.stringify(currentUser));
             location.reload();
         }
 
         function renderVips() {
             const list = document.getElementById('vip-list');
             list.innerHTML = "";
-            vips.forEach(v => {
-                const isBought = currentUser.activeVips.includes(v.id);
+            vips.forEach((v, index) => {
+                const isBought = currentUser.activeVips.includes(index);
                 list.innerHTML += `
                     <div class="vip-card">
                         <div class="vip-info">
                             <h3>${v.name}</h3>
-                            <p>Нарх: <b>TJS ${v.price}</b></p>
-                            <p>Рӯзона: <b>TJS ${v.daily}</b></p>
-                            <button class="buy-btn" onclick="buyVip(${v.id})" ${isBought ? 'disabled style="background:#ccc"' : ''}>
+                            <p>Амонати корӣ: <b>TJS ${v.price}</b></p>
+                            <p>Даромади рӯзона: <b>TJS ${v.daily}</b></p>
+                            <p>Даромади солона: <b>TJS ${v.yearly}</b></p>
+                            <button class="buy-btn" onclick="buyVip(${index})" ${isBought ? 'disabled style="background:#ccc"' : ''}>
                                 ${isBought ? 'ФАЪОЛ АСТ' : 'ҲОЛО ХАРИДАН'}
                             </button>
                         </div>
-                        <img src="${v.img}" class="vip-img">
+                        <div style="font-size: 50px;">${v.icon}</div>
                     </div>
                 `;
             });
         }
 
-        function buyVip(id) {
-            const vip = vips.find(x => x.id === id);
-            currentUser.activeVips.push(id);
+        function buyVip(index) {
+            const vip = vips[index];
+            currentUser.activeVips.push(index);
             currentUser.balance += vip.yearly;
             localStorage.setItem('ferrari_session', JSON.stringify(currentUser));
-            alert(vip.name + " харида шуд!");
+            alert(vip.name + " бо муваффақият харидорӣ шуд!");
             renderVips();
             updateBalance();
         }
 
         function updateBalance() {
-            const b = `TJS ${currentUser.balance.toLocaleString()}`;
-            document.getElementById('total-yearly').innerText = b;
-            document.getElementById('home-balance').innerText = b;
+            const val = `TJS ${currentUser.balance.toLocaleString()}`;
+            document.getElementById('total-yearly').innerText = val;
+            document.getElementById('home-balance').innerText = val;
         }
 
         function showPage(id, el) {
@@ -230,16 +191,8 @@
 
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-
-        function copyCard() {
-            navigator.clipboard.writeText("5058270379012981");
-            alert("Рақами корт нусхабардорӣ шуд!");
-        }
-
-        function logout() {
-            localStorage.removeItem('ferrari_session');
-            location.reload();
-        }
+        function copyCard() { navigator.clipboard.writeText("5058270379012981"); alert("Рақами корт нусхабардорӣ шуд!"); }
+        function logout() { localStorage.removeItem('ferrari_session'); location.reload(); }
 
         window.onload = checkSession;
     </script>
