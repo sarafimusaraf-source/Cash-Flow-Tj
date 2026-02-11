@@ -13,7 +13,7 @@
         /* Registration */
         .reg-container { text-align: center; padding-top: 50px; }
         input { width: 80%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; background: #e2e8f0; color: #000; }
-        .btn-gold { background: var(--gold); color: black; padding: 12px 30px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .btn-gold { background: var(--gold); color: black; padding: 12px 30px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; }
 
         /* VIP Cards Style */
         .vip-card { background: var(--card); border-radius: 15px; margin-bottom: 15px; overflow: hidden; border-left: 5px solid var(--gold); }
@@ -22,8 +22,8 @@
         .vip-info span { color: var(--green); display: block; font-weight: bold; }
 
         /* Navigation */
-        .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #334155; }
-        .nav-item { color: #94a3b8; text-decoration: none; font-size: 12px; cursor: pointer; text-align: center; }
+        .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #334155; z-index: 1000; }
+        .nav-item { color: #94a3b8; text-decoration: none; font-size: 12px; cursor: pointer; text-align: center; background: none; border: none; }
         .active-nav { color: var(--gold); }
     </style>
 </head>
@@ -72,18 +72,17 @@
         </div>
     </div>
     <br>
-    <button class="btn-gold" style="width:100%;" onclick="openTelegram()">Пур кардани ҳисоб (Админ)</button>
+    <a href="https://t.me/Menenjer_cashflowtj" class="btn-gold" style="width:85%; text-align: center;">Пур кардани ҳисоб (Админ)</a>
 </div>
 
 <nav id="main-nav" class="nav" style="display: none;">
     <div id="nav-home" class="nav-item active-nav" onclick="showPage('home')">🏠<br>Асосӣ</div>
     <div id="nav-products" class="nav-item" onclick="showPage('products')">📈<br>Маҳсулот</div>
-    <div class="nav-item" onclick="openTelegram()">💬<br>Телеграм</div>
+    <a href="https://t.me/Menenjer_cashflowtj" class="nav-item" style="color: #94a3b8;">💬<br>Телеграм</a>
     <div id="nav-profile" class="nav-item" onclick="showPage('profile')">👤<br>Профил</div>
 </nav>
 
 <script>
-    // Рӯйхати пурраи VIP аз 1 то 9
     const vips = [
         { id: 1, price: 195, day: 7, month: 210, year: 2520 },
         { id: 2, price: 625, day: 23, month: 690, year: 8280 },
@@ -135,6 +134,7 @@
 
     function renderVIPs() {
         const list = document.getElementById('vip-list');
+        if(!list) return;
         list.innerHTML = "";
         vips.forEach(v => {
             list.innerHTML += `
@@ -149,13 +149,6 @@
                     <button class="btn-gold" style="width:90%; margin: 0 5% 15px 5%;" onclick="alert('Баланс нокифоя аст!')">Ҳоло харидан</button>
                 </div>`;
         });
-    }
-
-    // Функсияи махсус барои Телеграм
-    function openTelegram() {
-        // Ин усул беҳтарин роҳ барои пешгирӣ аз ERR_UNKNOWN_URL_SCHEME аст
-        const url = 'https://t.me/Menenjer_cashflowtj';
-        window.open(url, '_system'); 
     }
 </script>
 </body>
