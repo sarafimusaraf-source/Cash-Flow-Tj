@@ -12,7 +12,7 @@
 
         /* Registration */
         .reg-container { text-align: center; padding-top: 50px; }
-        input { width: 80%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; }
+        input { width: 80%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; background: #e2e8f0; color: #000; }
         .btn-gold { background: var(--gold); color: black; padding: 12px 30px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
         /* VIP Cards Style */
@@ -47,7 +47,8 @@
         <p>🚀 <b>Чи тавр аъзо шавем?</b><br>
         1. Дар саҳифаи "Маҳсулот" VIP-и мувофиқро интихоб кунед.<br>
         2. Ҳисобро дар қисмати "Профил" пур кунед.<br>
-        3. Тугмаи "Харидан"-ро зер кунед ва даромади рӯзонаро ба даст оред!</p>
+        3. Тугмаи "Харидан"-ро зер кунед ва даромади рӯзонаро ба даст оред!<br>
+        <span style="color: var(--gold); font-weight: bold;">4. Навгонӣ: Барои даъват кардани ҳар як одами нав ба шумо 30 сомонӣ бонус дода мешавад!</span></p>
         <img src="https://via.placeholder.com/400x200?text=CASH+FLOW+DESIGN" style="width:100%; border-radius:10px;" alt="Design Image">
     </div>
 </div>
@@ -63,21 +64,21 @@
         <div style="font-size: 40px;">👤</div>
         <h3 id="user-display-name">Корбар</h3>
         <p id="user-display-phone">+992 ...</p>
-        <hr border-color="#334155">
+        <hr style="border: 0.5px solid #334155;">
         <div style="display: flex; justify-content: space-around;">
             <div>Баланс:<br><b style="color: var(--gold);">0.00 TJS</b></div>
             <div>Даромад:<br><b style="color: var(--green);">0.00 TJS</b></div>
         </div>
     </div>
     <br>
-    <button class="btn-gold" style="width:100%;" onclick="window.location.href='https://t.me/Menenjer_cashflowtj'">Пур кардани ҳисоб (Админ)</button>
+    <button class="btn-gold" style="width:100%;" onclick="window.open('https://t.me/Menenjer_cashflowtj', '_blank')">Пур кардани ҳисоб (Админ)</button>
 </div>
 
 <nav id="main-nav" class="nav" style="display: none;">
-    <div class="nav-item active-nav" onclick="showPage('home')">🏠<br>Асосӣ</div>
-    <div class="nav-item" onclick="showPage('products')">📈<br>Маҳсулот</div>
-    <div class="nav-item" onclick="window.location.href='https://t.me/Menenjer_cashflowtj'">💬<br>Телеграм</div>
-    <div class="nav-item" onclick="showPage('profile')">👤<br>Профил</div>
+    <div id="nav-home" class="nav-item active-nav" onclick="showPage('home')">🏠<br>Асосӣ</div>
+    <div id="nav-products" class="nav-item" onclick="showPage('products')">📈<br>Маҳсулот</div>
+    <div class="nav-item" onclick="window.open('https://t.me/Menenjer_cashflowtj', '_blank')">💬<br>Телеграм</div>
+    <div id="nav-profile" class="nav-item" onclick="showPage('profile')">👤<br>Профил</div>
 </nav>
 
 <script>
@@ -87,29 +88,50 @@
         { id: 3, price: 2420, day: 82, month: 2460, year: 29520 },
         { id: 4, price: 6990, day: 275, month: 8250, year: 99000 },
         { id: 5, price: 19990, day: 910, month: 27300, year: 327600 },
-        { id: 6, price: 65990, day: 2490, month: 74700, year: 896400 },
-        { id: 7, price: 165990, day: 6390, month: 191700, year: 2300400 },
-        { id: 8, price: 365990, day: 14290, month: 428700, year: 5144400 },
-        { id: 9, price: 707990, day: 29990, month: 897000, year: 10764000 }
+        { id: 6, price: 65990, day: 2490, month: 74700, year: 896400 }
     ];
+
+    // Функсияи санҷиши воридшавӣ ҳангоми кушодани барнома
+    window.onload = function() {
+        const savedName = localStorage.getItem('user_name');
+        const savedPhone = localStorage.getItem('user_phone');
+        
+        if (savedName && savedPhone) {
+            loginUser(savedName, savedPhone);
+        }
+    };
 
     function register() {
         const name = document.getElementById('reg-name').value;
         const phone = document.getElementById('reg-phone').value;
-        if(name && phone) {
-            document.getElementById('user-display-name').innerText = name;
-            document.getElementById('user-display-phone').innerText = phone;
-            document.getElementById('page-reg').classList.remove('active-page');
-            document.getElementById('main-nav').style.display = 'flex';
-            showPage('home');
-            renderVIPs();
-        } else { alert("Лутфан маълумотро пур кунед!"); }
+        const pass = document.getElementById('reg-pass').value;
+
+        if(name && phone && pass) {
+            localStorage.setItem('user_name', name);
+            localStorage.setItem('user_phone', phone);
+            loginUser(name, phone);
+        } else { 
+            alert("Лутфан ҳамаи маълумотро пур кунед!"); 
+        }
+    }
+
+    function loginUser(name, phone) {
+        document.getElementById('user-display-name').innerText = name;
+        document.getElementById('user-display-phone').innerText = phone;
+        document.getElementById('page-reg').classList.remove('active-page');
+        document.getElementById('main-nav').style.display = 'flex';
+        showPage('home');
+        renderVIPs();
     }
 
     function showPage(pageId) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
         document.getElementById('page-' + pageId).classList.add('active-page');
+        
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active-nav'));
+        if(document.getElementById('nav-' + pageId)) {
+            document.getElementById('nav-' + pageId).classList.add('active-nav');
+        }
     }
 
     function renderVIPs() {
