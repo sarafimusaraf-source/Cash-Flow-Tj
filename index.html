@@ -42,14 +42,18 @@
 </div>
 
 <div id="page-home" class="page">
-    <h2 style="color: var(--gold);">Дар бораи Cash Flow TJ</h2>
+    <h2 style="color: var(--gold);">Хуш омадед ба CASH FLOW TJ! 💸</h2>
     <div style="background: var(--card); padding: 15px; border-radius: 15px; line-height: 1.6;">
-        <p>🚀 <b>Чи тавр аъзо шавем?</b><br>
-        1. Дар саҳифаи "Маҳсулот" VIP-и мувофиқро интихоб кунед.<br>
-        2. Ҳисобро дар қисмати "Профил" пур кунед.<br>
-        3. Тугмаи "Харидан"-ро зер кунед ва даромади рӯзонаро ба даст оред!<br><br>
-        <span style="background: rgba(255, 204, 0, 0.2); border: 1px dashed var(--gold); padding: 5px; display: block; border-radius: 5px;">
-            💰 <b>Навгонӣ:</b> Барои ҳар як одами даъваткардаатон ба шумо <b>30 сомонӣ</b> бонус дода мешавад!
+        <p>🌟 <b>Ояндаи молиявии худро имрӯз созед!</b><br>
+        Мо ба шумо имконият медиҳем, ки бо сармоягузории хурд даромади устувори рӯзона ба даст оред. Системаи мо оддӣ, шаффоф ва боэътимод аст.</p>
+        
+        <p>🚀 <b>Чӣ тавр пул кор кунем?</b><br>
+        1️⃣ Дар бахши 📈 <b>Маҳсулот</b> нақшаи VIP-ро интихоб кунед.<br>
+        2️⃣ Ҳисоби худро тавассути Админ пур кунед.<br>
+        3️⃣ Нақшаро фаъол кунед ва ҳар рӯз фоида гиред!<br><br>
+        
+        <span style="background: rgba(0, 255, 136, 0.1); border: 1px solid var(--green); padding: 10px; display: block; border-radius: 8px;">
+            💰 <b>БОНУСИ МАХСУС:</b> Дӯстони худро даъват кунед ва барои ҳар як шарики нав <b>30 сомонӣ</b> тӯҳфа гиред!
         </span></p>
     </div>
 </div>
@@ -72,13 +76,20 @@
         </div>
     </div>
     <br>
-    <button class="btn-gold" style="width:100%;" onclick="openTG()">Пур кардани ҳисоб (Админ)</button>
+    
+    <div style="background: #0f172a; padding: 15px; border-radius: 15px; border: 1px solid #334155; text-align: center;">
+        <p style="font-size: 14px; margin-bottom: 10px;">Барои пур кардани ҳисоб юзернеймро нусха кунед ва ба Телеграм гузоред:</p>
+        <div style="background: #1e293b; padding: 10px; border-radius: 8px; font-weight: bold; color: var(--gold); font-size: 18px; margin-bottom: 10px;">
+            @Menenjer_cashflowtj
+        </div>
+        <button class="btn-gold" style="width:100%;" onclick="copyUsername()">Нусхабардорӣ (Copy)</button>
+    </div>
 </div>
 
 <nav id="main-nav" class="nav" style="display: none;">
     <div id="nav-home" class="nav-item active-nav" onclick="showPage('home')">🏠<br>Асосӣ</div>
     <div id="nav-products" class="nav-item" onclick="showPage('products')">📈<br>Маҳсулот</div>
-    <div class="nav-item" onclick="openTG()">💬<br>Телеграм</div>
+    <div class="nav-item" onclick="showPage('profile')">💬<br>Админ</div>
     <div id="nav-profile" class="nav-item" onclick="showPage('profile')">👤<br>Профил</div>
 </nav>
 
@@ -151,12 +162,15 @@
         });
     }
 
-    // ТЕЛЕГРАМ - РОҲИ ҲАЛЛИ АСОСӢ
-    function openTG() {
-        // Мо аз пайванди мустақим истифода намебарем, чунки AppsGeyser онро мебандад.
-        // Мо "window.open" ва "location.replace"-ро истифода мебарем
-        const url = "https://telegram.dog/Menenjer_cashflowtj";
-        window.open(url, '_system'); // '_system' маҷбур мекунад, ки дар браузери телефон кушояд
+    // ФУНКСИЯИ НУСХАБАРДОРӢ
+    function copyUsername() {
+        const username = "@Menenjer_cashflowtj";
+        navigator.clipboard.writeText(username).then(() => {
+            alert("Юзернейм нусхабардорӣ шуд! Акнун ба Телеграм рафта онро дар кофтуков (search) гузоред.");
+        }).catch(err => {
+            // Агар браузер иҷозат надиҳад, роҳи алтернативӣ:
+            alert("Лутфан юзернеймро дастӣ нусха кунед: " + username);
+        });
     }
 </script>
 </body>
