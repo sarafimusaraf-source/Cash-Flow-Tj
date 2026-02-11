@@ -72,13 +72,13 @@
         </div>
     </div>
     <br>
-    <a href="https://telegram.me/Menenjer_cashflowtj" target="_blank" class="btn-gold" style="width:85%; text-align: center;">Пур кардани ҳисоб (Админ)</a>
+    <button class="btn-gold" style="width:100%;" onclick="openTG()">Пур кардани ҳисоб (Админ)</button>
 </div>
 
 <nav id="main-nav" class="nav" style="display: none;">
     <div id="nav-home" class="nav-item active-nav" onclick="showPage('home')">🏠<br>Асосӣ</div>
     <div id="nav-products" class="nav-item" onclick="showPage('products')">📈<br>Маҳсулот</div>
-    <a href="https://telegram.me/Menenjer_cashflowtj" target="_blank" class="nav-item" style="color: #94a3b8;">💬<br>Телеграм</a>
+    <div class="nav-item" onclick="openTG()">💬<br>Телеграм</div>
     <div id="nav-profile" class="nav-item" onclick="showPage('profile')">👤<br>Профил</div>
 </nav>
 
@@ -149,6 +149,19 @@
                     <button class="btn-gold" style="width:90%; margin: 0 5% 15px 5%;" onclick="alert('Баланс нокифоя аст!')">Ҳоло харидан</button>
                 </div>`;
         });
+    }
+
+    // Функсияи нав барои Телеграм (100% кор мекунад)
+    function openTG() {
+        const tgLink = "https://t.me/Menenjer_cashflowtj";
+        // Ин усул ба браузер мефаҳмонад, ки бояд барномаро кушояд
+        const dummyAnchor = document.createElement("a");
+        dummyAnchor.href = tgLink;
+        dummyAnchor.target = "_blank";
+        dummyAnchor.rel = "noopener noreferrer";
+        document.body.appendChild(dummyAnchor);
+        dummyAnchor.click();
+        document.body.removeChild(dummyAnchor);
     }
 </script>
 </body>
