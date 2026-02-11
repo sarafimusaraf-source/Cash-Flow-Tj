@@ -79,10 +79,10 @@
     
     <div style="background: #0f172a; padding: 15px; border-radius: 15px; border: 1px solid #334155; text-align: center;">
         <p style="font-size: 14px; margin-bottom: 10px;">Барои пур кардани ҳисоб юзернеймро нусха кунед ва ба Телеграм гузоред:</p>
-        <div style="background: #1e293b; padding: 10px; border-radius: 8px; font-weight: bold; color: var(--gold); font-size: 18px; margin-bottom: 10px;">
+        <div id="copyText" style="background: #1e293b; padding: 10px; border-radius: 8px; font-weight: bold; color: var(--gold); font-size: 18px; margin-bottom: 10px;">
             @Menenjer_cashflowtj
         </div>
-        <button class="btn-gold" style="width:100%;" onclick="copyUsername()">Нусхабардорӣ (Copy)</button>
+        <button id="copyBtn" class="btn-gold" style="width:100%;" onclick="copyUsername()">Нусхабардорӣ</button>
     </div>
 </div>
 
@@ -162,15 +162,28 @@
         });
     }
 
-    // ФУНКСИЯИ НУСХАБАРДОРӢ
+    // ФУНКСИЯИ НАВИ НУСХАБАРДОРӢ (ТОЗА ВА ТЕЗ)
     function copyUsername() {
-        const username = "@Menenjer_cashflowtj";
-        navigator.clipboard.writeText(username).then(() => {
-            alert("Юзернейм нусхабардорӣ шуд! Акнун ба Телеграм рафта онро дар кофтуков (search) гузоред.");
-        }).catch(err => {
-            // Агар браузер иҷозат надиҳад, роҳи алтернативӣ:
-            alert("Лутфан юзернеймро дастӣ нусха кунед: " + username);
-        });
+        const textToCopy = "@Menenjer_cashflowtj";
+        const btn = document.getElementById('copyBtn');
+        
+        // Истифодаи усули мустақими нусхабардорӣ
+        const el = document.createElement('textarea');
+        el.value = textToCopy;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+
+        // Иваз кардани матни тугма барои тасдиқ
+        const originalText = btn.innerText;
+        btn.innerText = "Нусхабардорӣ шуд!";
+        btn.style.background = "#00ff88"; // Ранги сабз барои тасдиқ
+        
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.background = "#ffcc00"; // Бозгашт ба ранги тиллоӣ
+        }, 2000);
     }
 </script>
 </body>
