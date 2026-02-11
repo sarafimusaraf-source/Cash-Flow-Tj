@@ -151,17 +151,12 @@
         });
     }
 
-    // Функсияи нав барои Телеграм (100% кор мекунад)
+    // ТЕЛЕГРАМ - РОҲИ ҲАЛЛИ АСОСӢ
     function openTG() {
-        const tgLink = "https://t.me/Menenjer_cashflowtj";
-        // Ин усул ба браузер мефаҳмонад, ки бояд барномаро кушояд
-        const dummyAnchor = document.createElement("a");
-        dummyAnchor.href = tgLink;
-        dummyAnchor.target = "_blank";
-        dummyAnchor.rel = "noopener noreferrer";
-        document.body.appendChild(dummyAnchor);
-        dummyAnchor.click();
-        document.body.removeChild(dummyAnchor);
+        // Мо аз пайванди мустақим истифода намебарем, чунки AppsGeyser онро мебандад.
+        // Мо "window.open" ва "location.replace"-ро истифода мебарем
+        const url = "https://telegram.dog/Menenjer_cashflowtj";
+        window.open(url, '_system'); // '_system' маҷбур мекунад, ки дар браузери телефон кушояд
     }
 </script>
 </body>
