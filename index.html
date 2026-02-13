@@ -25,6 +25,10 @@
         .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #334155; z-index: 1000; }
         .nav-item { color: #94a3b8; text-decoration: none; font-size: 12px; cursor: pointer; text-align: center; background: none; border: none; }
         .active-nav { color: var(--gold); }
+        
+        /* Стили нав барои бахши Даромад */
+        .income-stat { background: #1e293b; padding: 15px; border-radius: 12px; margin-top: 10px; border: 1px solid #334155; }
+        .timer-box { font-size: 24px; font-weight: bold; color: var(--gold); margin: 10px 0; }
     </style>
 </head>
 <body>
@@ -63,6 +67,18 @@
     <div id="vip-list"></div>
 </div>
 
+<div id="page-income" class="page">
+    <h2 style="color: var(--gold);">Даромади ман</h2>
+    <div class="income-stat" style="text-align: center;">
+        <p>То гирифтани фоидаи навбатӣ:</p>
+        <div id="timer" class="timer-box">24:00:00</div>
+        <hr style="border: 0.2px solid #334155;">
+        <p>Фоидаи ҷамъшуда (дар вақти воқеӣ):</p>
+        <div id="live-profit" style="font-size: 28px; color: var(--green); font-weight: bold;">0.0000 TJS</div>
+        <p id="active-vip-status" style="font-size: 12px; color: #94a3b8;">Ягон VIP фаъол нест</p>
+    </div>
+</div>
+
 <div id="page-profile" class="page">
     <h2 style="color: var(--gold);">Профили ман</h2>
     <div style="background: var(--card); padding: 20px; border-radius: 15px; text-align: center;">
@@ -71,8 +87,8 @@
         <p id="user-display-phone">+992 ...</p>
         <hr style="border: 0.5px solid #334155;">
         <div style="display: flex; justify-content: space-around;">
-            <div>Баланс:<br><b style="color: var(--gold);">0.00 TJS</b></div>
-            <div>Даромад:<br><b style="color: var(--green);">0.00 TJS</b></div>
+            <div>Баланс:<br><b id="balance-val" style="color: var(--gold);">0.00 TJS</b></div>
+            <div>Даромад:<br><b id="total-profit-val" style="color: var(--green);">0.00 TJS</b></div>
         </div>
     </div>
     <br>
@@ -89,8 +105,7 @@
 <nav id="main-nav" class="nav" style="display: none;">
     <div id="nav-home" class="nav-item active-nav" onclick="showPage('home')">🏠<br>Асосӣ</div>
     <div id="nav-products" class="nav-item" onclick="showPage('products')">📈<br>Маҳсулот</div>
-    <div class="nav-item" onclick="showPage('profile')">💬<br>Админ</div>
-    <div id="nav-profile" class="nav-item" onclick="showPage('profile')">👤<br>Профил</div>
+    <div id="nav-income" class="nav-item" onclick="showPage('income')">💰<br>Даромад</div> <div id="nav-profile" class="nav-item" onclick="showPage('profile')">👤<br>Профил</div>
 </nav>
 
 <script>
@@ -105,6 +120,10 @@
         { id: 8, price: 365990, day: 14290, month: 428700, year: 5144400 },
         { id: 9, price: 707990, day: 29990, month: 897000, year: 10764000 }
     ];
+
+    let activeVip = null;
+    let secondsLeft = 86400; // 24 соат
+    let accumulatedProfit = 0;
 
     window.onload = function() {
         const savedName = localStorage.getItem('user_name');
@@ -132,6 +151,7 @@
         document.getElementById('main-nav').style.display = 'flex';
         showPage('home');
         renderVIPs();
+        startGlobalTimer(); // Таймерро фаъол мекунад
     }
 
     function showPage(pageId) {
@@ -157,17 +177,55 @@
                         <div>Солона: <span>${v.year} TJS</span></div>
                         <div>Мӯҳлат: <span>365 рӯз</span></div>
                     </div>
-                    <button class="btn-gold" style="width:90%; margin: 0 5% 15px 5%;" onclick="alert('Баланс нокифоя аст!')">Ҳоло харидан</button>
+                    <button class="btn-gold" style="width:90%; margin: 0 5% 15px 5%;" onclick="buyVip(${v.id}, ${v.day})">Ҳоло харидан</button>
                 </div>`;
         });
     }
 
-    // ФУНКСИЯИ НАВИ НУСХАБАРДОРӢ (ТОЗА ВА ТЕЗ)
+    // Логикаи хариди VIP барои санҷиш
+    function buyVip(id, dailyIncome) {
+        activeVip = { id, dailyIncome };
+        secondsLeft = 86400; // Аз нав кардани 24 соат
+        accumulatedProfit = 0;
+        document.getElementById('active-vip-status').innerText = "VIP-" + id + " фаъол аст";
+        alert("Табрик! VIP-" + id + " фаъол шуд. Даромад оғоз ёфт.");
+        showPage('income');
+    }
+
+    // Таймери 24 соата ва ҳисоби пул
+    function startGlobalTimer() {
+        setInterval(() => {
+            if (activeVip) {
+                if (secondsLeft > 0) {
+                    secondsLeft--;
+                    // Ҳисоби пул дар ҳар сония (Даромади рӯзона / 86400 сония)
+                    let profitPerSecond = activeVip.dailyIncome / 86400;
+                    accumulatedProfit += profitPerSecond;
+                    
+                    updateDisplay();
+                } else {
+                    secondsLeft = 86400; // Бозгашт ба 24 соат пас аз анҷом
+                }
+            }
+        }, 1000);
+    }
+
+    function updateDisplay() {
+        // Намоиши вақт
+        let h = Math.floor(secondsLeft / 3600);
+        let m = Math.floor((secondsLeft % 3600) / 60);
+        let s = secondsLeft % 60;
+        document.getElementById('timer').innerText = 
+            `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        
+        // Намоиши пул
+        document.getElementById('live-profit').innerText = accumulatedProfit.toFixed(4) + " TJS";
+        document.getElementById('total-profit-val').innerText = accumulatedProfit.toFixed(2) + " TJS";
+    }
+
     function copyUsername() {
         const textToCopy = "@Menenjer_cashflowtj";
         const btn = document.getElementById('copyBtn');
-        
-        // Истифодаи усули мустақими нусхабардорӣ
         const el = document.createElement('textarea');
         el.value = textToCopy;
         document.body.appendChild(el);
@@ -175,14 +233,13 @@
         document.execCommand('copy');
         document.body.removeChild(el);
 
-        // Иваз кардани матни тугма барои тасдиқ
         const originalText = btn.innerText;
         btn.innerText = "Нусхабардорӣ шуд!";
-        btn.style.background = "#00ff88"; // Ранги сабз барои тасдиқ
+        btn.style.background = "#00ff88";
         
         setTimeout(() => {
             btn.innerText = originalText;
-            btn.style.background = "#ffcc00"; // Бозгашт ба ранги тиллоӣ
+            btn.style.background = "#ffcc00";
         }, 2000);
     }
 </script>
