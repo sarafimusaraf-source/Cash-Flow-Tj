@@ -7,6 +7,22 @@
     <style>
         :root { --gold: #ffcc00; --dark: #0b0f1a; --card: #161e2e; --green: #00ff88; --gray: #94a3b8; }
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--dark); color: white; overflow-x: hidden; }
+        
+        /* Стили барои тирезаи воридшавӣ */
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--dark); z-index: 2000; display: flex;
+            align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;
+        }
+        .login-box {
+            background: var(--card); padding: 30px; border-radius: 20px;
+            border: 1px solid var(--gold); width: 100%; max-width: 400px; text-align: center;
+        }
+        .login-box input {
+            width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px;
+            border: 1px solid #2d3748; background: #0b0f1a; color: white; box-sizing: border-box;
+        }
+
         .header { text-align: center; padding: 30px 20px; background: linear-gradient(to bottom, #1e293b, var(--dark)); }
         .logo-circle { width: 80px; height: 80px; background: var(--gold); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 40px; box-shadow: 0 0 20px rgba(255, 204, 0, 0.4); border: 3px solid white; }
         .page { display: none; padding: 20px; padding-bottom: 100px; animation: slideUp 0.4s ease; }
@@ -29,6 +45,17 @@
     </style>
 </head>
 <body>
+
+<div id="login-overlay" style="display: none;">
+    <div class="login-box">
+        <div class="logo-circle">🤝</div>
+        <h2 style="color: var(--gold);">ХУШ ОМАДЕД</h2>
+        <p style="font-size: 13px; color: var(--gray);">Лутфан барои ворид шудан маълумоти худро нависед</p>
+        <input type="text" id="reg-name" placeholder="Номи шумо">
+        <input type="tel" id="reg-phone" placeholder="Рақами телефон">
+        <button onclick="saveUser()" class="btn-main" style="margin-top: 10px;">ВОРИД ШУДАН</button>
+    </div>
+</div>
 
 <div class="header">
     <div class="logo-circle">🤝</div>
@@ -80,6 +107,7 @@
         <div class="logo-circle" style="width:60px; height:60px; font-size:25px;">U</div>
         <h3 id="user-display">Корбари Фаъол</h3>
         <p id="phone-display" style="color:var(--gray)"></p>
+        <button onclick="logout()" style="background: none; border: 1px solid red; color: red; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 11px; margin-top: 10px;">БАРОМАДАН</button>
     </div>
 
     <div class="glass-card">
@@ -119,9 +147,43 @@
     ];
 
     window.onload = () => {
+        checkUser();
         renderVips();
         renderLeaders();
     };
+
+    // Функсияи санҷиши корбар
+    function checkUser() {
+        const user = localStorage.getItem('charity_user');
+        if (!user) {
+            document.getElementById('login-overlay').style.display = 'flex';
+        } else {
+            const userData = JSON.parse(user);
+            document.getElementById('user-display').innerText = userData.name;
+            document.getElementById('phone-display').innerText = userData.phone;
+            document.getElementById('login-overlay').style.display = 'none';
+        }
+    }
+
+    // Функсияи сабти корбар
+    function saveUser() {
+        const name = document.getElementById('reg-name').value;
+        const phone = document.getElementById('reg-phone').value;
+
+        if (name.length > 2 && phone.length > 5) {
+            const userData = { name: name, phone: phone };
+            localStorage.setItem('charity_user', JSON.stringify(userData));
+            checkUser();
+        } else {
+            alert("Лутфан ном ва рақами худро дуруст нависед!");
+        }
+    }
+
+    // Барои санҷиш: Функсияи баромадан
+    function logout() {
+        localStorage.removeItem('charity_user');
+        location.reload();
+    }
 
     function renderVips() {
         const cont = document.getElementById('vips-container');
