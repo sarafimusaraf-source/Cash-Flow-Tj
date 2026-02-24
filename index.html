@@ -7,39 +7,25 @@
     <style>
         :root { --gold: #ffcc00; --dark: #0b0f1a; --card: #161e2e; --green: #00ff88; --gray: #94a3b8; }
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--dark); color: white; overflow-x: hidden; }
-        
-        /* Header & Logo */
         .header { text-align: center; padding: 30px 20px; background: linear-gradient(to bottom, #1e293b, var(--dark)); }
         .logo-circle { width: 80px; height: 80px; background: var(--gold); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 40px; box-shadow: 0 0 20px rgba(255, 204, 0, 0.4); border: 3px solid white; }
-
         .page { display: none; padding: 20px; padding-bottom: 100px; animation: slideUp 0.4s ease; }
         .active-page { display: block; }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
         .glass-card { background: var(--card); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #2d3748; }
         .gold-border { border: 1px solid var(--gold); position: relative; overflow: hidden; }
-        
-        /* Typography */
         h2 { color: var(--gold); margin-top: 0; }
         .motivation { font-style: italic; color: #cbd5e1; line-height: 1.6; }
         .highlight { color: var(--green); font-weight: bold; }
-
-        /* Buttons */
-        .btn-main { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 14px; border: none; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.3s; }
-        .btn-copy { background: #334155; color: white; padding: 8px; border-radius: 5px; border: none; font-size: 12px; margin-top: 10px; cursor: pointer; }
-
-        /* VIP Grid */
+        .btn-main { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 14px; border: none; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.3s; text-decoration: none; display: block; text-align: center; box-sizing: border-box; }
         .vip-card { background: #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 5px solid var(--gold); }
         .price-tag { float: right; background: var(--gold); color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
-
-        /* Navigation */
         .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #1e293b; z-index: 1000; }
         .nav-item { color: var(--gray); text-align: center; font-size: 10px; flex: 1; cursor: pointer; }
         .active-nav { color: var(--gold); transform: scale(1.1); }
-        
-        /* Leaderboard */
-        .leader { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #2d3748; }
-        .rank { width: 25px; color: var(--gold); font-weight: bold; }
+        .leader { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #2d3748; }
+        .rank { width: 30px; color: var(--gold); font-weight: bold; font-size: 18px; }
+        .copy-box { background: #000; padding: 10px; border-radius: 8px; font-family: monospace; color: var(--gold); display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border: 1px solid #334155; }
     </style>
 </head>
 <body>
@@ -71,16 +57,20 @@
 <div id="p3" class="page">
     <div class="glass-card gold-border">
         <h2>Маркази Дастгирӣ 💬</h2>
-        <p>Барои харидани тугмаҳо ва гирифтани даромад, ба гурӯҳи мо пайваст шавед.</p>
+        <p style="font-size: 14px;">Барои харидани тугмаҳо Username-ро нусха карда дар ҷустуҷӯи Телеграм гузоред:</p>
         
-        <div style="background:#000; padding:15px; border-radius:10px; word-break:break-all;" id="link-text">https://t.me/charity_tj</div>
-        <button class="btn-main" style="margin-top:10px;" onclick="copyLink()">НУСХАБАРДОРИИ ЛИНК</button>
+        <div class="copy-box">
+            <span>@charity_tj</span>
+            <button onclick="copyText('@charity_tj')" style="background:var(--gold); border:none; border-radius:4px; padding:4px 8px; cursor:pointer; font-weight:bold;">COPY</button>
+        </div>
+
+        <a href="https://t.me/charity_tj" class="btn-main">МУСТАҚИМ БА ТЕЛЕГРАМ</a>
         
         <div style="margin-top:20px; border-top:1px solid #2d3748; padding-top:15px;">
             <p>⏰ <b>Вақти кории Админ:</b></p>
             <p>☀️ Рӯзона: <b>11:00</b></p>
             <p>🌙 Бегоҳ: <b>21:00</b></p>
-            <p style="font-size:13px; color:var(--gray)">* Илтимос, дар берун аз вақти корӣ интизор шавед.</p>
+            <p style="font-size:13px; color:var(--gray)">* Барои харид ва гирифтани фоида ба админ муроҷиат кунед.</p>
         </div>
     </div>
 </div>
@@ -93,7 +83,8 @@
     </div>
 
     <div class="glass-card">
-        <h3 style="color:var(--green)">🏆 Топ-Иштирокчиён (Фоида)</h3>
+        <h3 style="color:var(--green); text-align:center;">🏆 Иштирокчиёни Муваффақ</h3>
+        <p style="font-size:12px; color:var(--gray); text-align:center; margin-bottom:15px;">Ин шахсон бо заҳмат ва боварӣ ба ин натиҷаҳо расиданд!</p>
         <div id="leaderboard"></div>
     </div>
 </div>
@@ -109,18 +100,23 @@
     const vips = [
         { n: 'Тугмаи 1', p: 120, d: 4 },
         { n: 'Тугмаи 2', p: 260, d: 9 },
-        { n: 'Тугмаи 3', p: 470, d: 17 },
+        { n: 'Тугмаi 3', p: 470, d: 17 },
         { n: 'Тугмаи 4', p: 660, d: 25 },
         { n: 'Тугмаи 5', p: 850, d: 35 },
         { n: 'Тугмаи 6', p: 1100, d: 50 }
     ];
 
     const leaders = [
-        { n: 'Абдулло', m: '14,500 TJS' },
-        { n: 'Ситора', m: '9,200 TJS' },
-        { n: 'Муҳаммад', m: '7,850 TJS' },
-        { n: 'Зарина', m: '5,400 TJS' },
-        { n: 'Фирӯз', m: '3,100 TJS' }
+        { n: 'Абдул', m: '14,500', e: 'JS' }, { n: 'Ситор', m: '9,200', e: 'RT' },
+        { n: 'Муҳам', m: '7,850', e: 'AD' }, { n: 'Зарин', m: '5,400', e: 'NA' },
+        { n: 'Фирӯз', m: '3,100', e: 'UZ' }, { n: 'Алишер', m: '12,000', e: 'ER' },
+        { n: 'Мадина', m: '6,700', e: 'NA' }, { n: 'Сомон', m: '8,900', e: 'ON' },
+        { n: 'Ҷамше', m: '4,300', e: 'ED' }, { n: 'Парви', m: '11,200', e: 'IZ' },
+        { n: 'Нигор', m: '2,900', e: 'RA' }, { n: 'Руста', m: '15,600', e: 'AM' },
+        { n: 'Бахти', m: '7,100', e: 'OR' }, { n: 'Олимҷ', m: '5,800', e: 'ON' },
+        { n: 'Фархо', m: '9,400', e: 'OD' }, { n: 'Самир', m: '3,600', e: 'RA' },
+        { n: 'Дилов', m: '13,200', e: 'AR' }, { n: 'Умедҷ', m: '6,100', e: 'ON' },
+        { n: 'Азизҷ', m: '8,400', e: 'ON' }, { n: 'Фарид', m: '10,500', e: 'UN' }
     ];
 
     window.onload = () => {
@@ -146,7 +142,7 @@
                         <div>1 моҳ: <b class="highlight">${v.d*30} TJS</b></div>
                         <div>1 сол: <b class="highlight">${v.d*365} TJS</b></div>
                     </div>
-                    <button class="btn-main" style="margin-top:15px; height:35px; padding:0;" onclick="alert('Барои харид ба Админ нависед!')">ФАЪОЛ КАРДАН</button>
+                    <a href="https://t.me/charity_tj" class="btn-main" style="margin-top:15px; height:35px; padding:7px 0; font-size:14px;">ФАЪОЛ КАРДАН</a>
                 </div>
             `;
         });
@@ -159,18 +155,20 @@
                 <div class="leader">
                     <div style="display:flex; align-items:center;">
                         <span class="rank">#${i+1}</span>
-                        <span>${l.n}</span>
+                        <div>
+                            <span style="font-weight:bold;">${l.n}****${l.e}</span><br>
+                            <small style="color:var(--gray); font-size:11px;">Маблағи коркардашуда</small>
+                        </div>
                     </div>
-                    <b style="color:var(--green)">${l.m}</b>
+                    <b style="color:var(--green)">${l.m} TJS</b>
                 </div>
             `;
         });
     }
 
-    function copyLink() {
-        const link = "https://t.me/charity_tj";
-        navigator.clipboard.writeText(link);
-        alert("Линк нусхабардорӣ шуд! Акнун ба Телеграм даромада онро гузоред (Paste).");
+    function copyText(text) {
+        navigator.clipboard.writeText(text);
+        alert("Username нусхабардорӣ шуд: " + text);
     }
 
     function tab(el, id) {
