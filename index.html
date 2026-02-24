@@ -5,117 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CASH FLOW TJ | Сармоягузории Оқилона</title>
     <style>
-        :root { --gold: #ffcc00; --dark: #0b1120; --card: #1e293b; --green: #00ff88; --accent: #ffd700; }
-        body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--dark); color: white; }
-        .page { display: none; padding: 20px; padding-bottom: 80px; animation: fadeIn 0.5s; }
+        :root { --gold: #ffcc00; --dark: #0b1120; --card: #1e293b; --green: #00ff88; --blue: #3b82f6; }
+        body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: var(--dark); color: white; }
+        .page { display: none; padding: 20px; padding-bottom: 100px; animation: fadeIn 0.4s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .active-page { display: block; }
 
-        /* Дизайни Регистрация */
-        .reg-container { text-align: center; padding: 50px 20px; }
-        .logo-box { font-size: 50px; margin-bottom: 10px; }
-        input { width: 90%; max-width: 300px; padding: 12px; margin: 10px 0; border-radius: 10px; border: none; background: #f1f5f9; color: #000; font-size: 16px; }
-        .btn-gold { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 14px 40px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; width: 100%; max-width: 320px; }
-        .btn-gold:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4); }
+        /* Inputs & Buttons */
+        input { width: 90%; max-width: 300px; padding: 12px; margin: 10px 0; border-radius: 10px; border: none; font-size: 16px; }
+        .btn-gold { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 14px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; }
+        .btn-blue { background: var(--blue); color: white; font-size: 12px; padding: 8px; border: none; border-radius: 5px; cursor: pointer; }
+        .btn-green { background: var(--green); color: black; font-size: 12px; padding: 8px; border: none; border-radius: 5px; cursor: pointer; }
 
-        /* Дизайни Тугмаҳо (AKTIV) */
-        .vip-card { background: var(--card); border-radius: 20px; margin-bottom: 20px; overflow: hidden; border: 1px solid #334155; position: relative; }
-        .vip-header { background: linear-gradient(90deg, var(--gold), #ffaa00); color: black; padding: 12px 20px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-        .vip-info { display: grid; grid-template-columns: 1fr 1fr; padding: 20px; font-size: 14px; gap: 15px; }
-        .vip-info b { color: var(--green); font-size: 16px; }
-        .price-tag { background: rgba(0,0,0,0.1); padding: 4px 10px; border-radius: 5px; }
+        /* VIP Cards */
+        .vip-card { background: var(--card); border-radius: 20px; margin-bottom: 20px; border: 1px solid #334155; overflow: hidden; }
+        .vip-header { background: var(--gold); color: black; padding: 12px 20px; font-weight: bold; display: flex; justify-content: space-between; }
+        .vip-info { padding: 15px; font-size: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .vip-actions { padding: 10px; display: flex; gap: 10px; justify-content: center; background: rgba(0,0,0,0.2); }
 
-        /* Навигатсия */
-        .nav { position: fixed; bottom: 0; width: 100%; background: rgba(15, 23, 42, 0.95); display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #334155; backdrop-filter: blur(10px); z-index: 1000; }
-        .nav-item { color: #94a3b8; text-decoration: none; font-size: 11px; cursor: pointer; text-align: center; transition: 0.3s; }
-        .active-nav { color: var(--gold); transform: translateY(-5px); }
-        .nav-icon { font-size: 20px; margin-bottom: 4px; }
-        
-        /* Статистика */
-        .income-stat { background: linear-gradient(145deg, #1e293b, #0f172a); padding: 25px; border-radius: 20px; margin-top: 10px; border: 1px solid var(--gold); text-align: center; }
-        .timer-box { font-size: 32px; font-weight: bold; color: var(--gold); text-shadow: 0 0 10px rgba(255,204,0,0.3); }
+        /* Profile & Stats */
+        .stat-box { background: var(--card); padding: 20px; border-radius: 20px; text-align: center; border: 1px solid var(--gold); }
+        .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #334155; z-index: 1000; }
+        .nav-item { color: #94a3b8; text-align: center; font-size: 11px; cursor: pointer; }
+        .active-nav { color: var(--gold); }
+
+        /* Deposit */
+        .deposit-card { background: #16213e; padding: 20px; border-radius: 15px; border: 1px dashed var(--gold); margin-top: 15px; }
+        .file-label { display: block; background: #334155; padding: 12px; border-radius: 8px; margin-top: 10px; cursor: pointer; text-align: center; border: 1px solid var(--gold); }
     </style>
 </head>
 <body>
 
 <div id="page-reg" class="page active-page">
-    <div class="reg-container">
-        <div class="logo-box">💰</div>
-        <h1 style="color: var(--gold); margin: 0;">CASH FLOW TJ</h1>
-        <p style="color: #94a3b8;">Ояндаи молиявии худро созед</p><br>
+    <div style="text-align: center; padding-top: 50px;">
+        <h1 style="color: var(--gold);">CASH FLOW TJ</h1>
+        <p>Ворид шавед ба лоиҳа</p>
         <input type="text" id="reg-name" placeholder="Номи шумо">
         <input type="tel" id="reg-phone" placeholder="Рақами телефон">
-        <input type="password" id="reg-pass" placeholder="Парол">
         <br><br>
-        <button class="btn-gold" onclick="register()">ВОРИД ШУДАН</button>
+        <button class="btn-gold" style="max-width:320px;" onclick="register()">ВОРИД ШУДАН</button>
     </div>
 </div>
 
 <div id="page-home" class="page">
-    <h2 style="color: var(--gold);">Хуш омадед ба CASH FLOW TJ! 🚀</h2>
-    <div style="background: var(--card); padding: 20px; border-radius: 20px; line-height: 1.6; border: 1px solid #334155;">
-        <p>🌟 <b>Дар бораи лоиҳа:</b><br>
-        Мо ба шумо имконият медиҳем, ки тавассути сармоягузории хурд даромади ҳаррӯзаи устувор ба даст оред.</p>
+    <h2>Хуш омадед! 🚀</h2>
+    <div class="stat-box">
+        <p>Муҳлати шартнома: <b>12 моҳ</b></p>
+        <p>Фоидаи ҷорӣ (LIVE):</p>
+        <h1 id="live-profit" style="color: var(--green); margin: 10px 0;">0.0000</h1>
+        <p id="active-status" style="font-size: 12px; color: #94a3b8;">Нақша фаъол нест</p>
+    </div>
+    
+    <div class="deposit-card">
+        <h3 style="margin:0; color: var(--gold);">💳 Пур кардани баланс</h3>
+        <p style="font-size: 13px;">Корти Миллӣ барои гузаронидан:</p>
+        <div id="card-num" style="background: #000; padding: 12px; border-radius: 8px; font-weight: bold; text-align: center;">4444 5555 6666 7777</div>
+        <button class="btn-blue" style="width:100%; margin-top:10px;" onclick="copyCard()">НУСХАБАРДОРИИ КОРТ</button>
         
-        <p>💎 <b>Чӣ тавр пул кор кунем?</b><br>
-        1️⃣ Ба бахши <b>"Тугмаҳо"</b> гузаред.<br>
-        2️⃣ Нақшаи мувофиқро (Тугма) интихоб кунед.<br>
-        3️⃣ Тавассути Админ ҳисобро пур кунед ва даромадро оғоз кунед!</p>
-        
-        <div style="background: rgba(0, 255, 136, 0.1); border: 1px solid var(--green); padding: 15px; border-radius: 12px; margin-top: 10px;">
-            💰 <b>АКСИЯ:</b> Дӯстони худро даъват кунед ва барои ҳар як шарики нав бонус гиред!
-        </div>
+        <p style="font-size: 12px; margin-top: 20px; color: #94a3b8;">Чеки пардохтро инҷо бор кунед:</p>
+        <input type="file" id="check-file" accept="image/*" style="display:none;" onchange="fileUploaded()">
+        <label for="check-file" class="file-label" id="file-status">📷 ИНТИХОБИ ЧЕК (PHOTO)</label>
+        <button id="send-btn" class="btn-gold" style="margin-top:10px;" onclick="sendToTelegram()">ФИРИСТОДАН БА АДМИН</button>
     </div>
 </div>
 
 <div id="page-products" class="page">
-    <h2 style="color: var(--gold);">Нақшаҳои Сармоягузорӣ</h2>
+    <h2 style="color: var(--gold);">Тугмаҳои Даромад</h2>
     <div id="vip-list"></div>
 </div>
 
-<div id="page-income" class="page">
-    <h2 style="color: var(--gold);">Ҳисоби ман</h2>
-    <div class="income-stat">
-        <p style="margin:0; color: #94a3b8;">То даромади навбатӣ:</p>
-        <div id="timer" class="timer-box">24:00:00</div>
-        <hr style="border: 0.2px solid #334155; margin: 20px 0;">
-        <p style="margin:0; color: #94a3b8;">Фоидаи ҷамъшуда (LIVE):</p>
-        <div id="live-profit" style="font-size: 35px; color: var(--green); font-weight: bold;">0.00 TJS</div>
-        <p id="active-vip-status" style="font-size: 14px; color: #94a3b8; margin-top: 10px;">Ҳеҷ як тугма фаъол нест</p>
-    </div>
-</div>
-
 <div id="page-profile" class="page">
-    <h2 style="color: var(--gold);">Профили шахсӣ</h2>
-    <div style="background: var(--card); padding: 25px; border-radius: 20px; text-align: center; border: 1px solid #334155;">
-        <div style="font-size: 60px; margin-bottom: 10px;">👤</div>
-        <h3 id="user-display-name" style="margin: 5px 0;">Корбар</h3>
-        <p id="user-display-phone" style="color: #94a3b8; margin: 0;">+992 ...</p>
-        <hr style="border: 0.5px solid #334155; margin: 20px 0;">
-        <div style="display: flex; justify-content: space-around;">
-            <div>Баланс:<br><b id="balance-val" style="color: var(--gold); font-size: 18px;">0.00 TJS</b></div>
-            <div>Фоида:<br><b id="total-profit-val" style="color: var(--green); font-size: 18px;">0.00 TJS</b></div>
-        </div>
+    <h2>Профили ман</h2>
+    <div class="stat-box">
+        <h3 id="u-name">...</h3>
+        <p id="u-phone">...</p>
+        <hr border="0.1">
+        <p>Фоидаи гирифташуда: <b id="total-earned" style="color: var(--green);">0.00 TJS</b></p>
     </div>
-    
-    <div style="background: #0f172a; padding: 20px; border-radius: 20px; border: 1px solid #334155; text-align: center; margin-top: 20px;">
-        <p style="font-size: 14px; color: #94a3b8;">Барои пур кардани ҳисоб ба Админ нависед:</p>
-        <div id="copyText" style="background: #1e293b; padding: 12px; border-radius: 10px; font-weight: bold; color: var(--gold); font-size: 18px; margin-bottom: 15px; border: 1px dashed var(--gold);">
-            @ad_min_boy
-        </div>
-        <button id="copyBtn" class="btn-gold" onclick="copyUsername()">НУСХАБАРДОРӢ</button>
-    </div>
+    <br>
+    <button class="btn-gold" onclick="window.location.href='https://t.me/ad_min_boy'">АЛОҚА БО АДМИН</button>
 </div>
 
-<nav id="main-nav" class="nav" style="display: none;">
-    <div id="nav-home" class="nav-item active-nav" onclick="showPage('home')"><div class="nav-icon">🏠</div>Асосӣ</div>
-    <div id="nav-products" class="nav-item" onclick="showPage('products')"><div class="nav-icon">🔘</div>Тугмаҳо</div>
-    <div id="nav-income" class="nav-item" onclick="showPage('income')"><div class="nav-icon">💰</div>Фоида</div>
-    <div id="nav-profile" class="nav-item" onclick="showPage('profile')"><div class="nav-icon">👤</div>Профил</div>
+<nav id="nav-bar" class="nav" style="display:none;">
+    <div class="nav-item" id="n-home" onclick="showPage('home')">🏠<br>Асосӣ</div>
+    <div class="nav-item" id="n-products" onclick="showPage('products')">🔘<br>Тугмаҳо</div>
+    <div class="nav-item" id="n-profile" onclick="showPage('profile')">👤<br>Профил</div>
 </nav>
 
 <script>
-    // Маълумот дар бораи тугмаҳо (маҳз мувофиқи талаботи шумо)
+    // ТАНЗИМОТИ ТЕЛЕГРАМ (Инҷоро иваз кунед!)
+    const BOT_TOKEN = "ИНҶО_TOKEN_РО_МОНЕД"; 
+    const CHAT_ID = "ИНҶО_CHAT_ID_РО_МОНЕД";
+
     const vips = [
         { id: 1, name: 'Тугмаи 1', price: 120, day: 3 },
         { id: 2, name: 'Тугмаи 2', price: 260, day: 6 },
@@ -125,40 +106,28 @@
         { id: 6, name: 'Тугмаи 6', price: 1100, day: 37 }
     ];
 
-    let activeVip = null;
-    let secondsLeft = 86400;
-    let accumulatedProfit = 0;
-
-    window.onload = function() {
-        const savedName = localStorage.getItem('tj_user_name');
-        if (savedName) loginUser(savedName, localStorage.getItem('tj_user_phone'));
-    };
+    let user = { name: "", phone: "", profit: 0, activePlan: null };
+    let liveVal = 0;
 
     function register() {
-        const name = document.getElementById('reg-name').value;
-        const phone = document.getElementById('reg-phone').value;
-        if(name && phone) {
-            localStorage.setItem('tj_user_name', name);
-            localStorage.setItem('tj_user_phone', phone);
-            loginUser(name, phone);
-        } else { alert("Лутфан, маълумотро пур кунед!"); }
+        user.name = document.getElementById('reg-name').value;
+        user.phone = document.getElementById('reg-phone').value;
+        if(user.name && user.phone) {
+            document.getElementById('page-reg').style.display='none';
+            document.getElementById('nav-bar').style.display='flex';
+            document.getElementById('u-name').innerText = user.name;
+            document.getElementById('u-phone').innerText = user.phone;
+            showPage('home');
+            renderVIPs();
+            setInterval(updateProfit, 1000);
+        }
     }
 
-    function loginUser(name, phone) {
-        document.getElementById('user-display-name').innerText = name;
-        document.getElementById('user-display-phone').innerText = phone;
-        document.getElementById('page-reg').classList.remove('active-page');
-        document.getElementById('main-nav').style.display = 'flex';
-        showPage('home');
-        renderVIPs();
-        setInterval(updateStats, 1000);
-    }
-
-    function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
-        document.getElementById('page-' + pageId).classList.add('active-page');
-        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active-nav'));
-        document.getElementById('nav-' + pageId).classList.add('active-nav');
+    function showPage(p) {
+        document.querySelectorAll('.page').forEach(pg => pg.classList.remove('active-page'));
+        document.getElementById('page-'+p).classList.add('active-page');
+        document.querySelectorAll('.nav-item').forEach(ni => ni.classList.remove('active-nav'));
+        document.getElementById('n-'+p).classList.add('active-nav');
     }
 
     function renderVIPs() {
@@ -167,53 +136,77 @@
         vips.forEach(v => {
             list.innerHTML += `
                 <div class="vip-card">
-                    <div class="vip-header"><span>${v.name}</span> <span class="price-tag">${v.price} TJS</span></div>
+                    <div class="vip-header"><span>${v.name}</span> <span>${v.price} TJS</span></div>
                     <div class="vip-info">
-                        <div>Ҳар рӯз: <b>${v.day} TJS</b></div>
-                        <div>10 рӯз: <b>${v.day * 10} TJS</b></div>
-                        <div>Як моҳ: <b>${v.day * 30} TJS</b></div>
-                        <div>Муҳлат: <b>Беохир</b></div>
+                        <div>1 рӯз: <b>${v.day} TJS</b></div>
+                        <div>1 моҳ: <b>${v.day * 30} TJS</b></div>
                     </div>
-                    <button class="btn-gold" style="width:90%; margin: 0 5% 15px 5%;" onclick="buyVip('${v.name}', ${v.day})">ФАЪОЛ КАРДАН</button>
+                    <div class="vip-actions">
+                        <button class="btn-green" onclick="withdraw(${v.day * 10}, 10)">10 рӯза</button>
+                        <button class="btn-blue" onclick="withdraw(${v.day * 30}, 30)">1 моҳа</button>
+                    </div>
+                    <button class="btn-gold" style="border-radius:0" onclick="activate('${v.name}', ${v.day})">ФАЪОЛ КАРДАН</button>
                 </div>`;
         });
     }
 
-    function buyVip(name, dailyIncome) {
-        activeVip = { name, dailyIncome };
-        secondsLeft = 86400;
-        accumulatedProfit = 0;
-        document.getElementById('active-vip-status').innerText = "Фаъол: " + name;
-        alert("Табрик! " + name + " фаъол шуд. Даромад оғоз ёфт.");
-        showPage('income');
+    function activate(name, day) {
+        user.activePlan = { name, day };
+        liveVal = 0;
+        document.getElementById('active-status').innerText = "Фаъол: " + name;
+        alert(name + " фаъол шуд!");
     }
 
-    function updateStats() {
-        if (activeVip) {
-            if (secondsLeft > 0) {
-                secondsLeft--;
-                accumulatedProfit += (activeVip.dailyIncome / 86400);
-                
-                let h = Math.floor(secondsLeft / 3600).toString().padStart(2, '0');
-                let m = Math.floor((secondsLeft % 3600) / 60).toString().padStart(2, '0');
-                let s = (secondsLeft % 60).toString().padStart(2, '0');
-                
-                document.getElementById('timer').innerText = `${h}:${m}:${s}`;
-                document.getElementById('live-profit').innerText = accumulatedProfit.toFixed(4) + " TJS";
-                document.getElementById('total-profit-val').innerText = accumulatedProfit.toFixed(2) + " TJS";
-            } else { secondsLeft = 86400; }
+    function updateProfit() {
+        if(user.activePlan) {
+            liveVal += (user.activePlan.day / 86400);
+            document.getElementById('live-profit').innerText = liveVal.toFixed(4);
         }
     }
 
-    function copyUsername() {
-        const btn = document.getElementById('copyBtn');
-        navigator.clipboard.writeText("@ad_min_boy");
-        btn.innerText = "НУСХАБАРДОРӢ ШУД!";
-        btn.style.background = "#00ff88";
-        setTimeout(() => {
-            btn.innerText = "НУСХАБАРДОРӢ";
-            btn.style.background = "linear-gradient(45deg, var(--gold), #ffaa00)";
-        }, 2000);
+    function withdraw(amt, days) {
+        if(!user.activePlan) return alert("Нақшаро фаъол кунед!");
+        user.profit += amt;
+        document.getElementById('total-earned').innerText = user.profit.toFixed(2) + " TJS";
+        alert("Маблағи " + days + " рӯза илова шуд!");
+    }
+
+    function copyCard() {
+        navigator.clipboard.writeText("4444555566667777");
+        alert("Нусхабардорӣ шуд!");
+    }
+
+    function fileUploaded() {
+        document.getElementById('file-status').innerText = "✅ ЧЕК ИНТИХОБ ШУД";
+    }
+
+    async function sendToTelegram() {
+        const fileInput = document.getElementById('check-file');
+        const btn = document.getElementById('send-btn');
+        if (!fileInput.files[0]) return alert("Чекро интихоб кунед!");
+
+        btn.innerText = "ФИРИСТОДА ИСТОДААСТ...";
+        btn.disabled = true;
+
+        const formData = new FormData();
+        formData.append("chat_id", CHAT_ID);
+        formData.append("photo", fileInput.files[0]);
+        formData.append("caption", `💰 ЧЕКИ НАВ!\n👤 Корбар: ${user.name}\n📞 Телефон: ${user.phone}`);
+
+        try {
+            const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+                method: "POST",
+                body: formData
+            });
+            if (response.ok) {
+                alert("Чек бо муваффақият фиристода шуд! Админ тафтиш мекунад.");
+                fileInput.value = "";
+                document.getElementById('file-status').innerText = "📷 ИНТИХОБИ ЧЕК (PHOTO)";
+            } else { alert("Хатогӣ дар фиристодан!"); }
+        } catch (e) { alert("Интернет кор намекунад!"); }
+        
+        btn.innerText = "ФИРИСТОДАН БА АДМИН";
+        btn.disabled = false;
     }
 </script>
 </body>
