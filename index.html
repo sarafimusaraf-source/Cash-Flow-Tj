@@ -1,121 +1,128 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="tg">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CASH FLOW UZB</title>
+    <title>CASH FLOW TJ | Сармоягузории Оқилона</title>
     <style>
-        :root { --gold: #ffcc00; --dark: #0b1120; --card: #1e293b; --green: #00ff88; }
-        body { margin: 0; padding: 0; font-family: sans-serif; background: var(--dark); color: white; }
-        .page { display: none; padding: 20px; padding-bottom: 80px; }
+        :root { --gold: #ffcc00; --dark: #0b1120; --card: #1e293b; --green: #00ff88; --accent: #ffd700; }
+        body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--dark); color: white; }
+        .page { display: none; padding: 20px; padding-bottom: 80px; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .active-page { display: block; }
 
-        /* Ro'yxatdan o'tish */
-        .reg-container { text-align: center; padding-top: 50px; }
-        input { width: 80%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; background: #e2e8f0; color: #000; }
-        .btn-gold { background: var(--gold); color: black; padding: 12px 30px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; }
+        /* Дизайни Регистрация */
+        .reg-container { text-align: center; padding: 50px 20px; }
+        .logo-box { font-size: 50px; margin-bottom: 10px; }
+        input { width: 90%; max-width: 300px; padding: 12px; margin: 10px 0; border-radius: 10px; border: none; background: #f1f5f9; color: #000; font-size: 16px; }
+        .btn-gold { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 14px 40px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; width: 100%; max-width: 320px; }
+        .btn-gold:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4); }
 
-        /* AKTIV Kartalari */
-        .vip-card { background: var(--card); border-radius: 15px; margin-bottom: 15px; overflow: hidden; border-left: 5px solid var(--gold); }
-        .vip-header { background: var(--gold); color: black; padding: 10px; font-weight: bold; display: flex; justify-content: space-between; }
-        .vip-info { display: grid; grid-template-columns: 1fr 1fr; padding: 15px; font-size: 13px; gap: 10px; }
-        .vip-info span { color: var(--green); display: block; font-weight: bold; }
+        /* Дизайни Тугмаҳо (AKTIV) */
+        .vip-card { background: var(--card); border-radius: 20px; margin-bottom: 20px; overflow: hidden; border: 1px solid #334155; position: relative; }
+        .vip-header { background: linear-gradient(90deg, var(--gold), #ffaa00); color: black; padding: 12px 20px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .vip-info { display: grid; grid-template-columns: 1fr 1fr; padding: 20px; font-size: 14px; gap: 15px; }
+        .vip-info b { color: var(--green); font-size: 16px; }
+        .price-tag { background: rgba(0,0,0,0.1); padding: 4px 10px; border-radius: 5px; }
 
-        /* Navigatsiya */
-        .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #334155; z-index: 1000; }
-        .nav-item { color: #94a3b8; text-decoration: none; font-size: 12px; cursor: pointer; text-align: center; background: none; border: none; }
-        .active-nav { color: var(--gold); }
+        /* Навигатсия */
+        .nav { position: fixed; bottom: 0; width: 100%; background: rgba(15, 23, 42, 0.95); display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #334155; backdrop-filter: blur(10px); z-index: 1000; }
+        .nav-item { color: #94a3b8; text-decoration: none; font-size: 11px; cursor: pointer; text-align: center; transition: 0.3s; }
+        .active-nav { color: var(--gold); transform: translateY(-5px); }
+        .nav-icon { font-size: 20px; margin-bottom: 4px; }
         
-        .income-stat { background: #1e293b; padding: 15px; border-radius: 12px; margin-top: 10px; border: 1px solid #334155; }
-        .timer-box { font-size: 24px; font-weight: bold; color: var(--gold); margin: 10px 0; }
+        /* Статистика */
+        .income-stat { background: linear-gradient(145deg, #1e293b, #0f172a); padding: 25px; border-radius: 20px; margin-top: 10px; border: 1px solid var(--gold); text-align: center; }
+        .timer-box { font-size: 32px; font-weight: bold; color: var(--gold); text-shadow: 0 0 10px rgba(255,204,0,0.3); }
     </style>
 </head>
 <body>
 
 <div id="page-reg" class="page active-page">
     <div class="reg-container">
-        <h1 style="color: var(--gold);">CASH FLOW UZB</h1>
-        <p>Boshlash uchun ro'yxatdan o'ting</p>
-        <input type="text" id="reg-name" placeholder="Ismingiz">
-        <input type="tel" id="reg-phone" placeholder="Telefon raqamingiz">
-        <input type="password" id="reg-pass" placeholder="Parol">
+        <div class="logo-box">💰</div>
+        <h1 style="color: var(--gold); margin: 0;">CASH FLOW TJ</h1>
+        <p style="color: #94a3b8;">Ояндаи молиявии худро созед</p><br>
+        <input type="text" id="reg-name" placeholder="Номи шумо">
+        <input type="tel" id="reg-phone" placeholder="Рақами телефон">
+        <input type="password" id="reg-pass" placeholder="Парол">
         <br><br>
-        <button class="btn-gold" onclick="register()">Kirish</button>
+        <button class="btn-gold" onclick="register()">ВОРИД ШУДАН</button>
     </div>
 </div>
 
 <div id="page-home" class="page">
-    <h2 style="color: var(--gold);">CASH FLOW UZB-ga xush kelibsiz! 💸</h2>
-    <div style="background: var(--card); padding: 15px; border-radius: 15px; line-height: 1.6;">
-        <p>🌟 <b>Moliyaviy kelajagingizni bugun quring!</b><br>
-        Biz sizga kichik investitsiya orqali barqaror kunlik daromad olish imkoniyatini beramiz. Tizimimiz sodda, shaffof va ishonchli.</p>
+    <h2 style="color: var(--gold);">Хуш омадед ба CASH FLOW TJ! 🚀</h2>
+    <div style="background: var(--card); padding: 20px; border-radius: 20px; line-height: 1.6; border: 1px solid #334155;">
+        <p>🌟 <b>Дар бораи лоиҳа:</b><br>
+        Мо ба шумо имконият медиҳем, ки тавассути сармоягузории хурд даромади ҳаррӯзаи устувор ба даст оред.</p>
         
-        <p>🚀 <b>Qanday qilib pul ishlash mumkin?</b><br>
-        1️⃣ 📈 <b>Mahsulotlar</b> bo'limida AKTIV rejasini tanlang.<br>
-        2️⃣ Hisobingizni Admin orqali to'ldiring.<br>
-        3️⃣ Rejani faollashtiring va har kuni foyda oling!<br><br>
+        <p>💎 <b>Чӣ тавр пул кор кунем?</b><br>
+        1️⃣ Ба бахши <b>"Тугмаҳо"</b> гузаред.<br>
+        2️⃣ Нақшаи мувофиқро (Тугма) интихоб кунед.<br>
+        3️⃣ Тавассути Админ ҳисобро пур кунед ва даромадро оғоз кунед!</p>
         
-        <span style="background: rgba(0, 255, 136, 0.1); border: 1px solid var(--green); padding: 10px; display: block; border-radius: 8px;">
-            💰 <b>MAXSUS BONUS:</b> Do'stlaringizni taklif qiling va har bir yangi hamkor uchun <b>30,000 so'm</b> sovg'a oling!
-        </span></p>
+        <div style="background: rgba(0, 255, 136, 0.1); border: 1px solid var(--green); padding: 15px; border-radius: 12px; margin-top: 10px;">
+            💰 <b>АКСИЯ:</b> Дӯстони худро даъват кунед ва барои ҳар як шарики нав бонус гиред!
+        </div>
     </div>
 </div>
 
 <div id="page-products" class="page">
-    <h2 style="color: var(--gold);">AKTIV Rejalari</h2>
+    <h2 style="color: var(--gold);">Нақшаҳои Сармоягузорӣ</h2>
     <div id="vip-list"></div>
 </div>
 
 <div id="page-income" class="page">
-    <h2 style="color: var(--gold);">Mening daromadim</h2>
-    <div class="income-stat" style="text-align: center;">
-        <p>Navbatdagi foydagacha:</p>
+    <h2 style="color: var(--gold);">Ҳисоби ман</h2>
+    <div class="income-stat">
+        <p style="margin:0; color: #94a3b8;">То даромади навбатӣ:</p>
         <div id="timer" class="timer-box">24:00:00</div>
-        <hr style="border: 0.2px solid #334155;">
-        <p>Yig'ilgan foyda (real vaqtda):</p>
-        <div id="live-profit" style="font-size: 28px; color: var(--green); font-weight: bold;">0.0000 UZS</div>
-        <p id="active-vip-status" style="font-size: 12px; color: #94a3b8;">Hech qanday AKTIV faollashtirilmagan</p>
+        <hr style="border: 0.2px solid #334155; margin: 20px 0;">
+        <p style="margin:0; color: #94a3b8;">Фоидаи ҷамъшуда (LIVE):</p>
+        <div id="live-profit" style="font-size: 35px; color: var(--green); font-weight: bold;">0.00 TJS</div>
+        <p id="active-vip-status" style="font-size: 14px; color: #94a3b8; margin-top: 10px;">Ҳеҷ як тугма фаъол нест</p>
     </div>
 </div>
 
 <div id="page-profile" class="page">
-    <h2 style="color: var(--gold);">Mening profilim</h2>
-    <div style="background: var(--card); padding: 20px; border-radius: 15px; text-align: center;">
-        <div style="font-size: 40px;">👤</div>
-        <h3 id="user-display-name">Foydalanuvchi</h3>
-        <p id="user-display-phone">+998 ...</p>
-        <hr style="border: 0.5px solid #334155;">
+    <h2 style="color: var(--gold);">Профили шахсӣ</h2>
+    <div style="background: var(--card); padding: 25px; border-radius: 20px; text-align: center; border: 1px solid #334155;">
+        <div style="font-size: 60px; margin-bottom: 10px;">👤</div>
+        <h3 id="user-display-name" style="margin: 5px 0;">Корбар</h3>
+        <p id="user-display-phone" style="color: #94a3b8; margin: 0;">+992 ...</p>
+        <hr style="border: 0.5px solid #334155; margin: 20px 0;">
         <div style="display: flex; justify-content: space-around;">
-            <div>Balans:<br><b id="balance-val" style="color: var(--gold);">0.00 UZS</b></div>
-            <div>Daromad:<br><b id="total-profit-val" style="color: var(--green);">0.00 UZS</b></div>
+            <div>Баланс:<br><b id="balance-val" style="color: var(--gold); font-size: 18px;">0.00 TJS</b></div>
+            <div>Фоида:<br><b id="total-profit-val" style="color: var(--green); font-size: 18px;">0.00 TJS</b></div>
         </div>
     </div>
-    <br>
     
-    <div style="background: #0f172a; padding: 15px; border-radius: 15px; border: 1px solid #334155; text-align: center;">
-        <p style="font-size: 14px; margin-bottom: 10px;">Hisobni to'ldirish uchun foydalanuvchi nomini nusxalang va Telegramga yuboring:</p>
-        <div id="copyText" style="background: #1e293b; padding: 10px; border-radius: 8px; font-weight: bold; color: var(--gold); font-size: 18px; margin-bottom: 10px;">
-            @Menenjer_cashflowtj
+    <div style="background: #0f172a; padding: 20px; border-radius: 20px; border: 1px solid #334155; text-align: center; margin-top: 20px;">
+        <p style="font-size: 14px; color: #94a3b8;">Барои пур кардани ҳисоб ба Админ нависед:</p>
+        <div id="copyText" style="background: #1e293b; padding: 12px; border-radius: 10px; font-weight: bold; color: var(--gold); font-size: 18px; margin-bottom: 15px; border: 1px dashed var(--gold);">
+            @ad_min_boy
         </div>
-        <button id="copyBtn" class="btn-gold" style="width:100%;" onclick="copyUsername()">Nusxalash</button>
+        <button id="copyBtn" class="btn-gold" onclick="copyUsername()">НУСХАБАРДОРӢ</button>
     </div>
 </div>
 
 <nav id="main-nav" class="nav" style="display: none;">
-    <div id="nav-home" class="nav-item active-nav" onclick="showPage('home')">🏠<br>Asosiy</div>
-    <div id="nav-products" class="nav-item" onclick="showPage('products')">📈<br>Aktivlar</div>
-    <div id="nav-income" class="nav-item" onclick="showPage('income')">💰<br>Daromad</div>
-    <div id="nav-profile" class="nav-item" onclick="showPage('profile')">👤<br>Profil</div>
+    <div id="nav-home" class="nav-item active-nav" onclick="showPage('home')"><div class="nav-icon">🏠</div>Асосӣ</div>
+    <div id="nav-products" class="nav-item" onclick="showPage('products')"><div class="nav-icon">🔘</div>Тугмаҳо</div>
+    <div id="nav-income" class="nav-item" onclick="showPage('income')"><div class="nav-icon">💰</div>Фоида</div>
+    <div id="nav-profile" class="nav-item" onclick="showPage('profile')"><div class="nav-icon">👤</div>Профил</div>
 </nav>
 
 <script>
+    // Маълумот дар бораи тугмаҳо (маҳз мувофиқи талаботи шумо)
     const vips = [
-        { id: 1, name: 'AKTIV 1', price: 310, day: 11 },
-        { id: 2, name: 'AKTIV 2', price: 610, day: 20 },
-        { id: 3, name: 'AKTIV 3', price: 910, day: 30 },
-        { id: 4, name: 'AKTIV 4', price: 1500, day: 49 },
-        { id: 5, name: 'AKTIV 5', price: 3100, day: 100 },
-        { id: 6, name: 'AKTIV 6', price: 6200, day: 200 }
+        { id: 1, name: 'Тугмаи 1', price: 120, day: 3 },
+        { id: 2, name: 'Тугмаи 2', price: 260, day: 6 },
+        { id: 3, name: 'Тугмаи 3', price: 470, day: 15 },
+        { id: 4, name: 'Тугмаи 4', price: 660, day: 21 },
+        { id: 5, name: 'Тугмаи 5', price: 850, day: 28 },
+        { id: 6, name: 'Тугмаи 6', price: 1100, day: 37 }
     ];
 
     let activeVip = null;
@@ -123,22 +130,18 @@
     let accumulatedProfit = 0;
 
     window.onload = function() {
-        const savedName = localStorage.getItem('user_name_uz');
-        const savedPhone = localStorage.getItem('user_phone_uz');
-        if (savedName && savedPhone) {
-            loginUser(savedName, savedPhone);
-        }
+        const savedName = localStorage.getItem('tj_user_name');
+        if (savedName) loginUser(savedName, localStorage.getItem('tj_user_phone'));
     };
 
     function register() {
         const name = document.getElementById('reg-name').value;
         const phone = document.getElementById('reg-phone').value;
-        const pass = document.getElementById('reg-pass').value;
-        if(name && phone && pass) {
-            localStorage.setItem('user_name_uz', name);
-            localStorage.setItem('user_phone_uz', phone);
+        if(name && phone) {
+            localStorage.setItem('tj_user_name', name);
+            localStorage.setItem('tj_user_phone', phone);
             loginUser(name, phone);
-        } else { alert("Iltimos, barcha ma'lumotlarni to'ldiring!"); }
+        } else { alert("Лутфан, маълумотро пур кунед!"); }
     }
 
     function loginUser(name, phone) {
@@ -148,33 +151,30 @@
         document.getElementById('main-nav').style.display = 'flex';
         showPage('home');
         renderVIPs();
-        startGlobalTimer();
+        setInterval(updateStats, 1000);
     }
 
     function showPage(pageId) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
         document.getElementById('page-' + pageId).classList.add('active-page');
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active-nav'));
-        if(document.getElementById('nav-' + pageId)) {
-            document.getElementById('nav-' + pageId).classList.add('active-nav');
-        }
+        document.getElementById('nav-' + pageId).classList.add('active-nav');
     }
 
     function renderVIPs() {
         const list = document.getElementById('vip-list');
-        if(!list) return;
         list.innerHTML = "";
         vips.forEach(v => {
             list.innerHTML += `
                 <div class="vip-card">
-                    <div class="vip-header">${v.name} <span>${v.price} UZS</span></div>
+                    <div class="vip-header"><span>${v.name}</span> <span class="price-tag">${v.price} TJS</span></div>
                     <div class="vip-info">
-                        <div>Kunlik: <span>${v.day} UZS</span></div>
-                        <div>Oylik: <span>${v.day * 30} UZS</span></div>
-                        <div>Yillik: <span>${v.day * 365} UZS</span></div>
-                        <div>Muddati: <span>365 kun</span></div>
+                        <div>Ҳар рӯз: <b>${v.day} TJS</b></div>
+                        <div>10 рӯз: <b>${v.day * 10} TJS</b></div>
+                        <div>Як моҳ: <b>${v.day * 30} TJS</b></div>
+                        <div>Муҳлат: <b>Беохир</b></div>
                     </div>
-                    <button class="btn-gold" style="width:90%; margin: 0 5% 15px 5%;" onclick="buyVip('${v.name}', ${v.day})">Sotib olish</button>
+                    <button class="btn-gold" style="width:90%; margin: 0 5% 15px 5%;" onclick="buyVip('${v.name}', ${v.day})">ФАЪОЛ КАРДАН</button>
                 </div>`;
         });
     }
@@ -183,54 +183,36 @@
         activeVip = { name, dailyIncome };
         secondsLeft = 86400;
         accumulatedProfit = 0;
-        document.getElementById('active-vip-status').innerText = name + " faol";
-        alert("Tabriklaymiz! " + name + " faollashtirildi. Daromad boshlandi.");
+        document.getElementById('active-vip-status').innerText = "Фаъол: " + name;
+        alert("Табрик! " + name + " фаъол шуд. Даромад оғоз ёфт.");
         showPage('income');
     }
 
-    function startGlobalTimer() {
-        setInterval(() => {
-            if (activeVip) {
-                if (secondsLeft > 0) {
-                    secondsLeft--;
-                    let profitPerSecond = activeVip.dailyIncome / 86400;
-                    accumulatedProfit += profitPerSecond;
-                    updateDisplay();
-                } else {
-                    secondsLeft = 86400;
-                }
-            }
-        }, 1000);
-    }
-
-    function updateDisplay() {
-        let h = Math.floor(secondsLeft / 3600);
-        let m = Math.floor((secondsLeft % 3600) / 60);
-        let s = secondsLeft % 60;
-        document.getElementById('timer').innerText = 
-            `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-        
-        document.getElementById('live-profit').innerText = accumulatedProfit.toFixed(4) + " UZS";
-        document.getElementById('total-profit-val').innerText = accumulatedProfit.toFixed(2) + " UZS";
+    function updateStats() {
+        if (activeVip) {
+            if (secondsLeft > 0) {
+                secondsLeft--;
+                accumulatedProfit += (activeVip.dailyIncome / 86400);
+                
+                let h = Math.floor(secondsLeft / 3600).toString().padStart(2, '0');
+                let m = Math.floor((secondsLeft % 3600) / 60).toString().padStart(2, '0');
+                let s = (secondsLeft % 60).toString().padStart(2, '0');
+                
+                document.getElementById('timer').innerText = `${h}:${m}:${s}`;
+                document.getElementById('live-profit').innerText = accumulatedProfit.toFixed(4) + " TJS";
+                document.getElementById('total-profit-val').innerText = accumulatedProfit.toFixed(2) + " TJS";
+            } else { secondsLeft = 86400; }
+        }
     }
 
     function copyUsername() {
-        const textToCopy = "@Menenjer_cashflowtj";
         const btn = document.getElementById('copyBtn');
-        const el = document.createElement('textarea');
-        el.value = textToCopy;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-
-        const originalText = btn.innerText;
-        btn.innerText = "Nusxalandi!";
+        navigator.clipboard.writeText("@ad_min_boy");
+        btn.innerText = "НУСХАБАРДОРӢ ШУД!";
         btn.style.background = "#00ff88";
-        
         setTimeout(() => {
-            btn.innerText = originalText;
-            btn.style.background = "#ffcc00";
+            btn.innerText = "НУСХАБАРДОРӢ";
+            btn.style.background = "linear-gradient(45deg, var(--gold), #ffaa00)";
         }, 2000);
     }
 </script>
