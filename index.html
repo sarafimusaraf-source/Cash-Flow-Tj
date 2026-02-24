@@ -64,7 +64,7 @@
             <button onclick="copyText('@charity_tj')" style="background:var(--gold); border:none; border-radius:4px; padding:4px 8px; cursor:pointer; font-weight:bold;">COPY</button>
         </div>
 
-        <a href="https://t.me/charity_tj" class="btn-main">МУСТАҚИМ БА ТЕЛЕГРАМ</a>
+        <a href="tg://resolve?domain=charity_tj" class="btn-main">МУСТАҚИМ БА ТЕЛЕГРАМ</a>
         
         <div style="margin-top:20px; border-top:1px solid #2d3748; padding-top:15px;">
             <p>⏰ <b>Вақти кории Админ:</b></p>
@@ -84,7 +84,6 @@
 
     <div class="glass-card">
         <h3 style="color:var(--green); text-align:center;">🏆 Иштирокчиёни Муваффақ</h3>
-        <p style="font-size:12px; color:var(--gray); text-align:center; margin-bottom:15px;">Ин шахсон бо заҳмат ва боварӣ ба ин натиҷаҳо расиданд!</p>
         <div id="leaderboard"></div>
     </div>
 </div>
@@ -100,7 +99,7 @@
     const vips = [
         { n: 'Тугмаи 1', p: 120, d: 4 },
         { n: 'Тугмаи 2', p: 260, d: 9 },
-        { n: 'Тугмаi 3', p: 470, d: 17 },
+        { n: 'Тугмаи 3', p: 470, d: 17 },
         { n: 'Тугмаи 4', p: 660, d: 25 },
         { n: 'Тугмаи 5', p: 850, d: 35 },
         { n: 'Тугмаи 6', p: 1100, d: 50 }
@@ -122,11 +121,6 @@
     window.onload = () => {
         renderVips();
         renderLeaders();
-        let u = JSON.parse(localStorage.getItem('charity_u'));
-        if(u) {
-            document.getElementById('user-display').innerText = u.name;
-            document.getElementById('phone-display').innerText = u.phone;
-        }
     };
 
     function renderVips() {
@@ -142,7 +136,7 @@
                         <div>1 моҳ: <b class="highlight">${v.d*30} TJS</b></div>
                         <div>1 сол: <b class="highlight">${v.d*365} TJS</b></div>
                     </div>
-                    <a href="https://t.me/charity_tj" class="btn-main" style="margin-top:15px; height:35px; padding:7px 0; font-size:14px;">ФАЪОЛ КАРДАН</a>
+                    <a href="tg://resolve?domain=charity_tj" class="btn-main" style="margin-top:15px; height:35px; padding:7px 0; font-size:14px;">ФАЪОЛ КАРДАН</a>
                 </div>
             `;
         });
