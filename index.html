@@ -3,207 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHARITY | Боварии Шумо</title>
+    <title>CHARITY GOLD</title>
     <style>
-        :root { --gold: #ffcc00; --dark: #070b14; --card: #151c2c; --green: #00ff88; --text-gray: #94a3b8; }
-        body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: var(--dark); color: white; }
-        .page { display: none; padding: 20px; padding-bottom: 100px; animation: fadeIn 0.3s; }
+        :root { --gold: #ffcc00; --dark: #0b0f1a; --card: #161e2e; --green: #00ff88; --gray: #94a3b8; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--dark); color: white; overflow-x: hidden; }
+        
+        /* Header & Logo */
+        .header { text-align: center; padding: 30px 20px; background: linear-gradient(to bottom, #1e293b, var(--dark)); }
+        .logo-circle { width: 80px; height: 80px; background: var(--gold); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 40px; box-shadow: 0 0 20px rgba(255, 204, 0, 0.4); border: 3px solid white; }
+
+        .page { display: none; padding: 20px; padding-bottom: 100px; animation: slideUp 0.4s ease; }
         .active-page { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .glass-card { background: var(--card); border-radius: 20px; padding: 20px; border: 1px solid #2d3748; margin-bottom: 20px; }
-        .btn-main { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 15px; border: none; border-radius: 12px; font-weight: bold; width: 100%; cursor: pointer; }
-        .vip-item { display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 18px; border-radius: 15px; margin-bottom: 12px; border-left: 4px solid var(--gold); }
-        .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #1e293b; }
-        .nav-item { color: var(--text-gray); text-align: center; font-size: 11px; flex: 1; }
-        .active-nav { color: var(--gold); }
-        input { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; border: 1px solid #2d3748; background: #0f172a; color: white; box-sizing: border-box; }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .glass-card { background: var(--card); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #2d3748; }
+        .gold-border { border: 1px solid var(--gold); position: relative; overflow: hidden; }
+        
+        /* Typography */
+        h2 { color: var(--gold); margin-top: 0; }
+        .motivation { font-style: italic; color: #cbd5e1; line-height: 1.6; }
+        .highlight { color: var(--green); font-weight: bold; }
+
+        /* Buttons */
+        .btn-main { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 14px; border: none; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.3s; }
+        .btn-copy { background: #334155; color: white; padding: 8px; border-radius: 5px; border: none; font-size: 12px; margin-top: 10px; cursor: pointer; }
+
+        /* VIP Grid */
+        .vip-card { background: #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 5px solid var(--gold); }
+        .price-tag { float: right; background: var(--gold); color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
+
+        /* Navigation */
+        .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #1e293b; z-index: 1000; }
+        .nav-item { color: var(--gray); text-align: center; font-size: 10px; flex: 1; cursor: pointer; }
+        .active-nav { color: var(--gold); transform: scale(1.1); }
+        
+        /* Leaderboard */
+        .leader { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #2d3748; }
+        .rank { width: 25px; color: var(--gold); font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div id="page-reg" class="page">
-    <div style="text-align: center; margin-top: 50px;">
-        <h1 style="color: var(--gold);">CHARITY</h1>
-        <p>Барои оғоз ворид шавед</p>
-        <div class="glass-card">
-            <input type="text" id="reg-name" placeholder="Номи шумо">
-            <input type="tel" id="reg-phone" placeholder="Телефон">
-            <button class="btn-main" onclick="register()">ВОРИД ШУДАН</button>
+<div class="header">
+    <div class="logo-circle">🤝</div>
+    <h1 style="margin:0; letter-spacing: 2px;">CHARITY GOLD</h1>
+    <p style="color: var(--gold); font-size: 12px;">БО МО - БА СУЙИ ОЯНДАИ ДУРАХШОН</p>
+</div>
+
+<div id="p1" class="page active-page">
+    <div class="glass-card gold-border">
+        <h2>Кафолати Садфоиза 🛡️</h2>
+        <p class="motivation">"Мо боварии шуморо қадр мекунем! Системаи <b>CHARITY</b> дар асоси технологияҳои муосир сохта шудааст. Мо кафолат медиҳем, ки ҳар як сомонии шумо таҳти ҳимоя аст ва фоидаи шумо бетанаффус илова мешавад."</p>
+    </div>
+    
+    <div class="glass-card">
+        <h3>Чаро моро интихоб мекунанд?</h3>
+        <p class="motivation">🌟 <b>Дастгирии доимӣ:</b> Мо боварӣ дорем, ки бо дастгирии шумо ва заҳмати мо, мо ба қуллаҳои баландтарин мерасем. Якҷоя мо қувва ҳастем!</p>
+        <p class="motivation">🚀 <b>Суръат:</b> Маблағгузории шумо дар ҳамон сонияе, ки тугмаро фаъол мекунед, ба кор медарояд.</p>
+    </div>
+</div>
+
+<div id="p2" class="page">
+    <h2>Тугмаҳои Даромад 💰</h2>
+    <div id="vips-container"></div>
+</div>
+
+<div id="p3" class="page">
+    <div class="glass-card gold-border">
+        <h2>Маркази Дастгирӣ 💬</h2>
+        <p>Барои харидани тугмаҳо ва гирифтани даромад, ба гурӯҳи мо пайваст шавед.</p>
+        
+        <div style="background:#000; padding:15px; border-radius:10px; word-break:break-all;" id="link-text">https://t.me/charity_tj</div>
+        <button class="btn-main" style="margin-top:10px;" onclick="copyLink()">НУСХАБАРДОРИИ ЛИНК</button>
+        
+        <div style="margin-top:20px; border-top:1px solid #2d3748; padding-top:15px;">
+            <p>⏰ <b>Вақти кории Админ:</b></p>
+            <p>☀️ Рӯзона: <b>11:00</b></p>
+            <p>🌙 Бегоҳ: <b>21:00</b></p>
+            <p style="font-size:13px; color:var(--gray)">* Илтимос, дар берун аз вақти корӣ интизор шавед.</p>
         </div>
     </div>
 </div>
 
-<div id="page-home" class="page">
-    <div class="glass-card" style="border: 1px solid var(--gold);">
-        <h2 style="margin-top:0">Кафолати 100% 🛡️</h2>
-        <p style="font-size: 14px; color: #cbd5e1;">Мо кафолат медиҳем, ки системаи CHARITY то як соли оянда бетанаффус кор мекунад. Маблағҳои шумо дар амон ҳастанд ва фоидаи шумо ҳар сония илова мешавад. Мо барои эътимоди шумо ҷавобгӯ ҳастем!</p>
-    </div>
-
-    <div class="glass-card" style="text-align: center;">
-        <span style="color: var(--text-gray);">Фоидаи LIVE:</span>
-        <h1 id="live-profit" style="font-size: 40px; color: var(--green); margin: 10px 0;">0.0000</h1>
-        <div id="active-status" style="color: var(--gold); font-weight: bold;">Нақша фаъол нест</div>
+<div id="p4" class="page">
+    <div class="glass-card" style="text-align:center;">
+        <div class="logo-circle" style="width:60px; height:60px; font-size:25px;">U</div>
+        <h3 id="user-display">Корбари Фаъол</h3>
+        <p id="phone-display" style="color:var(--gray)"></p>
     </div>
 
     <div class="glass-card">
-        <h3>Пур кардани Баланс</h3>
-        <p style="font-size: 12px; color: var(--text-gray);">Корти Миллӣ барои гузаронидан:</p>
-        <div style="background: #000; padding: 12px; border-radius: 10px; text-align: center; font-weight: bold;">4444 5555 6666 7777</div>
-        <input type="file" id="check-file" accept="image/*" style="margin-top:15px;">
-        <button id="send-btn" class="btn-main" onclick="sendToTelegram()">ФИРИСТОДАНИ ЧЕК</button>
+        <h3 style="color:var(--green)">🏆 Топ-Иштирокчиён (Фоида)</h3>
+        <div id="leaderboard"></div>
     </div>
 </div>
 
-<div id="page-products" class="page">
-    <h2 style="color: var(--gold);">Тугмаҳои Даромад</h2>
-    <div id="vip-list"></div>
-</div>
-
-<div id="page-details" class="page">
-    <button onclick="showPage('products')" style="background:none; border:none; color:var(--gold); margin-bottom:15px;">← Бозгашт</button>
-    <div id="details-content"></div>
-</div>
-
-<div id="page-profile" class="page">
-    <div class="glass-card" style="text-align: center;">
-        <div style="width:70px; height:70px; background:var(--gold); border-radius:50%; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; color:black; font-size:24px; font-weight:bold;" id="u-icon">U</div>
-        <h2 id="p-name">Корбар</h2>
-        <p id="p-phone" style="color:var(--text-gray)"></p>
-        <button class="btn-main" onclick="window.open('https://t.me/charity_tj', '_blank')" style="background:#24292f; color:white;">💬 ГУРӮҲИ ТЕЛЕГРАМ</button>
-        <br><br>
-        <button onclick="logout()" style="color:#ef4444; background:none; border:none;">Хуруҷ</button>
-    </div>
-</div>
-
-<nav id="nav-bar" class="nav" style="display:none;">
-    <div class="nav-item active-nav" onclick="tab(this, 'home')">🏠<br>Асосӣ</div>
-    <div class="nav-item" onclick="tab(this, 'products')">🔘<br>Тугмаҳо</div>
-    <div class="nav-item" onclick="tab(this, 'profile')">👤<br>Профил</div>
+<nav class="nav">
+    <div class="nav-item active-nav" onclick="tab(this, 'p1')">🏠<br>Асосӣ</div>
+    <div class="nav-item" onclick="tab(this, 'p2')">🔘<br>Тугмаҳо</div>
+    <div class="nav-item" onclick="tab(this, 'p3')">🔗<br>Пайваст</div>
+    <div class="nav-item" onclick="tab(this, 'p4')">👤<br>Профил</div>
 </nav>
 
 <script>
-    const BOT_TOKEN = "8693263483:AAH1pHi68Akw2rnGMvEvc4_sMlW070PJc1Q";
-    const CHAT_ID = "6365005853";
-
     const vips = [
-        { id:1, name:'Тугмаи 1', price:120, day:3, desc:'Оғози осон барои ҳама. Фоидаи устувор.' },
-        { id:2, name:'Тугмаи 2', price:260, day:6, desc:'Нақшаи миёна барои даромади бештар.' },
-        { id:3, name:'Тугмаи 3', price:470, day:15, desc:'Нақшаи VIP бо суръати баланди даромад.' }
+        { n: 'Тугмаи 1', p: 120, d: 4 },
+        { n: 'Тугмаи 2', p: 260, d: 9 },
+        { n: 'Тугмаи 3', p: 470, d: 17 },
+        { n: 'Тугмаи 4', p: 660, d: 25 },
+        { n: 'Тугмаи 5', p: 850, d: 35 },
+        { n: 'Тугмаи 6', p: 1100, d: 50 }
     ];
 
-    let user = JSON.parse(localStorage.getItem('charity_u'));
-    let activePlan = JSON.parse(localStorage.getItem('charity_p'));
-    let balance = parseFloat(localStorage.getItem('charity_b')) || 0;
+    const leaders = [
+        { n: 'Абдулло', m: '14,500 TJS' },
+        { n: 'Ситора', m: '9,200 TJS' },
+        { n: 'Муҳаммад', m: '7,850 TJS' },
+        { n: 'Зарина', m: '5,400 TJS' },
+        { n: 'Фирӯз', m: '3,100 TJS' }
+    ];
 
     window.onload = () => {
-        if(user) startApp(); else showPage('reg');
+        renderVips();
+        renderLeaders();
+        let u = JSON.parse(localStorage.getItem('charity_u'));
+        if(u) {
+            document.getElementById('user-display').innerText = u.name;
+            document.getElementById('phone-display').innerText = u.phone;
+        }
     };
 
-    function register() {
-        const name = document.getElementById('reg-name').value;
-        const phone = document.getElementById('reg-phone').value;
-        if(name && phone) {
-            user = { name, phone };
-            localStorage.setItem('charity_u', JSON.stringify(user));
-            startApp();
-        }
-    }
-
-    function startApp() {
-        document.getElementById('page-reg').style.display='none';
-        document.getElementById('nav-bar').style.display='flex';
-        document.getElementById('p-name').innerText = user.name;
-        document.getElementById('p-phone').innerText = user.phone;
-        document.getElementById('u-icon').innerText = user.name[0].toUpperCase();
-        showPage('home');
-        renderVIPs();
-        if(activePlan) document.getElementById('active-status').innerText = "Фаъол: " + activePlan.name;
-        
-        setInterval(() => {
-            if(activePlan) {
-                balance += (activePlan.day / 86400);
-                document.getElementById('live-profit').innerText = balance.toFixed(4);
-                localStorage.setItem('charity_b', balance);
-            }
-        }, 1000);
-    }
-
-    function renderVIPs() {
-        const list = document.getElementById('vip-list');
-        list.innerHTML = '';
+    function renderVips() {
+        const cont = document.getElementById('vips-container');
         vips.forEach(v => {
-            list.innerHTML += `<div class="vip-item" onclick="showDetails(${v.id})">
-                <div><b>${v.name}</b><br><small>${v.price} TJS</small></div>
-                <button style="background:var(--gold); border:none; border-radius:5px; padding:5px 10px;">ДИДАН</button>
-            </div>`;
+            cont.innerHTML += `
+                <div class="vip-card">
+                    <span class="price-tag">${v.p} TJS</span>
+                    <h3 style="margin:0 0 10px 0">${v.n}</h3>
+                    <div style="font-size:13px; display:grid; grid-template-columns: 1fr 1fr; gap:5px;">
+                        <div>Ҳар рӯз: <b class="highlight">${v.d} TJS</b></div>
+                        <div>10 рӯз: <b class="highlight">${v.d*10} TJS</b></div>
+                        <div>1 моҳ: <b class="highlight">${v.d*30} TJS</b></div>
+                        <div>1 сол: <b class="highlight">${v.d*365} TJS</b></div>
+                    </div>
+                    <button class="btn-main" style="margin-top:15px; height:35px; padding:0;" onclick="alert('Барои харид ба Админ нависед!')">ФАЪОЛ КАРДАН</button>
+                </div>
+            `;
         });
     }
 
-    function showDetails(id) {
-        const v = vips.find(x => x.id === id);
-        document.getElementById('details-content').innerHTML = `
-            <div class="glass-card">
-                <h2 style="color:var(--gold)">${v.name}</h2>
-                <p>${v.desc}</p>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:15px 0;">
-                    <div class="glass-card" style="padding:10px; margin:0">10 рӯз:<br><b style="color:var(--green)">${v.day*10} TJS</b></div>
-                    <div class="glass-card" style="padding:10px; margin:0">1 моҳ:<br><b style="color:var(--green)">${v.day*30} TJS</b></div>
+    function renderLeaders() {
+        const cont = document.getElementById('leaderboard');
+        leaders.forEach((l, i) => {
+            cont.innerHTML += `
+                <div class="leader">
+                    <div style="display:flex; align-items:center;">
+                        <span class="rank">#${i+1}</span>
+                        <span>${l.n}</span>
+                    </div>
+                    <b style="color:var(--green)">${l.m}</b>
                 </div>
-                <button class="btn-main" onclick="activate(${v.id})">ИНТИХОБ КАРДАН</button>
-            </div>`;
-        showPage('details');
+            `;
+        });
     }
 
-    function activate(id) {
-        const v = vips.find(x => x.id === id);
-        activePlan = v;
-        localStorage.setItem('charity_p', JSON.stringify(v));
-        document.getElementById('active-status').innerText = "Фаъол: " + v.name;
-        showPage('home');
-        alert("Нақша интихоб шуд! Акнун чекро фиристед.");
+    function copyLink() {
+        const link = "https://t.me/charity_tj";
+        navigator.clipboard.writeText(link);
+        alert("Линк нусхабардорӣ шуд! Акнун ба Телеграм даромада онро гузоред (Paste).");
     }
 
-    async function sendToTelegram() {
-        const file = document.getElementById('check-file').files[0];
-        if(!file) return alert("Аввал суратро интихоб кунед!");
-        
-        const btn = document.getElementById('send-btn');
-        btn.innerText = "ФИРИСТОДА ИСТОДААСТ...";
-        btn.disabled = true;
-
-        const formData = new FormData();
-        formData.append("chat_id", CHAT_ID);
-        formData.append("photo", file);
-        formData.append("caption", `💰 ЧЕКИ НАВ\n👤 Ном: ${user.name}\n📞 Тел: ${user.phone}\n📊 Нақша: ${activePlan ? activePlan.name : 'Интихоб нашуда'}`);
-
-        try {
-            const r = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: formData });
-            if(r.ok) {
-                alert("✅ Чек бо муваффақият ба админ фиристода шуд!");
-                btn.innerText = "ФИРИСТОДА ШУД";
-            } else {
-                alert("❌ Хатогӣ дар бот. Ботро дар Телеграм як бор СТАРТ кунед: @charity_admin_boy_bot");
-                btn.disabled = false;
-                btn.innerText = "ФИРИСТОДАН БА АДМИН";
-            }
-        } catch(e) {
-            alert("🌐 Хатогии интернет!");
-            btn.disabled = false;
-        }
-    }
-
-    function showPage(p) {
-        document.querySelectorAll('.page').forEach(x => x.classList.remove('active-page'));
-        document.getElementById('page-'+p).classList.add('active-page');
-    }
-
-    function tab(el, p) {
+    function tab(el, id) {
         document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active-nav'));
         el.classList.add('active-nav');
-        showPage(p);
+        document.querySelectorAll('.page').forEach(x => x.classList.remove('active-page'));
+        document.getElementById(id).classList.add('active-page');
+        window.scrollTo(0,0);
     }
-
-    function logout() { localStorage.clear(); location.reload(); }
 </script>
 </body>
 </html>
