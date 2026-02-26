@@ -23,7 +23,6 @@
         .nav-item { color: var(--gray); text-align: center; font-size: 10px; flex: 1; cursor: pointer; }
         .active-nav { color: var(--gold); transform: scale(1.1); }
         
-        /* Modal Style */
         #modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; }
         .modal-content { background: var(--card); width: 90%; max-width: 400px; padding: 25px; border-radius: 20px; border: 2px solid var(--gold); text-align: center; }
     </style>
@@ -60,9 +59,11 @@
 </div>
 
 <div id="p3" class="page">
-    <div class="glass-card gold-border">
+    <div class="glass-card gold-border" style="text-align: center;">
         <h2>Маркази Дастгирӣ 💬</h2>
-        <a href="https://t.me/tmeAdmi_979" class="btn-main">МУСТАҚИМ БА ТЕЛЕГРАМ</a>
+        <p style="font-size: 14px; color: var(--gray); margin-bottom: 20px;">Барои дидани навигариҳо ва тамос ба гурӯҳи мо ҳамроҳ шавед:</p>
+        
+        <a href="https://t.me/charity_tj" class="btn-main">МУСТАҚИМ БА ТЕЛЕГРАМ</a>
     </div>
 </div>
 
@@ -111,12 +112,10 @@
     }
 
     function sendOrder(plan) {
-        const adminUser = "tmeAdmi_979"; // Юзернейми админ
+        const adminUser = "tmeAdmi_979"; // Юзернейми Админ барои қабули заказҳо
         const message = `Салом Админ! Ман мехоҳам ${selectedVip.name}-ро бо маблағи ${selectedVip.price} сомонӣ харидорӣ кунам. Ман нақшаи гирифтани маблағи ${plan}-ро интихоб кардам.`;
         
-        // Эҷод кардани силкаи Телеграм бо матни автоматӣ
         const telegramUrl = `https://t.me/${adminUser}?text=${encodeURIComponent(message)}`;
-        
         window.location.href = telegramUrl;
         closeModal();
     }
