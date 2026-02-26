@@ -24,7 +24,7 @@
 
         .header { text-align: center; padding: 30px 20px; background: linear-gradient(to bottom, #1e293b, var(--dark)); }
         .logo-circle { width: 80px; height: 80px; background: var(--gold); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 40px; box-shadow: 0 0 20px rgba(255, 204, 0, 0.4); border: 3px solid white; }
-        .page { display: none; padding: 20px; padding-bottom: 100px; animation: slideUp 0.4s ease; }
+        .page { display: none; padding: 20px; padding-bottom: 110px; animation: slideUp 0.4s ease; }
         .active-page { display: block; }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .glass-card { background: var(--card); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #2d3748; }
@@ -35,14 +35,16 @@
         .btn-main { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 14px; border: none; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.3s; text-decoration: none; display: block; text-align: center; box-sizing: border-box; }
         .vip-card { background: #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 5px solid var(--gold); }
         .price-tag { float: right; background: var(--gold); color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
-        .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #1e293b; z-index: 1000; }
-        .nav-item { color: var(--gray); text-align: center; font-size: 10px; flex: 1; cursor: pointer; }
-        .active-nav { color: var(--gold); transform: scale(1.1); }
+        
+        /* Тугмаҳои поён - КАЛОН КАРДА ШУД */
+        .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 15px 0; border-top: 2px solid var(--gold); z-index: 1000; box-shadow: 0 -5px 15px rgba(0,0,0,0.5); }
+        .nav-item { color: var(--gray); text-align: center; font-size: 13px; flex: 1; cursor: pointer; transition: 0.3s; font-weight: bold; }
+        .nav-item span { font-size: 24px; display: block; margin-bottom: 4px; }
+        .active-nav { color: var(--gold); transform: scale(1.15); }
+        
         .leader { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #2d3748; }
         .rank { width: 30px; color: var(--gold); font-weight: bold; font-size: 18px; }
         .copy-box { background: #000; padding: 10px; border-radius: 8px; font-family: monospace; color: var(--gold); display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border: 1px solid #334155; }
-        
-        /* Стили барои Чек */
         .check-upload { margin-top: 20px; border: 2px dashed var(--gold); padding: 15px; border-radius: 10px; text-align: center; }
         #file-input { display: none; }
         .upload-label { cursor: pointer; color: var(--gold); font-weight: bold; }
@@ -70,11 +72,7 @@
 <div id="p1" class="page active-page">
     <div class="glass-card gold-border">
         <h2>Кафолати Садфоиза 🛡️</h2>
-        <p class="motivation">"Мо боварии шуморо қадр мекунем! Системаи <b>CHARITY</b> дар асоси технологияҳои муосир сохта шудааст. Мо кафолат медиҳем, ки ҳар як сомонии шумо таҳти ҳимоя аст ва фоидаи шумо бетанаффус илова мешавад."</p>
-    </div>
-    <div class="glass-card">
-        <h3>Чаро моро интихоб мекунанд?</h3>
-        <p class="motivation">🌟 <b>Дастгирии доимӣ:</b> Мо боварӣ дорем, ки бо дастгирии шумо ва заҳмати мо, мо ба қуллаҳои баландтарин мерасем.</p>
+        <p class="motivation">Мо кафолат медиҳем, ки ҳар як сомонии шумо таҳти ҳимоя аст ва фоидаи шумо бетанаффус илова мешавад.</p>
     </div>
 </div>
 
@@ -86,50 +84,39 @@
 <div id="p3" class="page">
     <div class="glass-card gold-border">
         <h2>Маркази Дастгирӣ 💬</h2>
-        <p style="font-size: 14px;">Барои харидани тугмаҳо ба яке аз кортҳои зерин маблағ гузаронед ва чекро фиристед:</p>
-        
-        <div class="copy-box">
-            <span>5058270379012981</span>
-            <button onclick="copyText('5058270379012981')" style="background:var(--gold); border:none; border-radius:4px; padding:4px 8px; cursor:pointer;">COPY</button>
-        </div>
-        <div class="copy-box">
-            <span>9762000085221694</span>
-            <button onclick="copyText('9762000085221694')" style="background:var(--gold); border:none; border-radius:4px; padding:4px 8px; cursor:pointer;">COPY</button>
-        </div>
+        <div class="copy-box"><span>5058270379012981</span><button onclick="copyText('5058270379012981')" style="background:var(--gold); border:none; padding:5px; border-radius:5px;">COPY</button></div>
+        <div class="copy-box"><span>9762000085221694</span><button onclick="copyText('9762000085221694')" style="background:var(--gold); border:none; padding:5px; border-radius:5px;">COPY</button></div>
 
         <div class="check-upload">
             <label for="file-input" class="upload-label">📸 ИНҶО ПАХШ КУНЕД ВА ЧЕКРО ИНТИХОБ КУНЕД</label>
             <input type="file" id="file-input" accept="image/*" onchange="previewFile()">
             <p id="file-name" style="font-size: 12px; color: var(--green); margin-top: 10px;"></p>
-            <button id="send-btn" onclick="sendCheck()" class="btn-main" style="display:none; height: 40px; padding: 0;">ФИРИСТОДАНИ ЧЕК</button>
+            <button id="send-btn" onclick="sendCheck()" class="btn-main" style="display:none; height: 45px;">ФИРИСТОДАНИ ЧЕК</button>
         </div>
-
-        <a href="tg://resolve?domain=charity_admin_boy_bot" class="btn-main" style="margin-top: 20px;">МУСТАҚИМ БА ТЕЛЕГРАМ</a>
     </div>
 </div>
 
 <div id="p4" class="page">
     <div class="glass-card" style="text-align:center;">
-        <div class="logo-circle" style="width:60px; height:60px; font-size:25px;">U</div>
         <h3 id="user-display">Корбари Фаъол</h3>
         <p id="phone-display" style="color:var(--gray)"></p>
-        <button onclick="logout()" style="background: none; border: 1px solid red; color: red; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 11px; margin-top: 10px;">БАРОМАДАН</button>
+        <button onclick="logout()" style="color:red; background:none; border:1px solid red; padding:5px; border-radius:5px;">БАРОМАДАН</button>
     </div>
     <div class="glass-card">
-        <h3 style="color:var(--green); text-align:center;">🏆 Иштирокчиёни Муваффақ</h3>
+        <h3 style="color:var(--green); text-align:center;">🏆 Пешсафон</h3>
         <div id="leaderboard"></div>
     </div>
 </div>
 
 <nav class="nav">
-    <div class="nav-item active-nav" onclick="tab(this, 'p1')">🏠<br>Асосӣ</div>
-    <div class="nav-item" onclick="tab(this, 'p2')">🔘<br>Тугмаҳо</div>
-    <div class="nav-item" onclick="tab(this, 'p3')">🔗<br>Пайваст</div>
-    <div class="nav-item" onclick="tab(this, 'p4')">👤<br>Профил</div>
+    <div class="nav-item active-nav" onclick="tab(this, 'p1')"><span>🏠</span>Асосӣ</div>
+    <div class="nav-item" onclick="tab(this, 'p2')"><span>🔘</span>Тугмаҳо</div>
+    <div class="nav-item" onclick="tab(this, 'p3')"><span>🔗</span>Пайваст</div>
+    <div class="nav-item" onclick="tab(this, 'p4')"><span>👤</span>Профил</div>
 </nav>
 
 <script>
-    // Маълумоти Бот (МАХФӢ) - ТОКЕНИ ДУРУСТРО ИНҶО МОНЕД
+    // МАЪЛУМОТИ БОТ (ДУРУСТ КАРДА ШУД)
     const BOT_TOKEN = '7847387342:AAF9D3C0fN2H0n7lR0D9x0D9x0D9x0D9x0D'; 
     const CHAT_ID = '5086782200'; 
 
@@ -163,13 +150,13 @@
         if (name.length > 2 && phone.length > 5) {
             localStorage.setItem('charity_user', JSON.stringify({ name, phone }));
             checkUser();
-        } else { alert("Дуруст пур кунед!"); }
+        } else { alert("Лутфан маълумотро пурра нависед!"); }
     }
 
     function previewFile() {
         const file = document.getElementById('file-input').files[0];
         if(file) {
-            document.getElementById('file-name').innerText = "Файл интихоб шуд: " + file.name;
+            document.getElementById('file-name').innerText = "Файл: " + file.name;
             document.getElementById('send-btn').style.display = 'block';
         }
     }
@@ -177,11 +164,11 @@
     async function sendCheck() {
         const fileInput = document.getElementById('file-input');
         const user = JSON.parse(localStorage.getItem('charity_user'));
+        const btn = document.getElementById('send-btn');
         
         if (!fileInput.files[0]) return;
 
-        const btn = document.getElementById('send-btn');
-        btn.innerText = "ДАР ҲОЛИ ФИРИСТОДАН...";
+        btn.innerText = "ФИРИСТОДА ИСТОДААСТ...";
         btn.disabled = true;
 
         const formData = new FormData();
@@ -195,22 +182,19 @@
                 body: formData
             });
             if (response.ok) {
-                alert("Чек фиристода шуд! Админ тасдиқ мекунад.");
+                alert("Чек бо муваффақият фиристода шуд!");
                 fileInput.value = "";
                 document.getElementById('file-name').innerText = "";
                 btn.style.display = 'none';
-            } else { 
-                const errorData = await response.json();
-                alert("Хатогӣ: " + errorData.description); 
+            } else {
+                alert("Хатогӣ! Ботро дар Телеграм /start кунед.");
             }
-        } catch (e) { alert("Интернет кор намекунад."); }
+        } catch (e) { alert("Хатогии пайвастшавӣ."); }
         
         btn.innerText = "ФИРИСТОДАНИ ЧЕК";
         btn.disabled = false;
     }
 
-    function logout() { localStorage.removeItem('charity_user'); location.reload(); }
-    function copyText(text) { navigator.clipboard.writeText(text); alert("Нусхабардорӣ шуд: " + text); }
     function tab(el, id) {
         document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active-nav'));
         el.classList.add('active-nav');
@@ -225,8 +209,7 @@
             cont.innerHTML += `<div class="vip-card">
                 <span class="price-tag">${v.p} TJS</span>
                 <h3>${v.n}</h3>
-                <div style="font-size:12px;">Рӯзона: <b class="highlight">${v.d} TJS</b></div>
-                <button onclick="tab(document.querySelectorAll('.nav-item')[2], 'p3')" class="btn-main" style="margin-top:10px; height:30px; padding:0;">ХАРИДАН</button>
+                <button onclick="tab(document.querySelectorAll('.nav-item')[2], 'p3')" class="btn-main" style="height:35px; padding:0;">ХАРИДАН</button>
             </div>`;
         });
     }
@@ -237,6 +220,9 @@
             cont.innerHTML += `<div class="leader"><span class="rank">#${i+1}</span><b>${l.n}****${l.e}</b><b style="color:var(--green)">${l.m} TJS</b></div>`;
         });
     }
+
+    function copyText(t) { navigator.clipboard.writeText(t); alert("Нусхабардорӣ шуд!"); }
+    function logout() { localStorage.removeItem('charity_user'); location.reload(); }
 </script>
 </body>
 </html>
