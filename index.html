@@ -15,29 +15,42 @@
         .glass-card { background: var(--card); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #2d3748; }
         .gold-border { border: 1px solid var(--gold); position: relative; overflow: hidden; }
         h2 { color: var(--gold); margin-top: 0; }
-        .motivation { font-style: italic; color: #cbd5e1; line-height: 1.6; }
         .highlight { color: var(--green); font-weight: bold; }
-        .btn-main { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 14px; border: none; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.3s; text-decoration: none; display: block; text-align: center; box-sizing: border-box; }
+        .btn-main { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 14px; border: none; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.3s; text-decoration: none; display: block; text-align: center; box-sizing: border-box; margin-bottom: 10px; }
         .vip-card { background: #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 5px solid var(--gold); }
         .price-tag { float: right; background: var(--gold); color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
         .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #1e293b; z-index: 1000; }
         .nav-item { color: var(--gray); text-align: center; font-size: 10px; flex: 1; cursor: pointer; }
         .active-nav { color: var(--gold); transform: scale(1.1); }
-        .copy-box { background: #000; padding: 10px; border-radius: 8px; font-family: monospace; color: var(--gold); display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border: 1px solid #334155; }
+        
+        /* Modal Style */
+        #modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-content { background: var(--card); width: 90%; max-width: 400px; padding: 25px; border-radius: 20px; border: 2px solid var(--gold); text-align: center; }
     </style>
 </head>
 <body>
 
 <div class="header">
     <div class="logo-circle">🤝</div>
-    <h1 style="margin:0; letter-spacing: 2px;">CHARITY GOLD</h1>
+    <h1>CHARITY GOLD</h1>
     <p style="color: var(--gold); font-size: 12px;">БО МО - БА СУЙИ ОЯНДАИ ДУРАХШОН</p>
+</div>
+
+<div id="modal-overlay">
+    <div class="modal-content">
+        <h3 id="modal-title" style="color:var(--gold);">Интихоби нақша</h3>
+        <p style="font-size: 14px; color: var(--gray);">Шумо мехоҳед фоидаро чӣ гуна гиред?</p>
+        <button class="btn-main" onclick="sendOrder('ҳаррӯза')">Маблағи ҳаррӯза</button>
+        <button class="btn-main" onclick="sendOrder('10-рӯза')">Маблағи 10-рӯза</button>
+        <button class="btn-main" onclick="sendOrder('якмоҳа')">Маблағи якмоҳа</button>
+        <button style="background:none; border:none; color:white; cursor:pointer;" onclick="closeModal()">Баргаштан</button>
+    </div>
 </div>
 
 <div id="p1" class="page active-page">
     <div class="glass-card gold-border">
         <h2>Кафолати Садфоиза 🛡️</h2>
-        <p class="motivation">"Системаи <b>CHARITY</b> кафолат медиҳад, ки маблағҳои шумо таҳти ҳимоя аст ва фоидаи шумо бетанаффус илова мешавад."</p>
+        <p>Системаи CHARITY кафолат медиҳад, ки маблағҳои шумо ҳифз шудаанд.</p>
     </div>
 </div>
 
@@ -49,21 +62,7 @@
 <div id="p3" class="page">
     <div class="glass-card gold-border">
         <h2>Маркази Дастгирӣ 💬</h2>
-        <p style="font-size: 14px;">Барои тамос бо Админ тугмаи зерро пахш кунед ё юзернеймро нусха кунед:</p>
-        
-        <div class="copy-box">
-            <span>@tmeAdmi_979</span>
-            <button onclick="copyText('@tmeAdmi_979')" style="background:var(--gold); border:none; border-radius:4px; padding:4px 8px; cursor:pointer; font-weight:bold;">COPY</button>
-        </div>
-
         <a href="https://t.me/tmeAdmi_979" class="btn-main">МУСТАҚИМ БА ТЕЛЕГРАМ</a>
-    </div>
-</div>
-
-<div id="p4" class="page">
-    <div class="glass-card" style="text-align:center;">
-        <div class="logo-circle" style="width:60px; height:60px; font-size:25px;">U</div>
-        <h3>Корбари Фаъол</h3>
     </div>
 </div>
 
@@ -71,7 +70,6 @@
     <div class="nav-item active-nav" onclick="tab(this, 'p1')">🏠<br>Асосӣ</div>
     <div class="nav-item" onclick="tab(this, 'p2')">🔘<br>Тугмаҳо</div>
     <div class="nav-item" onclick="tab(this, 'p3')">🔗<br>Пайваст</div>
-    <div class="nav-item" onclick="tab(this, 'p4')">👤<br>Профил</div>
 </nav>
 
 <script>
@@ -84,6 +82,8 @@
         { n: 'Тугмаи 6', p: 1100, d: 50 }
     ];
 
+    let selectedVip = null;
+
     window.onload = () => { renderVips(); };
 
     function renderVips() {
@@ -93,18 +93,32 @@
                 <div class="vip-card">
                     <span class="price-tag">${v.p} TJS</span>
                     <h3 style="margin:0 0 10px 0">${v.n}</h3>
-                    <div style="font-size:13px;">
-                        Фоидаи рӯзона: <b class="highlight">${v.d} TJS</b>
-                    </div>
-                    <a href="https://t.me/tmeAdmi_979" class="btn-main" style="margin-top:15px; height:35px; padding:7px 0; font-size:14px;">ФАЪОЛ КАРДАН</a>
+                    <div style="font-size:13px;">Фоидаи рӯзона: <b class="highlight">${v.d} TJS</b></div>
+                    <button class="btn-main" style="margin-top:15px;" onclick="openModal('${v.n}', '${v.p}')">ФАЪОЛ КАРДАН</button>
                 </div>
             `;
         });
     }
 
-    function copyText(text) {
-        navigator.clipboard.writeText(text);
-        alert("Юзернейми Админ нусхабардорӣ шуд: " + text);
+    function openModal(name, price) {
+        selectedVip = { name, price };
+        document.getElementById('modal-title').innerText = name + " (" + price + " TJS)";
+        document.getElementById('modal-overlay').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('modal-overlay').style.display = 'none';
+    }
+
+    function sendOrder(plan) {
+        const adminUser = "tmeAdmi_979"; // Юзернейми админ
+        const message = `Салом Админ! Ман мехоҳам ${selectedVip.name}-ро бо маблағи ${selectedVip.price} сомонӣ харидорӣ кунам. Ман нақшаи гирифтани маблағи ${plan}-ро интихоб кардам.`;
+        
+        // Эҷод кардани силкаи Телеграм бо матни автоматӣ
+        const telegramUrl = `https://t.me/${adminUser}?text=${encodeURIComponent(message)}`;
+        
+        window.location.href = telegramUrl;
+        closeModal();
     }
 
     function tab(el, id) {
