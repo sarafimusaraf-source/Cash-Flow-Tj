@@ -5,23 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHARITY GOLD</title>
     <style>
-        :root { --gold: #ffcc00; --dark: #0b0f1a; --card: #161e2e; --green: #00ff88; --gray: #94a3b8; }
+        :root { --gold: #ffcc00; --dark: #0b0f1a; --card: #161e2e; --green: #00ff88; --gray: #94a3b8; --gold-grad: linear-gradient(45deg, #ffcc00, #f2994a); }
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--dark); color: white; overflow-x: hidden; }
         .header { text-align: center; padding: 30px 20px; background: linear-gradient(to bottom, #1e293b, var(--dark)); }
         .logo-circle { width: 80px; height: 80px; background: var(--gold); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 40px; box-shadow: 0 0 20px rgba(255, 204, 0, 0.4); border: 3px solid white; }
+        
         .page { display: none; padding: 20px; padding-bottom: 100px; animation: slideUp 0.4s ease; }
         .active-page { display: block; }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .glass-card { background: var(--card); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #2d3748; }
-        .gold-border { border: 1px solid var(--gold); position: relative; overflow: hidden; }
-        h2 { color: var(--gold); margin-top: 0; }
-        .highlight { color: var(--green); font-weight: bold; }
-        .btn-main { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 14px; border: none; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.3s; text-decoration: none; display: block; text-align: center; box-sizing: border-box; margin-bottom: 10px; }
+        
+        /* Стили нав барои саҳифаи Асосӣ */
+        .promo-card { background: var(--card); border-radius: 20px; padding: 25px; margin-bottom: 20px; border: 1px solid #2d3748; position: relative; overflow: hidden; }
+        .promo-card h2 { color: var(--gold); font-size: 22px; margin-bottom: 10px; }
+        .promo-card p { font-size: 15px; line-height: 1.6; color: #cbd5e1; }
+        .badge { background: var(--gold-grad); color: black; padding: 5px 12px; border-radius: 50px; font-size: 12px; font-weight: bold; margin-bottom: 10px; display: inline-block; }
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
+        .feature-item { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; text-align: center; border: 1px solid #2d3748; }
+        .feature-icon { font-size: 24px; margin-bottom: 5px; display: block; }
+        
+        .btn-main { background: var(--gold-grad); color: black; padding: 14px; border: none; border-radius: 12px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.3s; text-decoration: none; display: block; text-align: center; box-sizing: border-box; margin-bottom: 10px; box-shadow: 0 4px 15px rgba(255, 204, 0, 0.2); }
         .vip-card { background: #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 5px solid var(--gold); }
         .price-tag { float: right; background: var(--gold); color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
-        .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #1e293b; z-index: 1000; }
-        .nav-item { color: var(--gray); text-align: center; font-size: 10px; flex: 1; cursor: pointer; }
-        .active-nav { color: var(--gold); transform: scale(1.1); }
+        
+        .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #1e293b; z-index: 1000; }
+        .nav-item { color: var(--gray); text-align: center; font-size: 10px; flex: 1; cursor: pointer; transition: 0.3s; }
+        .active-nav { color: var(--gold); font-weight: bold; }
         
         #modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; }
         .modal-content { background: var(--card); width: 90%; max-width: 400px; padding: 25px; border-radius: 20px; border: 2px solid var(--gold); text-align: center; }
@@ -31,8 +39,8 @@
 
 <div class="header">
     <div class="logo-circle">🤝</div>
-    <h1>CHARITY GOLD</h1>
-    <p style="color: var(--gold); font-size: 12px;">БО МО - БА СУЙИ ОЯНДАИ ДУРАХШОН</p>
+    <h1 style="margin:0; letter-spacing: 1px;">CHARITY GOLD</h1>
+    <p style="color: var(--gold); font-size: 12px; font-weight: bold; text-transform: uppercase;">Ояндаи дурахшон аз ин ҷо оғоз мешавад</p>
 </div>
 
 <div id="modal-overlay">
@@ -42,27 +50,50 @@
         <button class="btn-main" onclick="sendOrder('ҳаррӯза')">Маблағи ҳаррӯза</button>
         <button class="btn-main" onclick="sendOrder('10-рӯза')">Маблағи 10-рӯза</button>
         <button class="btn-main" onclick="sendOrder('якмоҳа')">Маблағи якмоҳа</button>
-        <button style="background:none; border:none; color:white; cursor:pointer;" onclick="closeModal()">Баргаштан</button>
+        <button style="background:none; border:none; color:white; cursor:pointer; margin-top:10px;" onclick="closeModal()">Баргаштан</button>
     </div>
 </div>
 
 <div id="p1" class="page active-page">
-    <div class="glass-card gold-border">
-        <h2>Кафолати Садфоиза 🛡️</h2>
-        <p>Системаи CHARITY кафолат медиҳад, ки маблағҳои шумо ҳифз шудаанд.</p>
+    <div class="promo-card" style="border: 2px solid var(--gold);">
+        <span class="badge">КАФОЛАТИ 100%</span>
+        <h2>Сармоягузории Эътимоднок 🛡️</h2>
+        <p>Ширкати <b>CHARITY GOLD</b> барои ҳар як мизоҷ имконияти беназири даромади ғайрифаъолро фароҳам меорад. Маблағҳои шумо таҳти ҳимояи пурра қарор доранд.</p>
+    </div>
+
+    <div class="feature-grid">
+        <div class="feature-item">
+            <span class="feature-icon">🎁</span>
+            <b style="color:var(--gold)">Бонусҳо</b>
+            <p style="font-size:11px; margin:5px 0 0; color:var(--gray)">Барои фаъолнокӣ</p>
+        </div>
+        <div class="feature-item">
+            <span class="feature-icon">👥</span>
+            <b style="color:var(--gold)">Даъват</b>
+            <p style="font-size:11px; margin:5px 0 0; color:var(--gray)">+15% барои дӯст</p>
+        </div>
+    </div>
+
+    <div class="promo-card" style="margin-top:20px; background: linear-gradient(135deg, #161e2e 0%, #1e293b 100%);">
+        <h2 style="color: var(--green);">Чаро Моро Интихоб Мекунанд? ✨</h2>
+        <ul style="padding-left: 20px; color: #cbd5e1; font-size: 14px;">
+            <li style="margin-bottom:8px;">Пардохтҳои автоматӣ ва зуд.</li>
+            <li style="margin-bottom:8px;">Дастгирии техникӣ 24/7.</li>
+            <li style="margin-bottom:8px;">Системаи шаффофи корӣ.</li>
+        </ul>
+        <button class="btn-main" onclick="tab(document.querySelectorAll('.nav-item')[1], 'p2')" style="margin-top:10px;">ОҒОЗ КАРДАНИ КОР</button>
     </div>
 </div>
 
 <div id="p2" class="page">
-    <h2>Тугмаҳои Даромад 💰</h2>
+    <h2 style="text-align:center;">Тугмаҳои Даромад 💰</h2>
     <div id="vips-container"></div>
 </div>
 
 <div id="p3" class="page">
-    <div class="glass-card gold-border" style="text-align: center;">
+    <div class="promo-card" style="text-align: center; border-color: var(--gold);">
         <h2>Маркази Дастгирӣ 💬</h2>
         <p style="font-size: 14px; color: var(--gray); margin-bottom: 20px;">Барои дидани навигариҳо ва тамос ба гурӯҳи мо ҳамроҳ шавед:</p>
-        
         <a href="https://t.me/charity_tj" class="btn-main">МУСТАҚИМ БА ТЕЛЕГРАМ</a>
     </div>
 </div>
@@ -95,7 +126,7 @@
                     <span class="price-tag">${v.p} TJS</span>
                     <h3 style="margin:0 0 10px 0">${v.n}</h3>
                     <div style="font-size:13px;">Фоидаи рӯзона: <b class="highlight">${v.d} TJS</b></div>
-                    <button class="btn-main" style="margin-top:15px;" onclick="openModal('${v.n}', '${v.p}')">ФАЪОЛ КАРДАН</button>
+                    <button class="btn-main" style="margin-top:15px; padding: 10px;" onclick="openModal('${v.n}', '${v.p}')">ФАЪОЛ КАРДАН</button>
                 </div>
             `;
         });
@@ -112,9 +143,8 @@
     }
 
     function sendOrder(plan) {
-        const adminUser = "tmeAdmi_979"; // Юзернейми Админ барои қабули заказҳо
+        const adminUser = "tmeAdmi_979"; 
         const message = `Салом Админ! Ман мехоҳам ${selectedVip.name}-ро бо маблағи ${selectedVip.price} сомонӣ харидорӣ кунам. Ман нақшаи гирифтани маблағи ${plan}-ро интихоб кардам.`;
-        
         const telegramUrl = `https://t.me/${adminUser}?text=${encodeURIComponent(message)}`;
         window.location.href = telegramUrl;
         closeModal();
