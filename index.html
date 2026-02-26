@@ -23,8 +23,6 @@
         .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #1e293b; z-index: 1000; }
         .nav-item { color: var(--gray); text-align: center; font-size: 10px; flex: 1; cursor: pointer; }
         .active-nav { color: var(--gold); transform: scale(1.1); }
-        .leader { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #2d3748; }
-        .rank { width: 30px; color: var(--gold); font-weight: bold; font-size: 18px; }
         .copy-box { background: #000; padding: 10px; border-radius: 8px; font-family: monospace; color: var(--gold); display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border: 1px solid #334155; }
     </style>
 </head>
@@ -39,12 +37,7 @@
 <div id="p1" class="page active-page">
     <div class="glass-card gold-border">
         <h2>Кафолати Садфоиза 🛡️</h2>
-        <p class="motivation">"Мо боварии шуморо қадр мекунем! Системаи <b>CHARITY</b> дар асоси технологияҳои муосир сохта шудааст. Мо кафолат медиҳем, ки ҳар як сомонии шумо таҳти ҳимоя аст ва фоидаи шумо бетанаффус илова мешавад."</p>
-    </div>
-    
-    <div class="glass-card">
-        <h3>Чаро моро интихоб мекунанд?</h3>
-        <p class="motivation">🌟 <b>Дастгирии доимӣ:</b> Мо боварӣ дорем, ки бо дастгирии шумо ва заҳмати мо, мо ба қуллаҳои баландтарин мерасем. Якҷоя мо қувва ҳастем!</p>
+        <p class="motivation">"Системаи <b>CHARITY</b> кафолат медиҳад, ки маблағҳои шумо таҳти ҳимоя аст ва фоидаи шумо бетанаффус илова мешавад."</p>
     </div>
 </div>
 
@@ -56,32 +49,21 @@
 <div id="p3" class="page">
     <div class="glass-card gold-border">
         <h2>Маркази Дастгирӣ 💬</h2>
-        <p style="font-size: 14px;">Барои харидани тугмаҳо Username-ро нусха карда дар ҷустуҷӯи Телеграм гузоред:</p>
+        <p style="font-size: 14px;">Барои тамос бо Админ тугмаи зерро пахш кунед ё юзернеймро нусха кунед:</p>
         
         <div class="copy-box">
-            <span>@tmeAdmi_970</span>
-            <button onclick="copyText('@tmeAdmi_970')" style="background:var(--gold); border:none; border-radius:4px; padding:4px 8px; cursor:pointer; font-weight:bold;">COPY</button>
+            <span>@tmeAdmi_97</span>
+            <button onclick="copyText('@tmeAdmi_97')" style="background:var(--gold); border:none; border-radius:4px; padding:4px 8px; cursor:pointer; font-weight:bold;">COPY</button>
         </div>
 
-        <a href="https://t.me/tmeAdmi_970" class="btn-main">МУСТАҚИМ БА ТЕЛЕГРАМ</a>
-        
-        <div style="margin-top:20px; border-top:1px solid #2d3748; padding-top:15px;">
-            <p>⏰ <b>Вақти кории Админ:</b></p>
-            <p>☀️ Рӯзона: <b>11:00 - 21:00</b></p>
-            <p style="font-size:13px; color:var(--gray)">* Барои харид ва гирифтани фоида ба админ муроҷиат кунед.</p>
-        </div>
+        <a href="https://t.me/tmeAdmi_97" class="btn-main">МУСТАҚИМ БА ТЕЛЕГРАМ</a>
     </div>
 </div>
 
 <div id="p4" class="page">
     <div class="glass-card" style="text-align:center;">
         <div class="logo-circle" style="width:60px; height:60px; font-size:25px;">U</div>
-        <h3 id="user-display">Корбари Фаъол</h3>
-    </div>
-
-    <div class="glass-card">
-        <h3 style="color:var(--green); text-align:center;">🏆 Иштирокчиёни Муваффақ</h3>
-        <div id="leaderboard"></div>
+        <h3>Корбари Фаъол</h3>
     </div>
 </div>
 
@@ -102,16 +84,7 @@
         { n: 'Тугмаи 6', p: 1100, d: 50 }
     ];
 
-    const leaders = [
-        { n: 'Абдул', m: '14,500', e: 'JS' }, { n: 'Ситор', m: '9,200', e: 'RT' },
-        { n: 'Муҳам', m: '7,850', e: 'AD' }, { n: 'Зарин', m: '5,400', e: 'NA' },
-        { n: 'Руста', m: '15,600', e: 'AM' }
-    ];
-
-    window.onload = () => {
-        renderVips();
-        renderLeaders();
-    };
+    window.onload = () => { renderVips(); };
 
     function renderVips() {
         const cont = document.getElementById('vips-container');
@@ -120,26 +93,10 @@
                 <div class="vip-card">
                     <span class="price-tag">${v.p} TJS</span>
                     <h3 style="margin:0 0 10px 0">${v.n}</h3>
-                    <div style="font-size:13px; display:grid; grid-template-columns: 1fr 1fr; gap:5px;">
-                        <div>Ҳар рӯз: <b class="highlight">${v.d} TJS</b></div>
-                        <div>10 рӯз: <b class="highlight">${v.d*10} TJS</b></div>
+                    <div style="font-size:13px;">
+                        Фоидаи рӯзона: <b class="highlight">${v.d} TJS</b>
                     </div>
-                    <a href="https://t.me/tmeAdmi_970" class="btn-main" style="margin-top:15px; height:35px; padding:7px 0; font-size:14px;">ФАЪОЛ КАРДАН</a>
-                </div>
-            `;
-        });
-    }
-
-    function renderLeaders() {
-        const cont = document.getElementById('leaderboard');
-        leaders.forEach((l, i) => {
-            cont.innerHTML += `
-                <div class="leader">
-                    <div style="display:flex; align-items:center;">
-                        <span class="rank">#${i+1}</span>
-                        <div><span style="font-weight:bold;">${l.n}****${l.e}</span></div>
-                    </div>
-                    <b style="color:var(--green)">${l.m} TJS</b>
+                    <a href="https://t.me/tmeAdmi_979" class="btn-main" style="margin-top:15px; height:35px; padding:7px 0; font-size:14px;">ФАЪОЛ КАРДАН</a>
                 </div>
             `;
         });
@@ -147,7 +104,7 @@
 
     function copyText(text) {
         navigator.clipboard.writeText(text);
-        alert("Username нусхабардорӣ шуд: " + text);
+        alert("Юзернейми Админ нусхабардорӣ шуд: " + text);
     }
 
     function tab(el, id) {
@@ -155,7 +112,6 @@
         el.classList.add('active-nav');
         document.querySelectorAll('.page').forEach(x => x.classList.remove('active-page'));
         document.getElementById(id).classList.add('active-page');
-        window.scrollTo(0,0);
     }
 </script>
 </body>
