@@ -50,7 +50,7 @@
 <div id="p1" class="page active-page">
     <div class="glass-card gold-border">
         <h2>Кафолати Садфоиза 🛡️</h2>
-        <p>Маблағҳои шумо таҳти ҳимояи мо мебошанд.</p>
+        <p>Мо кафолат медиҳем, ки фоидаи шумо бетанаффус илова мешавад.</p>
     </div>
 </div>
 
@@ -62,16 +62,16 @@
 <div id="p3" class="page">
     <div class="glass-card gold-border">
         <h2 id="order-title">Пардохти Харид 💳</h2>
-        <p id="order-details" style="color: var(--gold); font-weight: bold;">Лутфан тугмаро интихоб кунед.</p>
+        <p id="order-details" style="color: var(--gold); font-weight: bold;">Лутфан аввал тугмаро интихоб кунед.</p>
         <div class="copy-box"><span>5058270379012981</span><button onclick="copyText('5058270379012981')" style="background:var(--gold); border:none; padding:5px; border-radius:5px; cursor:pointer;">COPY</button></div>
         
         <div class="check-upload">
-            <label for="file-input" class="upload-label">📸 ЧЕКРО ИНТИХОБ КУНЕД</label>
+            <label for="file-input" class="upload-label">📸 ИНҶО ПАХШ КУНЕД ВА ЧЕКРО ИНТИХОБ КУНЕД</label>
             <input type="file" id="file-input" accept="image/*" onchange="previewFile()">
             <p id="file-name" style="font-size: 12px; color: var(--green); margin-top: 10px; font-weight:bold;"></p>
             <button id="send-btn" onclick="sendCheck()" class="btn-main" style="display:none; height: 50px; margin-top: 10px;">ФИРИСТОДАНИ ЧЕК</button>
         </div>
-        <a href="https://t.me/Admi_9797" class="btn-main" style="margin-top: 20px; background: #229ED9; color: white;">ЧАТ БО АДМИН</a>
+        <a href="https://t.me/tmeAdmi_979" class="btn-main" style="margin-top: 20px; background: #229ED9; color: white;">ЧАТ БО АДМИН</a>
     </div>
 </div>
 
@@ -91,10 +91,12 @@
 </nav>
 
 <script>
+    // Маълумоти бот ва ID-и шумо
     const BOT_TOKEN = '8705890977:AAG0hNT0E-YxauAq1bHURwedvFd0jS0sQnY'; 
-    const CHAT_ID = '5086782200'; // ID-и профили шумо
+    const CHAT_ID = '5086782200'; 
 
     let selectedVip = { name: "Умумӣ", price: 0 };
+
     const vips = [
         { n: 'Тугмаи 1', p: 120 }, { n: 'Тугмаи 2', p: 260 },
         { n: 'Тугмаи 3', p: 470 }, { n: 'Тугмаи 4', p: 660 },
@@ -120,19 +122,19 @@
         if (name && phone) {
             localStorage.setItem('charity_user', JSON.stringify({ name, phone }));
             checkUser();
-        } else { alert("Пур кунед!"); }
+        } else { alert("Лутфан ном ва рақамро пур кунед!"); }
     }
 
     function buyVip(name, price) {
         selectedVip = { name, price };
-        document.getElementById('order-details').innerText = `Интихоб: ${name} (${price} TJS)`;
+        document.getElementById('order-details').innerText = `Шумо ${name}-ро интихоб кардед. Нарх: ${price} TJS`;
         tab(document.querySelectorAll('.nav-item')[2], 'p3');
     }
 
     function previewFile() {
         const file = document.getElementById('file-input').files[0];
         if(file) {
-            document.getElementById('file-name').innerText = "✅ Файл: " + file.name;
+            document.getElementById('file-name').innerText = "✅ Файл интихоб шуд: " + file.name;
             document.getElementById('send-btn').style.display = 'block';
         }
     }
@@ -141,14 +143,17 @@
         const fileInput = document.getElementById('file-input');
         const user = JSON.parse(localStorage.getItem('charity_user'));
         const btn = document.getElementById('send-btn');
+        
         if (!fileInput.files[0]) return;
+
         btn.innerText = "ФИРИСТОДА ИСТОДААСТ...";
         btn.disabled = true;
 
+        // Паёме, ки ба личкаи шумо меояд
         const captionText = `🔔 ЧЕКИ НАВ ОМАД!\n\n` +
                           `👤 Ном: ${user.name}\n` +
                           `📞 Тел: ${user.phone}\n` +
-                          `🛍️ Харид: Ман ${selectedVip.name}-ро ба маблағи ${selectedVip.price} сомон харидорӣ кардам.`;
+                          `🛍️ Паём: Ман ${selectedVip.name}-ро ба маблағи ${selectedVip.price} сомон харидорӣ кардам.`;
 
         const formData = new FormData();
         formData.append('chat_id', CHAT_ID); 
@@ -156,14 +161,20 @@
         formData.append('caption', captionText);
 
         try {
-            const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: formData });
+            const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+                method: 'POST',
+                body: formData
+            });
             if (response.ok) {
-                alert("✅ Табрик! Чек ба Админ фиристода шуд.");
+                alert("✅ Табрик! Чек ва маълумоти харид ба Админ фиристода шуд.");
                 fileInput.value = "";
                 document.getElementById('file-name').innerText = "";
                 btn.style.display = 'none';
-            } else { alert("Хатогӣ! Ботро дар Telegram /start кунед."); }
+            } else {
+                alert("Хатогӣ! Боварӣ ҳосил кунед, ки ботро дар Telegram /start кардаед.");
+            }
         } catch (e) { alert("Хатои интернет."); }
+        
         btn.innerText = "ФИРИСТОДАНИ ЧЕК";
         btn.disabled = false;
     }
@@ -173,6 +184,7 @@
         el.classList.add('active-nav');
         document.querySelectorAll('.page').forEach(x => x.classList.remove('active-page'));
         document.getElementById(id).classList.add('active-page');
+        window.scrollTo(0,0);
     }
 
     function renderVips() {
@@ -185,6 +197,7 @@
             </div>`;
         });
     }
+
     function copyText(t) { navigator.clipboard.writeText(t); alert("Нусхабардорӣ шуд!"); }
     function logout() { localStorage.clear(); location.reload(); }
 </script>
