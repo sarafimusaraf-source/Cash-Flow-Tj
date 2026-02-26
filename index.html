@@ -14,39 +14,51 @@
         .active-page { display: block; }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
-        /* Стили нав барои саҳифаи Асосӣ */
         .promo-card { background: var(--card); border-radius: 20px; padding: 25px; margin-bottom: 20px; border: 1px solid #2d3748; position: relative; overflow: hidden; }
         .promo-card h2 { color: var(--gold); font-size: 22px; margin-bottom: 10px; }
-        .promo-card p { font-size: 15px; line-height: 1.6; color: #cbd5e1; }
-        .badge { background: var(--gold-grad); color: black; padding: 5px 12px; border-radius: 50px; font-size: 12px; font-weight: bold; margin-bottom: 10px; display: inline-block; }
-        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
-        .feature-item { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; text-align: center; border: 1px solid #2d3748; }
-        .feature-icon { font-size: 24px; margin-bottom: 5px; display: block; }
         
         .btn-main { background: var(--gold-grad); color: black; padding: 14px; border: none; border-radius: 12px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.3s; text-decoration: none; display: block; text-align: center; box-sizing: border-box; margin-bottom: 10px; box-shadow: 0 4px 15px rgba(255, 204, 0, 0.2); }
-        .vip-card { background: #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 5px solid var(--gold); }
-        .price-tag { float: right; background: var(--gold); color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
         
         .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #1e293b; z-index: 1000; }
-        .nav-item { color: var(--gray); text-align: center; font-size: 10px; flex: 1; cursor: pointer; transition: 0.3s; }
+        .nav-item { color: var(--gray); text-align: center; font-size: 10px; flex: 1; cursor: pointer; }
         .active-nav { color: var(--gold); font-weight: bold; }
+
+        /* Стили барои формаи бақайдгирӣ */
+        #reg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark); z-index: 3000; display: none; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
+        .reg-box { background: var(--card); padding: 30px; border-radius: 20px; border: 2px solid var(--gold); width: 100%; max-width: 350px; text-align: center; }
+        .reg-box input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #2d3748; background: #0b0f1a; color: white; box-sizing: border-box; }
         
         #modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; }
         .modal-content { background: var(--card); width: 90%; max-width: 400px; padding: 25px; border-radius: 20px; border: 2px solid var(--gold); text-align: center; }
+        
+        .user-info-banner { background: rgba(0, 255, 136, 0.1); border: 1px solid var(--green); padding: 10px; border-radius: 10px; margin-bottom: 15px; font-size: 13px; color: var(--green); }
+        .vip-card { background: #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 5px solid var(--gold); }
+        .price-tag { float: right; background: var(--gold); color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
+        .highlight { color: var(--green); font-weight: bold; }
     </style>
 </head>
-<body>
+<body onload="checkUser()">
+
+<div id="reg-overlay">
+    <div class="reg-box">
+        <div class="logo-circle">👤</div>
+        <h2 style="color:var(--gold)">Қайдгирӣ</h2>
+        <p style="font-size:13px; color:var(--gray)">Барои оғози кор маълумоти худро ворид кунед</p>
+        <input type="text" id="reg-name" placeholder="Номи Шумо">
+        <input type="number" id="reg-phone" placeholder="Рақами телефон (9-рақам)">
+        <button class="btn-main" onclick="saveUser()">ДАРОМАД</button>
+    </div>
+</div>
 
 <div class="header">
     <div class="logo-circle">🤝</div>
-    <h1 style="margin:0; letter-spacing: 1px;">CHARITY GOLD</h1>
-    <p style="color: var(--gold); font-size: 12px; font-weight: bold; text-transform: uppercase;">Ояндаи дурахшон аз ин ҷо оғоз мешавад</p>
+    <h1>CHARITY GOLD</h1>
+    <p style="color: var(--gold); font-size: 12px; font-weight: bold;">ОЯНДАИ ДУРАХШОН АЗ ИН ҶО ОҒОЗ МЕШАВАД</p>
 </div>
 
 <div id="modal-overlay">
     <div class="modal-content">
         <h3 id="modal-title" style="color:var(--gold);">Интихоби нақша</h3>
-        <p style="font-size: 14px; color: var(--gray);">Шумо мехоҳед фоидаро чӣ гуна гиред?</p>
         <button class="btn-main" onclick="sendOrder('ҳаррӯза')">Маблағи ҳаррӯза</button>
         <button class="btn-main" onclick="sendOrder('10-рӯза')">Маблағи 10-рӯза</button>
         <button class="btn-main" onclick="sendOrder('якмоҳа')">Маблағи якмоҳа</button>
@@ -56,33 +68,11 @@
 
 <div id="p1" class="page active-page">
     <div class="promo-card" style="border: 2px solid var(--gold);">
-        <span class="badge">КАФОЛАТИ 100%</span>
+        <span style="background:var(--gold-grad); color:black; padding:5px 10px; border-radius:50px; font-size:10px; font-weight:bold;">КАФОЛАТИ 100%</span>
         <h2>Сармоягузории Эътимоднок 🛡️</h2>
-        <p>Ширкати <b>CHARITY GOLD</b> барои ҳар як мизоҷ имконияти беназири даромади ғайрифаъолро фароҳам меорад. Маблағҳои шумо таҳти ҳимояи пурра қарор доранд.</p>
+        <p>Ширкати <b>CHARITY GOLD</b> имконияти беназири даромади ғайрифаъолро фароҳам меорад.</p>
     </div>
-
-    <div class="feature-grid">
-        <div class="feature-item">
-            <span class="feature-icon">🎁</span>
-            <b style="color:var(--gold)">Бонусҳо</b>
-            <p style="font-size:11px; margin:5px 0 0; color:var(--gray)">Барои фаъолнокӣ</p>
-        </div>
-        <div class="feature-item">
-            <span class="feature-icon">👥</span>
-            <b style="color:var(--gold)">Даъват</b>
-            <p style="font-size:11px; margin:5px 0 0; color:var(--gray)">+15% барои дӯст</p>
-        </div>
-    </div>
-
-    <div class="promo-card" style="margin-top:20px; background: linear-gradient(135deg, #161e2e 0%, #1e293b 100%);">
-        <h2 style="color: var(--green);">Чаро Моро Интихоб Мекунанд? ✨</h2>
-        <ul style="padding-left: 20px; color: #cbd5e1; font-size: 14px;">
-            <li style="margin-bottom:8px;">Пардохтҳои автоматӣ ва зуд.</li>
-            <li style="margin-bottom:8px;">Дастгирии техникӣ 24/7.</li>
-            <li style="margin-bottom:8px;">Системаи шаффофи корӣ.</li>
-        </ul>
-        <button class="btn-main" onclick="tab(document.querySelectorAll('.nav-item')[1], 'p2')" style="margin-top:10px;">ОҒОЗ КАРДАНИ КОР</button>
-    </div>
+    <button class="btn-main" onclick="tab(document.querySelectorAll('.nav-item')[1], 'p2')">ОҒОЗ КАРДАНИ КОР</button>
 </div>
 
 <div id="p2" class="page">
@@ -92,8 +82,12 @@
 
 <div id="p3" class="page">
     <div class="promo-card" style="text-align: center; border-color: var(--gold);">
+        <div id="user-display" class="user-info-banner"></div>
+        
         <h2>Маркази Дастгирӣ 💬</h2>
-        <p style="font-size: 14px; color: var(--gray); margin-bottom: 20px;">Барои дидани навигариҳо ва тамос ба гурӯҳи мо ҳамроҳ шавед:</p>
+        <p style="font-size: 15px; color: white; font-weight: bold;">Барои фаҳмидан ва боз бовариатон Бақуват шудан ба Телеграм гурӯҳи мо гузаред:</p>
+        <p style="font-size: 13px; color: var(--gray); margin-bottom: 20px;">Дар онҷо шумо метавонед натиҷаҳои дигар корбаронро бинед.</p>
+        
         <a href="https://t.me/charity_tj" class="btn-main">МУСТАҚИМ БА ТЕЛЕГРАМ</a>
     </div>
 </div>
@@ -114,40 +108,64 @@
         { n: 'Тугмаи 6', p: 1100, d: 50 }
     ];
 
-    let selectedVip = null;
+    function checkUser() {
+        const name = localStorage.getItem('charity_name');
+        if (!name) {
+            document.getElementById('reg-overlay').style.display = 'flex';
+        } else {
+            updateUserUI();
+            renderVips();
+        }
+    }
 
-    window.onload = () => { renderVips(); };
+    function saveUser() {
+        const name = document.getElementById('reg-name').value;
+        const phone = document.getElementById('reg-phone').value;
+        if (name.length > 2 && phone.length >= 9) {
+            localStorage.setItem('charity_name', name);
+            localStorage.setItem('charity_phone', phone);
+            document.getElementById('reg-overlay').style.display = 'none';
+            updateUserUI();
+            renderVips();
+        } else {
+            alert("Лутфан ном ва рақами дурустро ворид кунед!");
+        }
+    }
+
+    function updateUserUI() {
+        const name = localStorage.getItem('charity_name');
+        const phone = localStorage.getItem('charity_phone');
+        document.getElementById('user-display').innerHTML = `👤 Корбар: <b>${name}</b> | 📞: <b>${phone}</b>`;
+    }
 
     function renderVips() {
         const cont = document.getElementById('vips-container');
+        cont.innerHTML = '';
         vips.forEach(v => {
             cont.innerHTML += `
                 <div class="vip-card">
                     <span class="price-tag">${v.p} TJS</span>
-                    <h3 style="margin:0 0 10px 0">${v.n}</h3>
-                    <div style="font-size:13px;">Фоидаи рӯзона: <b class="highlight">${v.d} TJS</b></div>
-                    <button class="btn-main" style="margin-top:15px; padding: 10px;" onclick="openModal('${v.n}', '${v.p}')">ФАЪОЛ КАРДАН</button>
-                </div>
-            `;
+                    <h3 style="margin:0">${v.n}</h3>
+                    <div style="font-size:13px; margin-top:5px;">Фоида: <b class="highlight">${v.d} TJS</b></div>
+                    <button class="btn-main" style="margin-top:15px; padding:10px;" onclick="openModal('${v.n}', '${v.p}')">ФАЪОЛ КАРДАН</button>
+                </div>`;
         });
     }
 
+    let selectedVip = null;
     function openModal(name, price) {
         selectedVip = { name, price };
         document.getElementById('modal-title').innerText = name + " (" + price + " TJS)";
         document.getElementById('modal-overlay').style.display = 'flex';
     }
 
-    function closeModal() {
-        document.getElementById('modal-overlay').style.display = 'none';
-    }
+    function closeModal() { document.getElementById('modal-overlay').style.display = 'none'; }
 
     function sendOrder(plan) {
-        const adminUser = "tmeAdmi_979"; 
-        const message = `Салом Админ! Ман мехоҳам ${selectedVip.name}-ро бо маблағи ${selectedVip.price} сомонӣ харидорӣ кунам. Ман нақшаи гирифтани маблағи ${plan}-ро интихоб кардам.`;
-        const telegramUrl = `https://t.me/${adminUser}?text=${encodeURIComponent(message)}`;
-        window.location.href = telegramUrl;
-        closeModal();
+        const name = localStorage.getItem('charity_name');
+        const phone = localStorage.getItem('charity_phone');
+        const message = `Салом Админ! Ман ${name} (Тел: ${phone}). Мехоҳам ${selectedVip.name}-ро бо маблағи ${selectedVip.price} сомонӣ харидорӣ кунам. Нақша: ${plan}.`;
+        window.location.href = `https://t.me/tmeAdmi_979?text=${encodeURIComponent(message)}`;
     }
 
     function tab(el, id) {
