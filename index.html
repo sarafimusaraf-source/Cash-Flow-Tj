@@ -25,30 +25,26 @@
         .header { text-align: center; padding: 30px 20px; background: linear-gradient(to bottom, #1e293b, var(--dark)); }
         .logo-circle { width: 80px; height: 80px; background: var(--gold); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 40px; box-shadow: 0 0 20px rgba(255, 204, 0, 0.4); border: 3px solid white; }
         
-        .page { display: none; padding: 20px; padding-bottom: 120px; animation: slideUp 0.4s ease; }
+        .page { display: none; padding: 20px; padding-bottom: 110px; animation: slideUp 0.4s ease; }
         .active-page { display: block; }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
         .glass-card { background: var(--card); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #2d3748; }
         .gold-border { border: 2px solid var(--gold); }
         
-        .btn-main { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 16px; border: none; border-radius: 12px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.3s; text-decoration: none; display: block; text-align: center; box-sizing: border-box; font-size: 16px; }
-        
+        .btn-main { background: linear-gradient(45deg, var(--gold), #ffaa00); color: black; padding: 14px; border: none; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.3s; text-decoration: none; display: block; text-align: center; box-sizing: border-box; }
         .vip-card { background: #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 5px solid var(--gold); }
         .price-tag { float: right; background: var(--gold); color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
-
-        /* Навигатсияи калон */
-        .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 12px 0; border-top: 2px solid var(--gold); z-index: 1000; box-shadow: 0 -5px 15px rgba(0,0,0,0.5); }
-        .nav-item { color: var(--gray); text-align: center; font-size: 13px; flex: 1; cursor: pointer; transition: 0.2s; }
-        .nav-item b { font-size: 26px; display: block; margin-bottom: 4px; }
-        .active-nav { color: var(--gold); transform: scale(1.1); font-weight: bold; }
-
-        .copy-box { background: #000; padding: 12px; border-radius: 8px; font-family: monospace; color: var(--gold); display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border: 1px solid #334155; }
-        .copy-btn { background: var(--gold); border: none; border-radius: 5px; padding: 6px 12px; font-weight: bold; cursor: pointer; }
-
-        .check-upload { margin-top: 20px; border: 2px dashed var(--gold); padding: 20px; border-radius: 15px; text-align: center; background: rgba(255, 204, 0, 0.05); }
+        
+        .nav { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 15px 0; border-top: 2px solid var(--gold); z-index: 1000; box-shadow: 0 -5px 15px rgba(0,0,0,0.5); }
+        .nav-item { color: var(--gray); text-align: center; font-size: 13px; flex: 1; cursor: pointer; transition: 0.3s; font-weight: bold; }
+        .nav-item span { font-size: 24px; display: block; margin-bottom: 4px; }
+        .active-nav { color: var(--gold); transform: scale(1.15); }
+        
+        .copy-box { background: #000; padding: 10px; border-radius: 8px; font-family: monospace; color: var(--gold); display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border: 1px solid #334155; }
+        .check-upload { margin-top: 20px; border: 2px dashed var(--gold); padding: 15px; border-radius: 10px; text-align: center; background: rgba(255, 204, 0, 0.05); }
         #file-input { display: none; }
-        .upload-label { cursor: pointer; color: var(--gold); font-weight: bold; font-size: 15px; display: block; }
+        .upload-label { cursor: pointer; color: var(--gold); font-weight: bold; display: block; }
         
         .leader { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #2d3748; }
         .rank { width: 30px; color: var(--gold); font-weight: bold; font-size: 18px; }
@@ -59,54 +55,48 @@
 <div id="login-overlay" style="display: none;">
     <div class="login-box">
         <div class="logo-circle">🤝</div>
-        <h2>ХУШ ОМАДЕД</h2>
+        <h2 style="color: var(--gold);">ХУШ ОМАДЕД</h2>
         <input type="text" id="reg-name" placeholder="Номи шумо">
         <input type="tel" id="reg-phone" placeholder="Рақами телефон">
-        <button onclick="saveUser()" class="btn-main">ВОРИД ШУДАН</button>
+        <button onclick="saveUser()" class="btn-main" style="margin-top: 10px;">ВОРИД ШУДАН</button>
     </div>
 </div>
 
 <div class="header">
     <div class="logo-circle">🤝</div>
-    <h1 style="margin:0;">CHARITY GOLD</h1>
+    <h1 style="margin:0; letter-spacing: 2px;">CHARITY GOLD</h1>
 </div>
 
 <div id="p1" class="page active-page">
     <div class="glass-card gold-border">
-        <h2 style="color:var(--gold)">Кафолати Садфоиза 🛡️</h2>
-        <p>Мо боварии шуморо қадр мекунем! Ҳар як сомонии шумо таҳти ҳимоя аст.</p>
+        <h2>Кафолати Садфоиза 🛡️</h2>
+        <p class="motivation">Мо кафолат медиҳем, ки ҳар як сомонии шумо таҳти ҳимоя аст ва фоидаи шумо бетанаффус илова мешавад.</p>
     </div>
 </div>
 
 <div id="p2" class="page">
-    <h2 style="text-align:center;">Тугмаҳои Даромад 💰</h2>
+    <h2>Тугмаҳои Даромад 💰</h2>
     <div id="vips-container"></div>
 </div>
 
 <div id="p3" class="page">
     <div class="glass-card gold-border">
-        <h2 style="color:var(--gold)">Пайвастшавӣ 💬</h2>
-        <p style="font-size: 14px; text-align:center;">Маблағро гузаронед ва чекро фиристед:</p>
-        
-        <div class="copy-box">
-            <span>5058270379012981</span>
-            <button class="copy-btn" onclick="copyText('5058270379012981')">НУСХА</button>
-        </div>
+        <h2>Маркази Дастгирӣ 💬</h2>
+        <div class="copy-box"><span>5058270379012981</span><button onclick="copyText('5058270379012981')" style="background:var(--gold); border:none; padding:5px; border-radius:5px; cursor:pointer;">COPY</button></div>
         
         <div class="check-upload">
             <label for="file-input" class="upload-label">📸 ИНҶО ПАХШ КУНЕД ВА ЧЕКРО ИНТИХОБ КУНЕД</label>
             <input type="file" id="file-input" accept="image/*" onchange="previewFile()">
-            <p id="file-name" style="color: var(--green); margin-top: 10px; font-weight: bold;"></p>
-            <button id="send-btn" onclick="sendCheck()" class="btn-main" style="display:none; margin-top:15px;">ФИРИСТОДАНИ ЧЕК</button>
+            <p id="file-name" style="font-size: 12px; color: var(--green); margin-top: 10px; font-weight:bold;"></p>
+            <button id="send-btn" onclick="sendCheck()" class="btn-main" style="display:none; height: 50px; margin-top: 10px;">ФИРИСТОДАНИ ЧЕК</button>
         </div>
-
-        <a href="https://t.me/charity_admin_boy_bot" class="btn-main" style="margin-top: 20px; background: #229ED9; color: white;">ЧАТ БО АДМИН</a>
+        <a href="https://t.me/charity_gold_admin_bot" class="btn-main" style="margin-top: 20px; background: #229ED9; color: white;">ЧАТ БО АДМИН</a>
     </div>
 </div>
 
 <div id="p4" class="page">
     <div class="glass-card" style="text-align:center;">
-        <h3 id="user-display">Корбар</h3>
+        <h3 id="user-display">Корбари Фаъол</h3>
         <p id="phone-display" style="color:var(--gray)"></p>
         <button onclick="logout()" style="color:red; background:none; border:1px solid red; padding:5px 10px; border-radius:5px; cursor:pointer;">БАРОМАДАН</button>
     </div>
@@ -117,20 +107,21 @@
 </div>
 
 <nav class="nav">
-    <div class="nav-item active-nav" onclick="tab(this, 'p1')"><b>🏠</b>Асосӣ</div>
-    <div class="nav-item" onclick="tab(this, 'p2')"><b>🔘</b>Тугмаҳо</div>
-    <div class="nav-item" onclick="tab(this, 'p3')"><b>🔗</b>Пайваст</div>
-    <div class="nav-item" onclick="tab(this, 'p4')"><b>👤</b>Профил</div>
+    <div class="nav-item active-nav" onclick="tab(this, 'p1')"><span>🏠</span>Асосӣ</div>
+    <div class="nav-item" onclick="tab(this, 'p2')"><span>🔘</span>Тугмаҳо</div>
+    <div class="nav-item" onclick="tab(this, 'p3')"><span>🔗</span>Пайваст</div>
+    <div class="nav-item" onclick="tab(this, 'p4')"><span>👤</span>Профил</div>
 </nav>
 
 <script>
-    // МАЪЛУМОТИ БОТ (ИНРО ДИГАР НАКУНЕД)
-    const BOT_TOKEN = '7847387342:AAF9D3C0fN2H0n7lR0D9x0D9x0D9x0D9x0D'; 
-    const CHAT_ID = '5086782200'; // ID-и шумо
+    // МАЪЛУМОТИ БОТИ НАВИ ШУМО (100% ДУРУСТ)
+    const BOT_TOKEN = '8705890977:AAG0hNT0E-YxauAq1bHURwedvFd0jS0sQnY'; 
+    const CHAT_ID = '5086782200'; 
 
     const vips = [
         { n: 'Тугмаи 1', p: 120 }, { n: 'Тугмаи 2', p: 260 },
-        { n: 'Тугмаи 3', p: 470 }, { n: 'Тугмаи 4', p: 660 }
+        { n: 'Тугмаи 3', p: 470 }, { n: 'Тугмаи 4', p: 660 },
+        { n: 'Тугмаи 5', p: 850 }, { n: 'Тугмаи 6', p: 1100 }
     ];
 
     window.onload = () => { checkUser(); renderVips(); renderLeaders(); };
@@ -152,13 +143,13 @@
         if (name && phone) {
             localStorage.setItem('charity_user', JSON.stringify({ name, phone }));
             checkUser();
-        }
+        } else { alert("Пур кунед!"); }
     }
 
     function previewFile() {
         const file = document.getElementById('file-input').files[0];
         if(file) {
-            document.getElementById('file-name').innerText = "✅ Файл интихоб шуд: " + file.name;
+            document.getElementById('file-name').innerText = "✅ Файл: " + file.name;
             document.getElementById('send-btn').style.display = 'block';
         }
     }
@@ -170,7 +161,7 @@
         
         if (!fileInput.files[0]) return;
 
-        btn.innerText = "ДАР ҲОЛИ ФИРИСТОДАН...";
+        btn.innerText = "ФИРИСТОДА ИСТОДААСТ...";
         btn.disabled = true;
 
         const formData = new FormData();
@@ -183,18 +174,15 @@
                 method: 'POST',
                 body: formData
             });
-
             if (response.ok) {
-                alert("ТАБРИК! Чек ба админ расид. Интизор шавед.");
+                alert("✅ ТАБРИК! Чек ба админ фиристода шуд.");
                 fileInput.value = "";
                 document.getElementById('file-name').innerText = "";
                 btn.style.display = 'none';
             } else {
-                alert("ХАТОГӢ! Шояд шумо ба бот /start нанавиштаед.");
+                alert("Хатогӣ! Боварӣ ҳосил кунед, ки дар бот /start-ро пахш кардед.");
             }
-        } catch (e) {
-            alert("Хатои интернет! Дубора санҷед.");
-        }
+        } catch (e) { alert("Хатои интернет."); }
         
         btn.innerText = "ФИРИСТОДАНИ ЧЕК";
         btn.disabled = false;
@@ -211,7 +199,11 @@
     function renderVips() {
         const cont = document.getElementById('vips-container');
         vips.forEach(v => {
-            cont.innerHTML += `<div class="vip-card"><span class="price-tag">${v.p} TJS</span><h3>${v.n}</h3><button onclick="tab(document.querySelectorAll('.nav-item')[2], 'p3')" class="btn-main" style="padding:8px; font-size:14px;">ХАРИДАН</button></div>`;
+            cont.innerHTML += `<div class="vip-card">
+                <span class="price-tag">${v.p} TJS</span>
+                <h3>${v.n}</h3>
+                <button onclick="tab(document.querySelectorAll('.nav-item')[2], 'p3')" class="btn-main" style="height:35px; padding:0;">ХАРИДАН</button>
+            </div>`;
         });
     }
 
@@ -223,7 +215,7 @@
         });
     }
 
-    function copyText(t) { navigator.clipboard.writeText(t); alert("Рақами корт нусхабардорӣ шуд!"); }
+    function copyText(t) { navigator.clipboard.writeText(t); alert("Нусхабардорӣ шуд!"); }
     function logout() { localStorage.clear(); location.reload(); }
 </script>
 </body>
