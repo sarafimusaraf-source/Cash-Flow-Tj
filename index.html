@@ -17,9 +17,6 @@
         .promo-card { background: var(--card); border-radius: 20px; padding: 25px; margin-bottom: 20px; border: 1px solid #2d3748; position: relative; overflow: hidden; }
         .promo-card h2 { color: var(--gold); font-size: 22px; margin-bottom: 10px; }
         .promo-card h3 { color: var(--gold); font-size: 18px; margin-top: 20px; margin-bottom: 5px; }
-        .promo-card ul { list-style: none; padding: 0; margin: 0; font-size: 14px; }
-        .promo-card ul li { margin-bottom: 8px; color: var(--gray); }
-        .promo-card ul li b { color: var(--gold); }
         
         .btn-main { background: var(--gold-grad); color: black; padding: 14px; border: none; border-radius: 12px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.3s; text-decoration: none; display: block; text-align: center; box-sizing: border-box; margin-bottom: 10px; box-shadow: 0 4px 15px rgba(255, 204, 0, 0.2); }
         
@@ -38,6 +35,7 @@
         .vip-card { background: #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 5px solid var(--gold); }
         .price-tag { float: right; background: var(--gold); color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
         .highlight { color: var(--green); font-weight: bold; }
+        .stats-row { display: flex; justify-content: space-between; font-size: 12px; margin-top: 8px; color: var(--gray); border-top: 1px solid #2d3748; padding-top: 8px; }
     </style>
 </head>
 <body onload="checkUser()">
@@ -64,7 +62,7 @@
         <h3 id="modal-title" style="color:var(--gold);">Интихоби нақша</h3>
         <button class="btn-main" onclick="sendOrder('ҳаррӯза')">Маблағи ҳаррӯза</button>
         <button class="btn-main" onclick="sendOrder('10-рӯза')">Маблағи 10-рӯза</button>
-        <button class="btn-main" onclick="sendOrder('якмоҳа')">Маблағи якмоҳа</button>
+        <button class="btn-main" onclick="sendOrder('солона')">Маблағи солона</button>
         <button style="background:none; border:none; color:white; cursor:pointer; margin-top:10px;" onclick="closeModal()">Баргаштан</button>
     </div>
 </div>
@@ -79,7 +77,7 @@
         
         <h3>✨ Фалсафаи мо:</h3>
         <p style="font-size:13px; color:var(--gray);">
-            Мо боварӣ дорем, ки некӣ бояд мукофот дошта бошад. Ширкати мо бо мақсади фароҳам овардани имкониятҳои баробари молиявӣ барои ҳама сохта шудааст. Мо роҳи душвори сармоягузориро содда кардем, то ҳар як шахс, сарфи назар аз дониши иқтисодиаш, тавонад сармояи худро афзун кунад.
+            Мо боварӣ дорем, ки некӣ бояд мукофот дошта бошад. Ширкати мо бо мақсади фароҳал овардани имкониятҳои баробари молиявӣ барои ҳама сохта шудааст. Мо роҳи душвори сармоягузориро содда кардем, то ҳар як шахс, сарфи назар аз дониши иқтисодиаш, тавонад сармояи худро афзун кунад.
         </p>
 
         <h3>🎯 Ҳадафи мо:</h3>
@@ -88,17 +86,20 @@
         </p>
 
         <h3>🛡️ Чаро ба мо эътимод мекунанд?</h3>
-        <ul>
-            <li>• <b>Шаффофият:</b> Ҳар як тини шумо зери назорати худи шумост.</li>
-            <li>• <b>Дастрасӣ:</b> Оғози кор танҳо бо як телефон ва маблағи ночиз.</li>
-            <li>• <b>Рушд:</b> Мо ҳамеша дар ҳоли такмил додани система ҳастем, то фоидаи шумо бештар ва амнияти шумо кафолат дода шавад.</li>
-        </ul>
+        <p style="font-size:13px; color:var(--gray);">
+            • <b>Шаффофият:</b> Ҳар як тини шумо зери назорати худи шумост.<br>
+            • <b>Дастрасӣ:</b> Оғози кор танҳо бо як телефон ва маблағи ночиз.<br>
+            • <b>Рушд:</b> Мо ҳамеша дар ҳоли такмил додани система ҳастем, то фоидаи шумо бештар ва амнияти шумо кафолат дода шавад.
+        </p>
     </div>
     <button class="btn-main" onclick="tab(document.querySelectorAll('.nav-item')[1], 'p2')">ОҒОЗ КАРДАНИ КОР</button>
 </div>
 
 <div id="p2" class="page">
-    <h2 style="text-align:center;">Тугмаҳои Даромад 💰</h2>
+    <div style="text-align:center; margin-bottom:20px;">
+        <h2 style="margin-bottom:5px;">Тугмаҳои Даромад 💰</h2>
+        <p style="font-size:12px; color:var(--gold);">Нақшаи худро интихоб кунед ва ба гирифтани фоида оғоз кунед</p>
+    </div>
     <div id="vips-container"></div>
 </div>
 
@@ -110,7 +111,8 @@
         <p style="font-size: 15px; color: white; font-weight: bold;">Барои фаҳмидан ва боз бовариатон Бақуват шудан ба Телеграм гурӯҳи мо гузаред:</p>
         <p style="font-size: 13px; color: var(--gray); margin-bottom: 20px;">Дар онҷо шумо метавонед натиҷаҳои дигар корбаронро бинед.</p>
         
-        <a href="https://t.me/charity_tj" class="btn-main">МУСТАҚИМ БА ТЕЛЕГРАМ</a>
+        <a href="https://t.me/charity_tj" class="btn-main" style="margin-bottom:15px;">МУСТАҚИМ БА ТЕЛЕГРАМ ГУРӮҲ</a>
+        <a href="https://t.me/tmeAdmi_979" class="btn-main" style="background:none; border:1px solid var(--gold); color:var(--gold);">АЛОҚА БО АДМИН</a>
     </div>
 </div>
 
@@ -122,12 +124,12 @@
 
 <script>
     const vips = [
-        { n: 'Тугмаи 1', p: 120, d: 4 },
-        { n: 'Тугмаи 2', p: 260, d: 9 },
-        { n: 'Тугмаи 3', p: 470, d: 17 },
-        { n: 'Тугмаи 4', p: 660, d: 25 },
-        { n: 'Тугмаи 5', p: 850, d: 35 },
-        { n: 'Тугмаи 6', p: 1100, d: 50 }
+        { n: 'Тугмаи 1', p: 120, d: 3, m: 90, s: 1095 },
+        { n: 'Тугмаи 2', p: 260, d: 9, m: 270, s: 3285 },
+        { n: 'Тугмаи 3', p: 470, d: 17, m: 510, s: 6205 },
+        { n: 'Тугмаи 4', p: 660, d: 24, m: 720, s: 8760 },
+        { n: 'Тугмаи 5', p: 850, d: 29, m: 870, s: 10585 },
+        { n: 'Тугмаи 6', p: 1100, d: 37, m: 1110, s: 13505 }
     ];
 
     function checkUser() {
@@ -172,7 +174,11 @@
                     <div class="vip-card">
                         <span class="price-tag">${v.p} TJS</span>
                         <h3 style="margin:0">${v.n}</h3>
-                        <div style="font-size:13px; margin-top:5px;">Фоида: <b class="highlight">${v.d} TJS</b></div>
+                        <div style="font-size:14px; margin-top:5px;">Даромади рӯзона: <b class="highlight">${v.d} TJS</b></div>
+                        <div class="stats-row">
+                            <span>Моҳона: <b>${v.m} TJS</b></span>
+                            <span>Солона: <b>${v.s} TJS</b></span>
+                        </div>
                         <button class="btn-main" style="margin-top:15px; padding:10px;" onclick="openModal('${v.n}', '${v.p}')">ФАЪОЛ КАРДАН</button>
                     </div>`;
             });
@@ -188,11 +194,13 @@
 
     function closeModal() { document.getElementById('modal-overlay').style.display = 'none'; }
 
-    // ИН ФУНКСИЯ ИСЛОҲ ШУД БАРОИ ТЕЛЕГРАМ
+    // ТАНҲО ҲАМИН ФУНКСИЯ ИСЛОҲ ШУД:
     function sendOrder(plan) {
         const name = localStorage.getItem('charity_name');
         const phone = localStorage.getItem('charity_phone');
+        // Матн мувофиқи талаби Шумо ислоҳ шуд
         const message = `Ман ${selectedVip.name}-ро ба маблағи ${selectedVip.price} сомонӣ ба даромади ${plan} интихоб кардам. Корбар: ${name}, Тел: ${phone}`;
+        // Пайвастшавӣ ба Админи дуруст
         window.location.href = `https://t.me/tmeAdmi_979?text=${encodeURIComponent(message)}`;
     }
 
