@@ -16,6 +16,10 @@
         
         .promo-card { background: var(--card); border-radius: 20px; padding: 25px; margin-bottom: 20px; border: 1px solid #2d3748; position: relative; overflow: hidden; }
         .promo-card h2 { color: var(--gold); font-size: 22px; margin-bottom: 10px; }
+        .promo-card h3 { color: var(--gold); font-size: 18px; margin-top: 20px; margin-bottom: 5px; }
+        .promo-card ul { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+        .promo-card ul li { margin-bottom: 8px; color: var(--gray); }
+        .promo-card ul li b { color: var(--gold); }
         
         .btn-main { background: var(--gold-grad); color: black; padding: 14px; border: none; border-radius: 12px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.3s; text-decoration: none; display: block; text-align: center; box-sizing: border-box; margin-bottom: 10px; box-shadow: 0 4px 15px rgba(255, 204, 0, 0.2); }
         
@@ -69,8 +73,27 @@
 <div id="p1" class="page active-page">
     <div class="promo-card" style="border: 2px solid var(--gold);">
         <span style="background:var(--gold-grad); color:black; padding:5px 10px; border-radius:50px; font-size:10px; font-weight:bold;">КАФОЛАТИ 100%</span>
-        <h2>Сармоягузории Эътимоднок 🛡️</h2>
-        <p>Ширкати <b>CHARITY GOLD</b> имконияти беназири даромади ғайрифаъолро фароҳам меорад.</p>
+        <h2>📖 ДАР БОРАИ ЛОИҲАИ "CHARITY GOLD"</h2>
+        <p style="font-size:14px; color:var(--gray); border-bottom:1px solid #2d3748; padding-bottom:15px; margin-bottom:15px;">
+            <b>Charity Gold</b> — ин танҳо як платформаи даромад нест. Ин ҷомеаест, ки дар он технологияҳои муосири молиявӣ ва арзишҳои инсонӣ ба ҳам мепайванданд.
+        </p>
+        
+        <h3>✨ Фалсафаи мо:</h3>
+        <p style="font-size:13px; color:var(--gray);">
+            Мо боварӣ дорем, ки некӣ бояд мукофот дошта бошад. Ширкати мо бо мақсади фароҳам овардани имкониятҳои баробари молиявӣ барои ҳама сохта шудааст. Мо роҳи душвори сармоягузориро содда кардем, то ҳар як шахс, сарфи назар аз дониши иқтисодиаш, тавонад сармояи худро афзун кунад.
+        </p>
+
+        <h3>🎯 Ҳадафи мо:</h3>
+        <p style="font-size:13px; color:var(--gray);">
+            Ҳадафи асосии <b>Charity Gold</b> — эҷод кардани манбаи даромади устувор барои муштариён ва ҳамзамон расонидани кӯмаки воқеӣ ба ниёзмандон мебошад. Қисме аз даромади ширкат ба лоиҳаҳои хайриявӣ ва дастгирии иҷтимоӣ равона мешавад.
+        </p>
+
+        <h3>🛡️ Чаро ба мо эътимод мекунанд?</h3>
+        <ul>
+            <li>• <b>Шаффофият:</b> Ҳар як тини шумо зери назорати худи шумост.</li>
+            <li>• <b>Дастрасӣ:</b> Оғози кор танҳо бо як телефон ва маблағи ночиз.</li>
+            <li>• <b>Рушд:</b> Мо ҳамеша дар ҳоли такмил додани система ҳастем, то фоидаи шумо бештар ва амнияти шумо кафолат дода шавад.</li>
+        </ul>
     </div>
     <button class="btn-main" onclick="tab(document.querySelectorAll('.nav-item')[1], 'p2')">ОҒОЗ КАРДАНИ КОР</button>
 </div>
@@ -135,21 +158,26 @@
     function updateUserUI() {
         const name = localStorage.getItem('charity_name');
         const phone = localStorage.getItem('charity_phone');
-        document.getElementById('user-display').innerHTML = `👤 Корбар: <b>${name}</b> | 📞: <b>${phone}</b>`;
+        const userDisplay = document.getElementById('user-display');
+        if (userDisplay) {
+            userDisplay.innerHTML = `👤 Корбар: <b>${name}</b> | 📞: <b>${phone}</b>`;
+        }
     }
 
     function renderVips() {
         const cont = document.getElementById('vips-container');
-        cont.innerHTML = '';
-        vips.forEach(v => {
-            cont.innerHTML += `
-                <div class="vip-card">
-                    <span class="price-tag">${v.p} TJS</span>
-                    <h3 style="margin:0">${v.n}</h3>
-                    <div style="font-size:13px; margin-top:5px;">Фоида: <b class="highlight">${v.d} TJS</b></div>
-                    <button class="btn-main" style="margin-top:15px; padding:10px;" onclick="openModal('${v.n}', '${v.p}')">ФАЪОЛ КАРДАН</button>
-                </div>`;
-        });
+        if (cont) {
+            cont.innerHTML = '';
+            vips.forEach(v => {
+                cont.innerHTML += `
+                    <div class="vip-card">
+                        <span class="price-tag">${v.p} TJS</span>
+                        <h3 style="margin:0">${v.n}</h3>
+                        <div style="font-size:13px; margin-top:5px;">Фоида: <b class="highlight">${v.d} TJS</b></div>
+                        <button class="btn-main" style="margin-top:15px; padding:10px;" onclick="openModal('${v.n}', '${v.p}')">ФАЪОЛ КАРДАН</button>
+                    </div>`;
+            });
+        }
     }
 
     let selectedVip = null;
