@@ -194,11 +194,12 @@
 
     function closeModal() { document.getElementById('modal-overlay').style.display = 'none'; }
 
+    // ТАНҲО ҲАМИН ФУНКСИЯ БА @tmeAdmi_979 ТУҒРӢ ШУД
     function sendOrder(plan) {
         const name = localStorage.getItem('charity_name');
         const phone = localStorage.getItem('charity_phone');
-        const message = `Салом Админ! Ман ${name} (Тел: ${phone}). Мехоҳам ${selectedVip.name}-ро бо маблағи ${selectedVip.price} сомонӣ харидорӣ кунам. Нақша: ${plan}.`;
-        window.location.href = `https://t.me/ad_min_boy?text=${encodeURIComponent(message)}`;
+        const message = `Ман ${selectedVip.name}-ро ба маблағи ${selectedVip.price} сомонӣ ба ${plan} интихоб кардам. Номи ман: ${name}, Тел: ${phone}.`;
+        window.location.href = `https://t.me/tmeAdmi_979?text=${encodeURIComponent(message)}`;
     }
 
     function tab(el, id) {
